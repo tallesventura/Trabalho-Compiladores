@@ -5,6 +5,18 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JToolBar;
+
 /**
  *
  * @author tallesventura
@@ -18,6 +30,108 @@ public class MainWindowView extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JButton getBtnAbrir() {
+        return btnAbrir;
+    }
+
+    public JButton getBtnAnaliseLex() {
+        return btnAnaliseLex;
+    }
+
+    public JButton getBtnDesfazer() {
+        return btnDesfazer;
+    }
+
+    public JButton getBtnRefazer() {
+        return btnRefazer;
+    }
+
+    public JButton getBtnSalvar() {
+        return btnSalvar;
+    }
+
+    public JCheckBoxMenuItem getChkBoxAtivarAnalise() {
+        return chkBoxAtivarAnalise;
+    }
+
+    public JMenuBar getjMenuBar1() {
+        return jMenuBar1;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JScrollPane getjScrollPane3() {
+        return jScrollPane3;
+    }
+
+    public JSplitPane getjSplitPane1() {
+        return jSplitPane1;
+    }
+
+    public JTabbedPane getjTabbedPane1() {
+        return jTabbedPane1;
+    }
+
+    public JToolBar getjToolBar1() {
+        return jToolBar1;
+    }
+
+    public JMenu getMenuArquivo() {
+        return menuArquivo;
+    }
+
+    public JMenu getMenuEditar() {
+        return menuEditar;
+    }
+
+    public JMenu getMenuExecutar() {
+        return menuExecutar;
+    }
+
+    public JMenu getMenuFerramentas() {
+        return menuFerramentas;
+    }
+
+    public JMenuItem getMenuItemAbrir() {
+        return menuItemAbrir;
+    }
+
+    public JMenuItem getMenuItemAnaliseLex() {
+        return menuItemAnaliseLex;
+    }
+
+    public JMenuItem getMenuItemDesfazer() {
+        return menuItemDesfazer;
+    }
+
+    public JMenuItem getMenuItemRefazer() {
+        return menuItemRefazer;
+    }
+
+    public JMenuItem getMenuItemSalvar() {
+        return menuItemSalvar;
+    }
+
+    public JScrollPane getScrPaneCodigo() {
+        return scrPaneCodigo;
+    }
+
+    public JScrollPane getScrPaneTabela() {
+        return scrPaneTabela;
+    }
+
+    public JTable getTblErros() {
+        return tblErros;
+    }
+
+    public JTable getTblTokens() {
+        return tblTokens;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,22 +143,39 @@ public class MainWindowView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
-        tblTokens = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtPaneEditor = new javax.swing.JTextPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        scrPaneTabela = new javax.swing.JScrollPane();
+        tblTokens = new javax.swing.JTable();
+        scrPaneCodigo = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txtAreaErros = new javax.swing.JTextArea();
+        tblErros = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
+        jToolBar1 = new javax.swing.JToolBar();
+        btnAbrir = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        btnDesfazer = new javax.swing.JButton();
+        btnRefazer = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        btnAnaliseLex = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        btnSalvar = new javax.swing.JMenu();
-        btnAbrir = new javax.swing.JMenu();
+        menuArquivo = new javax.swing.JMenu();
+        menuItemAbrir = new javax.swing.JMenuItem();
+        menuItemSalvar = new javax.swing.JMenuItem();
+        menuEditar = new javax.swing.JMenu();
+        menuItemDesfazer = new javax.swing.JMenuItem();
+        menuItemRefazer = new javax.swing.JMenuItem();
+        menuExecutar = new javax.swing.JMenu();
+        menuItemAnaliseLex = new javax.swing.JMenuItem();
+        menuFerramentas = new javax.swing.JMenu();
+        chkBoxAtivarAnalise = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setDividerLocation(400);
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(1073, 434));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTokens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,15 +186,28 @@ public class MainWindowView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblTokens.setViewportView(jTable1);
+        scrPaneTabela.setViewportView(tblTokens);
 
-        jSplitPane1.setLeftComponent(tblTokens);
+        jTabbedPane1.addTab("Tabela de Símbolos", scrPaneTabela);
 
-        jScrollPane2.setViewportView(txtPaneEditor);
+        jSplitPane1.setLeftComponent(jTabbedPane1);
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Tabela de Símbolos");
+        jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
 
-        jSplitPane1.setRightComponent(jScrollPane2);
+        jSplitPane1.setRightComponent(scrPaneCodigo);
 
-        jScrollPane3.setViewportView(txtAreaErros);
+        tblErros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tblErros);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,18 +220,93 @@ public class MainWindowView extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
         );
 
-        btnSalvar.setText("Salvar");
-        jMenuBar1.add(btnSalvar);
+        jToolBar1.setRollover(true);
 
-        btnAbrir.setText("Abrir");
-        jMenuBar1.add(btnAbrir);
+        btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Folder-Open-icon.png"))); // NOI18N
+        btnAbrir.setToolTipText("Abrir");
+        btnAbrir.setFocusable(false);
+        btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAbrir.setMaximumSize(new java.awt.Dimension(31, 31));
+        btnAbrir.setMinimumSize(new java.awt.Dimension(31, 31));
+        btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnAbrir);
+
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Actions-document-save-icon.png"))); // NOI18N
+        btnSalvar.setToolTipText("Salvar");
+        btnSalvar.setFocusable(false);
+        btnSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalvar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnSalvar);
+        jToolBar1.add(jSeparator2);
+
+        btnDesfazer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Undo-icon.png"))); // NOI18N
+        btnDesfazer.setToolTipText("Desfazer");
+        btnDesfazer.setFocusable(false);
+        btnDesfazer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDesfazer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnDesfazer);
+
+        btnRefazer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Redo-icon.png"))); // NOI18N
+        btnRefazer.setToolTipText("Refazer");
+        btnRefazer.setFocusable(false);
+        btnRefazer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRefazer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnRefazer);
+        jToolBar1.add(jSeparator3);
+
+        btnAnaliseLex.setText("Análise Léxica");
+        btnAnaliseLex.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAnaliseLex.setFocusable(false);
+        btnAnaliseLex.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAnaliseLex.setMaximumSize(new java.awt.Dimension(85, 31));
+        btnAnaliseLex.setMinimumSize(new java.awt.Dimension(85, 31));
+        btnAnaliseLex.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnAnaliseLex);
+
+        menuArquivo.setText("Arquivo");
+
+        menuItemAbrir.setText("Abrir projeto");
+        menuArquivo.add(menuItemAbrir);
+
+        menuItemSalvar.setText("Salvar projeto");
+        menuArquivo.add(menuItemSalvar);
+
+        jMenuBar1.add(menuArquivo);
+
+        menuEditar.setText("Editar");
+
+        menuItemDesfazer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemDesfazer.setText("Desfazer");
+        menuEditar.add(menuItemDesfazer);
+
+        menuItemRefazer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemRefazer.setText("Refazer");
+        menuEditar.add(menuItemRefazer);
+
+        jMenuBar1.add(menuEditar);
+
+        menuExecutar.setText("Executar");
+
+        menuItemAnaliseLex.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemAnaliseLex.setText("Análise léxica");
+        menuExecutar.add(menuItemAnaliseLex);
+
+        jMenuBar1.add(menuExecutar);
+
+        menuFerramentas.setText("Ferramentas");
+
+        chkBoxAtivarAnalise.setSelected(true);
+        chkBoxAtivarAnalise.setText("Ativar Análise em tempo real");
+        menuFerramentas.add(chkBoxAtivarAnalise);
+
+        jMenuBar1.add(menuFerramentas);
 
         setJMenuBar(jMenuBar1);
 
@@ -96,10 +315,14 @@ public class MainWindowView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -108,50 +331,35 @@ public class MainWindowView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindowView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindowView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindowView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindowView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindowView().setVisible(true);
-            }
-        });
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu btnAbrir;
-    private javax.swing.JMenu btnSalvar;
+    private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnAnaliseLex;
+    private javax.swing.JButton btnDesfazer;
+    private javax.swing.JButton btnRefazer;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JCheckBoxMenuItem chkBoxAtivarAnalise;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JScrollPane tblTokens;
-    private javax.swing.JTextArea txtAreaErros;
-    private javax.swing.JTextPane txtPaneEditor;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenu menuArquivo;
+    private javax.swing.JMenu menuEditar;
+    private javax.swing.JMenu menuExecutar;
+    private javax.swing.JMenu menuFerramentas;
+    private javax.swing.JMenuItem menuItemAbrir;
+    private javax.swing.JMenuItem menuItemAnaliseLex;
+    private javax.swing.JMenuItem menuItemDesfazer;
+    private javax.swing.JMenuItem menuItemRefazer;
+    private javax.swing.JMenuItem menuItemSalvar;
+    private javax.swing.JScrollPane scrPaneCodigo;
+    private javax.swing.JScrollPane scrPaneTabela;
+    private javax.swing.JTable tblErros;
+    private javax.swing.JTable tblTokens;
     // End of variables declaration//GEN-END:variables
 }

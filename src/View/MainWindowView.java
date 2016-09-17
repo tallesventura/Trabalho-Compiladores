@@ -10,9 +10,7 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -24,54 +22,43 @@ import javax.swing.JToolBar;
 public class MainWindowView extends javax.swing.JFrame {
 
     /**
-     * Creates new form MainWindowView
+     * Creates new form TelaPrincipalView
      */
     public MainWindowView() {
         initComponents();
+    }
+
+    public JScrollPane getjScrollPaneCodigo() {
+        return scrPaneEditor;
+    }
+
+    public JTable getjTableSaida() {
+        return tblErros;
+    }
+
+    public JTabbedPane getJPanelArvore() {
+        return jTabbedPane;
+    }
+    
+    
+    public JTable getJTableTabelaSimbolos() {
+        return tblTokens;
     }
 
     public JButton getBtnAbrir() {
         return btnAbrir;
     }
 
-    public JButton getBtnAnaliseLex() {
-        return btnAnaliseLex;
-    }
-
     public JButton getBtnDesfazer() {
         return btnDesfazer;
-    }
-
-    public JButton getBtnRefazer() {
-        return btnRefazer;
     }
 
     public JButton getBtnSalvar() {
         return btnSalvar;
     }
 
-    public JCheckBoxMenuItem getChkBoxAtivarAnalise() {
-        return chkBoxAtivarAnalise;
-    }
-
     public JMenuBar getjMenuBar1() {
         return jMenuBar1;
-    }
-
-    public JPanel getjPanel1() {
-        return jPanel1;
-    }
-
-    public JScrollPane getjScrollPane3() {
-        return jScrollPane3;
-    }
-
-    public JSplitPane getjSplitPane1() {
-        return jSplitPane1;
-    }
-
-    public JTabbedPane getjTabbedPane1() {
-        return jTabbedPane1;
     }
 
     public JToolBar getjToolBar1() {
@@ -80,6 +67,10 @@ public class MainWindowView extends javax.swing.JFrame {
 
     public JMenu getMenuArquivo() {
         return menuArquivo;
+    }
+
+    public JCheckBoxMenuItem getMenuChkBoxAnalise() {
+        return menuChkBoxAnalise;
     }
 
     public JMenu getMenuEditar() {
@@ -102,24 +93,20 @@ public class MainWindowView extends javax.swing.JFrame {
         return menuItemAnaliseLex;
     }
 
-    public JMenuItem getMenuItemDesfazer() {
-        return menuItemDesfazer;
-    }
-
-    public JMenuItem getMenuItemRefazer() {
-        return menuItemRefazer;
-    }
-
     public JMenuItem getMenuItemSalvar() {
         return menuItemSalvar;
     }
 
-    public JScrollPane getScrPaneCodigo() {
-        return scrPaneCodigo;
+    public JScrollPane getScrPaneEditor() {
+        return scrPaneEditor;
     }
 
-    public JScrollPane getScrPaneTabela() {
-        return scrPaneTabela;
+    public JScrollPane getScrPaneErros() {
+        return scrPaneErros;
+    }
+
+    public JScrollPane getScrPaneTokens() {
+        return scrPaneTokens;
     }
 
     public JTable getTblErros() {
@@ -129,9 +116,18 @@ public class MainWindowView extends javax.swing.JFrame {
     public JTable getTblTokens() {
         return tblTokens;
     }
-    
+      
+
+    public JMenuItem getBtnAvancar() {
+        return btnAvancar;
+    }
+
+    public JMenuItem getBtnVoltar() {
+        return btnVoltar;
+    }
     
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,15 +137,8 @@ public class MainWindowView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        scrPaneTabela = new javax.swing.JScrollPane();
-        tblTokens = new javax.swing.JTable();
-        scrPaneCodigo = new javax.swing.JScrollPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblErros = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         btnAbrir = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -157,89 +146,40 @@ public class MainWindowView extends javax.swing.JFrame {
         btnDesfazer = new javax.swing.JButton();
         btnRefazer = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        btnAnaliseLex = new javax.swing.JButton();
+        scrPaneEditor = new javax.swing.JScrollPane();
+        scrPaneErros = new javax.swing.JScrollPane();
+        tblErros = new javax.swing.JTable();
+        jTabbedPane = new javax.swing.JTabbedPane();
+        scrPaneTokens = new javax.swing.JScrollPane();
+        tblTokens = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         menuItemAbrir = new javax.swing.JMenuItem();
         menuItemSalvar = new javax.swing.JMenuItem();
         menuEditar = new javax.swing.JMenu();
-        menuItemDesfazer = new javax.swing.JMenuItem();
-        menuItemRefazer = new javax.swing.JMenuItem();
+        btnVoltar = new javax.swing.JMenuItem();
+        btnAvancar = new javax.swing.JMenuItem();
+        menuFerramentas = new javax.swing.JMenu();
+        menuChkBoxAnalise = new javax.swing.JCheckBoxMenuItem();
         menuExecutar = new javax.swing.JMenu();
         menuItemAnaliseLex = new javax.swing.JMenuItem();
-        menuFerramentas = new javax.swing.JMenu();
-        chkBoxAtivarAnalise = new javax.swing.JCheckBoxMenuItem();
+
+        jMenuItem5.setText("jMenuItem5");
+
+        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jSplitPane1.setDividerLocation(400);
-        jSplitPane1.setPreferredSize(new java.awt.Dimension(1073, 434));
-
-        tblTokens.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        scrPaneTabela.setViewportView(tblTokens);
-
-        jTabbedPane1.addTab("Tabela de Símbolos", scrPaneTabela);
-
-        jSplitPane1.setLeftComponent(jTabbedPane1);
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Tabela de Símbolos");
-        jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
-
-        jSplitPane1.setRightComponent(scrPaneCodigo);
-
-        tblErros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(tblErros);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
-            .addComponent(jScrollPane3)
-            .addComponent(jSeparator1)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-        );
+        setTitle("Compilador Python");
 
         jToolBar1.setRollover(true);
 
         btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Folder-Open-icon.png"))); // NOI18N
-        btnAbrir.setToolTipText("Abrir");
         btnAbrir.setFocusable(false);
         btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAbrir.setMaximumSize(new java.awt.Dimension(31, 31));
-        btnAbrir.setMinimumSize(new java.awt.Dimension(31, 31));
         btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnAbrir);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Actions-document-save-icon.png"))); // NOI18N
-        btnSalvar.setToolTipText("Salvar");
         btnSalvar.setFocusable(false);
         btnSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSalvar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -247,66 +187,107 @@ public class MainWindowView extends javax.swing.JFrame {
         jToolBar1.add(jSeparator2);
 
         btnDesfazer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Undo-icon.png"))); // NOI18N
-        btnDesfazer.setToolTipText("Desfazer");
         btnDesfazer.setFocusable(false);
         btnDesfazer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDesfazer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnDesfazer);
 
         btnRefazer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Redo-icon.png"))); // NOI18N
-        btnRefazer.setToolTipText("Refazer");
         btnRefazer.setFocusable(false);
         btnRefazer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRefazer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnRefazer);
         jToolBar1.add(jSeparator3);
 
-        btnAnaliseLex.setText("Análise Léxica");
-        btnAnaliseLex.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAnaliseLex.setFocusable(false);
-        btnAnaliseLex.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAnaliseLex.setMaximumSize(new java.awt.Dimension(85, 31));
-        btnAnaliseLex.setMinimumSize(new java.awt.Dimension(85, 31));
-        btnAnaliseLex.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnAnaliseLex);
+        tblErros.setBackground(new java.awt.Color(255, 153, 153));
+        tblErros.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tblErros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Erros"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblErros.setGridColor(new java.awt.Color(255, 255, 255));
+        tblErros.setShowVerticalLines(false);
+        scrPaneErros.setViewportView(tblErros);
+
+        tblTokens.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Linha", "Símbolo", "Token"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrPaneTokens.setViewportView(tblTokens);
+        if (tblTokens.getColumnModel().getColumnCount() > 0) {
+            tblTokens.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblTokens.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tblTokens.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblTokens.getColumnModel().getColumn(3).setPreferredWidth(200);
+        }
+
+        jTabbedPane.addTab("Tabela de Simbolos", scrPaneTokens);
 
         menuArquivo.setText("Arquivo");
 
-        menuItemAbrir.setText("Abrir projeto");
+        menuItemAbrir.setText("Abrir");
         menuArquivo.add(menuItemAbrir);
 
-        menuItemSalvar.setText("Salvar projeto");
+        menuItemSalvar.setText("Salvar");
         menuArquivo.add(menuItemSalvar);
 
         jMenuBar1.add(menuArquivo);
 
         menuEditar.setText("Editar");
 
-        menuItemDesfazer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
-        menuItemDesfazer.setText("Desfazer");
-        menuEditar.add(menuItemDesfazer);
+        btnVoltar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        btnVoltar.setText("Desfazer");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        menuEditar.add(btnVoltar);
 
-        menuItemRefazer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
-        menuItemRefazer.setText("Refazer");
-        menuEditar.add(menuItemRefazer);
+        btnAvancar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        btnAvancar.setText("Refazer");
+        menuEditar.add(btnAvancar);
 
         jMenuBar1.add(menuEditar);
 
+        menuFerramentas.setText("Ferramentas");
+
+        menuChkBoxAnalise.setSelected(true);
+        menuChkBoxAnalise.setText("Ativar análise automática");
+        menuFerramentas.add(menuChkBoxAnalise);
+
+        jMenuBar1.add(menuFerramentas);
+
         menuExecutar.setText("Executar");
 
-        menuItemAnaliseLex.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        menuItemAnaliseLex.setText("Análise léxica");
+        menuItemAnaliseLex.setText("Análise Léxica");
         menuExecutar.add(menuItemAnaliseLex);
 
         jMenuBar1.add(menuExecutar);
-
-        menuFerramentas.setText("Ferramentas");
-
-        chkBoxAtivarAnalise.setSelected(true);
-        chkBoxAtivarAnalise.setText("Ativar Análise em tempo real");
-        menuFerramentas.add(chkBoxAtivarAnalise);
-
-        jMenuBar1.add(menuFerramentas);
 
         setJMenuBar(jMenuBar1);
 
@@ -314,51 +295,70 @@ public class MainWindowView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrPaneErros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(scrPaneEditor)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrPaneEditor)
+                    .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(scrPaneErros, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
-    private javax.swing.JButton btnAnaliseLex;
+    private javax.swing.JMenuItem btnAvancar;
     private javax.swing.JButton btnDesfazer;
     private javax.swing.JButton btnRefazer;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JCheckBoxMenuItem chkBoxAtivarAnalise;
+    private javax.swing.JMenuItem btnVoltar;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu menuArquivo;
+    private javax.swing.JCheckBoxMenuItem menuChkBoxAnalise;
     private javax.swing.JMenu menuEditar;
     private javax.swing.JMenu menuExecutar;
     private javax.swing.JMenu menuFerramentas;
     private javax.swing.JMenuItem menuItemAbrir;
     private javax.swing.JMenuItem menuItemAnaliseLex;
-    private javax.swing.JMenuItem menuItemDesfazer;
-    private javax.swing.JMenuItem menuItemRefazer;
     private javax.swing.JMenuItem menuItemSalvar;
-    private javax.swing.JScrollPane scrPaneCodigo;
-    private javax.swing.JScrollPane scrPaneTabela;
+    private javax.swing.JScrollPane scrPaneEditor;
+    private javax.swing.JScrollPane scrPaneErros;
+    private javax.swing.JScrollPane scrPaneTokens;
     private javax.swing.JTable tblErros;
     private javax.swing.JTable tblTokens;
     // End of variables declaration//GEN-END:variables

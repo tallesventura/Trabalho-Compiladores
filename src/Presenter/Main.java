@@ -5,13 +5,23 @@
  */
 package Presenter;
 
+import java.io.File;
+
 /**
  *
  * @author tallesventura
  */
 public class Main {
     
+    public static void gerarLexer( String path){
+        File f = new File(path);
+        jflex.Main.generate(f);
+    }
+    
     public static void main(String[] args){
         MainWindowPresenter mainWindow = new MainWindowPresenter();
+        
+        String path_lexer = "src\\AnalisadorLexico\\Lexer.flex";
+        gerarLexer(path_lexer);
     }
 }

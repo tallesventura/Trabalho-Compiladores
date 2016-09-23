@@ -44,3 +44,6 @@ WhiteSpace = {LineTerminator} | [ \f]
 
 /* Pontuacao */
 ":" { id+=1; return Token.DOIS_PONTOS; }
+
+
+. { return Token.ERROR; }

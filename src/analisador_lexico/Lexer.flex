@@ -26,4 +26,21 @@ WhiteSpace = {LineTerminator} | [ \f]
 
 {Comment} {/*Ignore*/}
 {WhiteSpace} {/*Ignore*/}
-(\".*\") { return Token.STRING;}
+(\".*\") { id+=1; return Token.STRING;}
+
+(_|{Letra})({Letra}|{Num}|_)* { id+=1; return Token.IDENTIFICADOR; }
+
+/* Operadores */
+"+" { id+=1; return Token.OP_ADICAO; }
+"-" { id+=1; return Token.OP_SUBTRACAO; }
+"*" { id+=1; return Token.OP_MULTIPLICACAO; }
+"/" { id+=1; return Token.OP_DIVISAO; }
+"+=" { id+=1; return Token.OP_MAIS_IGUAL; }
+"-=" { id+=1; return Token.OP_MENOS_IGUAL; }
+"*=" { id+=1; return Token.OP_VEZES_IGUAL; }
+"/=" { id+=1; return Token.OP_DIVIDIDO_IGUAL; }
+"=" { id+=1; return Token.ATRIBUICAO; }
+"%" { id+=1; return Token.OP_RESTO; }
+
+/* Pontuacao */
+":" { id+=1; return Token.DOIS_PONTOS; }

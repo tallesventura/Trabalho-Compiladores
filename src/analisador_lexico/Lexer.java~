@@ -610,7 +610,7 @@ public int getId(){
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { id+=1; return Token.IDENTIFICADOR;
+            { id+=1; return Token.IDENTIFICADOR
             }
           case 15: break;
           case 2: 
@@ -618,31 +618,31 @@ public int getId(){
             }
           case 16: break;
           case 3: 
-            { id+=1; return Token.OP_ADICAO;
+            { id+=1; return Token.OP_ADICAO
             }
           case 17: break;
           case 4: 
-            { id+=1; return Token.OP_SUBTRACAO;
+            { id+=1; return Token.OP_SUBTRACAO
             }
           case 18: break;
           case 5: 
-            { id+=1; return Token.OP_MULTIPLICACAO;
+            { id+=1; return Token.OP_MULTIPLICACAO
             }
           case 19: break;
           case 6: 
-            { id+=1; return Token.OP_DIVISAO;
+            { id+=1; return Token.OP_DIVISAO
             }
           case 20: break;
           case 7: 
-            { id+=1; return Token.ATRIBUICAO;
+            { id+=1; return Token.ATRIBUICAO
             }
           case 21: break;
           case 8: 
-            { id+=1; return Token.OP_RESTO;
+            { id+=1; return Token.OP_RESTO
             }
           case 22: break;
           case 9: 
-            { id+=1; return Token.DOIS_PONTOS;
+            { id+=1; return Token.DOIS_PONTOS
             }
           case 23: break;
           case 10: 
@@ -650,19 +650,19 @@ public int getId(){
             }
           case 24: break;
           case 11: 
-            { id+=1; return Token.OP_MAIS_IGUAL;
+            { id+=1; return Token.OP_MAIS_IGUAL
             }
           case 25: break;
           case 12: 
-            { id+=1; return Token.OP_MENOS_IGUAL;
+            { id+=1; return Token.OP_MENOS_IGUAL
             }
           case 26: break;
           case 13: 
-            { id+=1; return Token.OP_VEZES_IGUAL;
+            { id+=1; return Token.OP_VEZES_IGUAL
             }
           case 27: break;
           case 14: 
-            { id+=1; return Token.OP_DIVIDIDO_IGUAL;
+            { id+=1; return Token.OP_DIVIDIDO_IGUAL
             }
           case 28: break;
           default:

@@ -41,6 +41,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "/=" { id+=1; return Token.OP_DIVIDIDO_IGUAL; }
 "=" { id+=1; return Token.ATRIBUICAO; }
 "%" { id+=1; return Token.OP_RESTO; }
+"==" { id+=1; return Token.OP_IGUALDADE; }
 
 /* Pontuacao */
 ":" { id+=1; return Token.DOIS_PONTOS; }

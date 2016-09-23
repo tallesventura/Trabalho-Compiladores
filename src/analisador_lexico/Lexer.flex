@@ -8,7 +8,7 @@ import analisador_lexico.Token;
 %column
 %type Token
 
-%{ 
+%{
 private static int id = 0;
 
 public int getId(){

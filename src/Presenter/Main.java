@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args){
         MainWindowPresenter mainWindow = new MainWindowPresenter();
         
-        String path_lexer = "src\\AnalisadorLexico\\Lexer.flex";
+        String path_lexer = "src/analisador_lexico/Lexer.flex";
         gerarLexer(path_lexer);
     }
 }

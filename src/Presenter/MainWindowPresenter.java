@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Presenter;
 
 import DAO.DAOTxt;
@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -35,33 +37,77 @@ import org.fife.ui.rtextarea.RTextScrollPane;
  * @author tallesventura
  */
 public class MainWindowPresenter {
-
+    
     private MainWindowView viewMainWindow;
     private RSyntaxTextArea editor;
     private List<TokenModel> tokenList;
     private DefaultTableModel tblModelTokens;
     private String filePath;
     private File codeFile = null;
-
+    
     public MainWindowPresenter() {
-
+        
         viewMainWindow = new MainWindowView();
         editor = new RSyntaxTextArea();
         tokenList = new ArrayList();
-
+        
         initEditor();
         initTabelaToken();
         viewMainWindow.setLocationRelativeTo(viewMainWindow);
         viewMainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
         viewMainWindow.setVisible(true);
-
+        
         viewMainWindow.getMenuItemAbrir().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lerArquivo();
             }
         });
-
+        
+        viewMainWindow.getBtnRefazer().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    undo();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(viewMainWindow, ex.getMessage());
+                }
+            }
+        });
+        
+        viewMainWindow.getBtnDesfazer().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    undo();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(viewMainWindow, ex.getMessage());
+                }
+            }
+        });
+        
+        viewMainWindow.getBtnAvancar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    redo();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(viewMainWindow, ex.getMessage());
+                }
+            }
+        });
+        
+        viewMainWindow.getBtnVoltar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    redo();
+                }catch (Exception ex){
+                    JOptionPane.showMessageDialog(viewMainWindow, ex.getMessage());
+                }
+            }
+        });
+        
         viewMainWindow.getMenuItemSalvar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,18 +117,18 @@ public class MainWindowPresenter {
                 fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 int returnVal = fileChooser.showSaveDialog(viewMainWindow);
                 if(returnVal == JFileChooser.APPROVE_OPTION){
-                    try {
-                        codeFile = fileChooser.getCurrentDirectory();
-                        //codeFile = fileChooser.getSelectedFile();
-                        //codeFile.createNewFile();
-                        saveCode(codeFile);
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(viewMainWindow, ex);
-                    }
+                try {
+                codeFile = fileChooser.getCurrentDirectory();
+                //codeFile = fileChooser.getSelectedFile();
+                //codeFile.createNewFile();
+                saveCode(codeFile);
+                } catch (IOException ex) {
+                JOptionPane.showMessageDialog(viewMainWindow, ex);
+                }
                 }*/
             }
         });
-
+        
         viewMainWindow.getMenuItemAnaliseLex().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,15 +139,17 @@ public class MainWindowPresenter {
                         runLexicalAnalysis();
                     } catch (FileNotFoundException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(viewMainWindow, ex);
                     }
                 }
             }
         });
     }
-
+    
     public final void initEditor() {
         JPanel cp = new JPanel(new BorderLayout());
-
+        
         editor.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
         editor.setCodeFoldingEnabled(true);
         editor.setHighlightCurrentLine(true);
@@ -112,18 +160,18 @@ public class MainWindowPresenter {
         sp.setFoldIndicatorEnabled(true);
         sp.setVisible(true);
         cp.add(sp);
-
+        
         viewMainWindow.getjScrollPaneCodigo().setColumnHeaderView(cp);
-
+        
     }
-
+    
     public final void initTabelaToken() {
         String[] columnNames = {"ID", "Linha", "Token", "Lexema"};
         tblModelTokens = new DefaultTableModel(columnNames, 0);
         viewMainWindow.getTblTokens().setModel(tblModelTokens);
         //viewMainWindow.getTblTokens().updateUI();
     }
-
+    
     public void saveCode(File f) throws IOException {
         String srcCode = editor.getText();
         FileWriter w = new FileWriter(f);
@@ -131,17 +179,18 @@ public class MainWindowPresenter {
         bf.write(srcCode);
         bf.close();
     }
-
-    public void runLexicalAnalysis() throws FileNotFoundException {
-
+    
+    public void runLexicalAnalysis() throws FileNotFoundException, IOException {
+        
         AnalisadorLexico al = AnalisadorLexico.getInstance(codeFile);
+        al.runAnalysis();
         tokenList = al.getTokenList();
         for (TokenModel t : tokenList) {
             System.out.println(t.getNome());
         }
         updateTokenTable(tokenList);
     }
-
+    
     public void updateTokenTable(List<TokenModel> tokens) {
         tblModelTokens.setNumRows(0);
         for (TokenModel t : tokens) {
@@ -149,7 +198,7 @@ public class MainWindowPresenter {
             tblModelTokens.addRow(o);
         }
     }
-
+    
     public void salvarArquivo() {
         try {
             String filename = File.separator;
@@ -163,7 +212,7 @@ public class MainWindowPresenter {
             JOptionPane.showMessageDialog(null, "Erro ao salvar arquivo MainPresenter");
         }
     }
-
+    
     public void lerArquivo() {
         JFileChooser abrir = new JFileChooser();
         int retorno = abrir.showOpenDialog(null);
@@ -183,5 +232,21 @@ public class MainWindowPresenter {
             }
         }
     }
-
+    
+    public void undo() throws Exception{
+        if(editor.canUndo()){
+            editor.undoLastAction();
+        }else{
+            throw new Exception("Não é possível desfazer a última ação");
+        }
+    }
+    
+    public void redo() throws Exception{
+        if(editor.canRedo()){
+            editor.redoLastAction();
+        }else{
+            throw new Exception("Não é possível refazer a última ação");
+        }
+    }
+    
 }

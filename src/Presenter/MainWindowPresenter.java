@@ -64,6 +64,13 @@ public class MainWindowPresenter {
             }
         });
         
+        viewMainWindow.getBtnAbrir().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lerArquivo();
+            }
+        });
+        
         viewMainWindow.getBtnRefazer().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,6 +133,14 @@ public class MainWindowPresenter {
                 JOptionPane.showMessageDialog(viewMainWindow, ex);
                 }
                 }*/
+            }
+        });
+        
+        viewMainWindow.getBtnSalvar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                salvarArquivo();
+               
             }
         });
         

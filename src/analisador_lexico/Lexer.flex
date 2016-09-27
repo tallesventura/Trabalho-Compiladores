@@ -20,7 +20,10 @@ public int getLine(){
 }
 %}
 
-Num = [0-9]
+N = [0-9]
+Num1 =  {N}+ \. {N}*
+Num2 = \. {N}+
+Num3 =  {N}+
 Letra = [a-zA-Z]
 Comment = "#".*
 LineTerminator = \r | \n | \r\n
@@ -30,9 +33,11 @@ WhiteSpace = {LineTerminator} | [ \f]
 
 {Comment} {/*Ignore*/}
 {WhiteSpace} {/*Ignore*/}
-(\".*\") { id+=1; return Token.STRING;}
+(\".*\") | (\'.*\') { id+=1; return Token.STRING; }
+({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
 
-(_|{Letra})({Letra}|{Num}|_)* { id+=1; return Token.IDENTIFICADOR; }
+(_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
+
 
 /* Operadores */
 "+" { id+=1; return Token.OP_ADICAO; }

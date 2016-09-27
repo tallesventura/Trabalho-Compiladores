@@ -14,6 +14,10 @@ private static int id = 0;
 public int getId(){
     return id;
 }
+
+public int getLine(){
+    return yyline;
+}
 %}
 
 Num = [0-9]

@@ -61,6 +61,10 @@ public class MainWindowView extends javax.swing.JFrame {
         return jMenuBar1;
     }
 
+    public JButton getBtnRefazer() {
+        return btnRefazer;
+    }
+
     public JToolBar getjToolBar1() {
         return jToolBar1;
     }

@@ -5,10 +5,13 @@
  */
 package DAO;
 
+import java.io.File;
+
 /**
  *
  * @author otavi
  */
 public interface IDAO {
     public void salvaArquivo(String conteudo);
+    public File getFile();
 }

@@ -35,5 +35,9 @@ public class DAOTxt implements IDAO {
             JOptionPane.showMessageDialog(null, "Erro ao salvar aquivo!!");
         }
     }
+    
+    public File getFile(){
+        return arquivo;
+    }
 
 }

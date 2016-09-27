@@ -147,6 +147,7 @@ public class MainWindowPresenter {
             IDAO dao = new DAOTxt(fc.getSelectedFile().getAbsolutePath() + ".txt");
             dao.salvaArquivo(editor.getText());
             JOptionPane.showMessageDialog(null, "Arquivo Salvo!");
+            codeFile = dao.getFile();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar arquivo MainPresenter");
         }

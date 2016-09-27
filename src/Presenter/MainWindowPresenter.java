@@ -20,6 +20,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import javax.swing.JFileChooser;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -53,6 +54,13 @@ public class MainWindowPresenter {
         viewMainWindow.setLocationRelativeTo(viewMainWindow);
         viewMainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
         viewMainWindow.setVisible(true);
+
+        viewMainWindow.getMenuItemAbrir().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lerArquivo();
+            }
+        });
 
         viewMainWindow.getMenuItemSalvar().addActionListener(new ActionListener() {
             @Override
@@ -128,6 +136,9 @@ public class MainWindowPresenter {
 
         AnalisadorLexico al = AnalisadorLexico.getInstance(codeFile);
         tokenList = al.getTokenList();
+        for (TokenModel t : tokenList) {
+            System.out.println(t.getNome());
+        }
         updateTokenTable(tokenList);
     }
 
@@ -150,6 +161,26 @@ public class MainWindowPresenter {
             codeFile = dao.getFile();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar arquivo MainPresenter");
+        }
+    }
+
+    public void lerArquivo() {
+        JFileChooser abrir = new JFileChooser();
+        int retorno = abrir.showOpenDialog(null);
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            String caminho = abrir.getSelectedFile().getAbsolutePath();
+            String codigo = "";
+            codeFile = new File(caminho);
+            try {
+                Scanner scan = new Scanner(codeFile);
+                while(scan.hasNextLine()) {
+                    codigo = codigo + scan.nextLine() + "\n";
+                }
+                editor.setText(codigo);
+                JOptionPane.showMessageDialog(null, "Importação concluida!");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao carregar arquivo!");
+            }
         }
     }
 

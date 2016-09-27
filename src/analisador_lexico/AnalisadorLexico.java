@@ -59,6 +59,7 @@ public class AnalisadorLexico {
             
             TokenModel tokenModel = new TokenModel(lexer.getId(),lexer.getLine(),token,lexer.yytext());
             tokenList.add(tokenModel);
+            
         }
     }
     

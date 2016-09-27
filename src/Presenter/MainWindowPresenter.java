@@ -5,10 +5,11 @@
  */
 package Presenter;
 
+import DAO.DAOTxt;
+import DAO.IDAO;
 import Model.TokenModel;
 import View.MainWindowView;
 import analisador_lexico.AnalisadorLexico;
-import analisador_lexico.Token;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +20,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -44,48 +43,51 @@ public class MainWindowPresenter {
     private File codeFile = null;
 
     public MainWindowPresenter() {
-  
+
         viewMainWindow = new MainWindowView();
         editor = new RSyntaxTextArea();
         tokenList = new ArrayList();
-        
+
         initEditor();
         initTabelaToken();
         viewMainWindow.setLocationRelativeTo(viewMainWindow);
         viewMainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
         viewMainWindow.setVisible(true);
-        
+
         viewMainWindow.getMenuItemSalvar().addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {            
+            public void actionPerformed(ActionEvent e) {
+                salvarArquivo();
+                /*
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 int returnVal = fileChooser.showSaveDialog(viewMainWindow);
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     try {
-                        codeFile = fileChooser.getSelectedFile();
-                        codeFile.createNewFile();
+                        codeFile = fileChooser.getCurrentDirectory();
+                        //codeFile = fileChooser.getSelectedFile();
+                        //codeFile.createNewFile();
                         saveCode(codeFile);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);
                     }
-                }
+                }*/
             }
         });
-        
-        viewMainWindow.getMenuItemAnaliseLex().addActionListener(new ActionListener(){
+
+        viewMainWindow.getMenuItemAnaliseLex().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(codeFile == null){
+                if (codeFile == null) {
                     JOptionPane.showMessageDialog(viewMainWindow, "Salve o arquivo primeiro!");
-                }else{
+                } else {
                     try {
                         runLexicalAnalysis();
                     } catch (FileNotFoundException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);
                     }
-                }             
-            }          
+                }
+            }
         });
     }
 
@@ -102,39 +104,52 @@ public class MainWindowPresenter {
         sp.setFoldIndicatorEnabled(true);
         sp.setVisible(true);
         cp.add(sp);
-        
-        viewMainWindow.getjScrollPaneCodigo().setColumnHeaderView(cp);       
-        
+
+        viewMainWindow.getjScrollPaneCodigo().setColumnHeaderView(cp);
+
     }
-    
-    public final void initTabelaToken(){
+
+    public final void initTabelaToken() {
         String[] columnNames = {"ID", "Linha", "Token", "Lexema"};
-        tblModelTokens = new DefaultTableModel(columnNames,0);
+        tblModelTokens = new DefaultTableModel(columnNames, 0);
         viewMainWindow.getTblTokens().setModel(tblModelTokens);
         //viewMainWindow.getTblTokens().updateUI();
     }
-    
-    public void saveCode(File f) throws IOException{
+
+    public void saveCode(File f) throws IOException {
         String srcCode = editor.getText();
         FileWriter w = new FileWriter(f);
         BufferedWriter bf = new BufferedWriter(w);
         bf.write(srcCode);
         bf.close();
     }
-    
-    public void runLexicalAnalysis() throws FileNotFoundException{
-        
+
+    public void runLexicalAnalysis() throws FileNotFoundException {
+
         AnalisadorLexico al = AnalisadorLexico.getInstance(codeFile);
         tokenList = al.getTokenList();
         updateTokenTable(tokenList);
     }
-    
-    public void updateTokenTable(List<TokenModel> tokens){
+
+    public void updateTokenTable(List<TokenModel> tokens) {
         tblModelTokens.setNumRows(0);
-        for(TokenModel t : tokens){
+        for (TokenModel t : tokens) {
             Object o[] = {t.getID(), t.getLinha(), t.getNome(), t.getLexema()};
             tblModelTokens.addRow(o);
         }
     }
-    
+
+    public void salvarArquivo() {
+        try {
+            String filename = File.separator;
+            JFileChooser fc = new JFileChooser(new File(filename));
+            fc.showSaveDialog(viewMainWindow);
+            IDAO dao = new DAOTxt(fc.getSelectedFile().getAbsolutePath() + ".txt");
+            dao.salvaArquivo(editor.getText());
+            JOptionPane.showMessageDialog(null, "Arquivo Salvo!");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar arquivo MainPresenter");
+        }
+    }
+
 }

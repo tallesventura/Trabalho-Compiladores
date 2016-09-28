@@ -34,7 +34,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 {Comment} {/*Ignore*/}
 {WhiteSpace} {/*Ignore*/}
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }
-({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
+"-"?({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
 
 (_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
 

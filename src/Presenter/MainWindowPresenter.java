@@ -192,7 +192,7 @@ public class MainWindowPresenter {
         editor.setCodeFoldingEnabled(true);
         editor.setHighlightCurrentLine(true);
         editor.setLineWrap(true);
-        editor.setAutoIndentEnabled(true);
+        editor.setAutoIndentEnabled(false);
         editor.setHighlightCurrentLine(true);
         RTextScrollPane sp = new RTextScrollPane(editor);
         sp.setFoldIndicatorEnabled(true);

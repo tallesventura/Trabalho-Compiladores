@@ -9,7 +9,7 @@ import analisador_lexico.Token;
 %type Token
 
 %{
-private static int id = 0;
+private int id = 0;
 
 public int getId(){
     return id;
@@ -32,9 +32,10 @@ WhiteSpace = {LineTerminator} | [ \f]
 %%
 
 {Comment} {/*Ignore*/}
+\n\t {id+=1; return Token.INDENT;}
 {WhiteSpace} {/*Ignore*/}
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }
-"-"?({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
+({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
 
 (_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
 
@@ -56,4 +57,4 @@ WhiteSpace = {LineTerminator} | [ \f]
 ":" { id+=1; return Token.DOIS_PONTOS; }
 
 
-. { return Token.ERROR; }
+. { id+= 1; return Token.ERROR; }

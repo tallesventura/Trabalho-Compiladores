@@ -21,8 +21,7 @@ import java.util.List;
  */
 public class AnalisadorLexico {
     
-    private File sourceCode;
-    private List<TokenModel> tokenList = new ArrayList();
+    private static File sourceCode;
     private static AnalisadorLexico instance = null;
     private Lexer lexer;
     
@@ -36,19 +35,21 @@ public class AnalisadorLexico {
         return sourceCode;
     }
 
-    public List<TokenModel> getTokenList() {
-        return tokenList;
-    }
-
     public static AnalisadorLexico getInstance(File sourceCode) throws FileNotFoundException {
         if(AnalisadorLexico.instance == null){
             AnalisadorLexico.instance = new AnalisadorLexico(sourceCode);
         }
+        AnalisadorLexico.sourceCode = sourceCode;
+        
         return instance;
     }
     
-    public void runAnalysis() throws IOException{
+    public ArrayList<TokenModel> runAnalysis() throws IOException{
         
+        Reader reader = new BufferedReader(new FileReader(sourceCode));
+        this.lexer = new Lexer(reader);
+        
+        ArrayList<TokenModel> tokenList = new ArrayList();
         while(true){
             
             Token token = lexer.yylex();
@@ -58,9 +59,10 @@ public class AnalisadorLexico {
             }
             
             TokenModel tokenModel = new TokenModel(lexer.getId(),lexer.getLine(),token,lexer.yytext());
-            tokenList.add(tokenModel);
-            
+            tokenList.add(tokenModel);           
         }
+        
+        return tokenList;
     }
-    
+   
 }

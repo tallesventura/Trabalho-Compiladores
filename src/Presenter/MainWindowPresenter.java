@@ -13,6 +13,9 @@ import analisador_lexico.AnalisadorLexico;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,6 +46,7 @@ public class MainWindowPresenter {
     private List<TokenModel> tokenList;
     private DefaultTableModel tblModelTokens;
     private String filePath;
+    private String rootPath = "saved_files/arquivo1.txt";
     private File codeFile = null;
     
     public MainWindowPresenter() {
@@ -50,12 +54,10 @@ public class MainWindowPresenter {
         viewMainWindow = new MainWindowView();
         editor = new RSyntaxTextArea();
         tokenList = new ArrayList();
+        codeFile = new File(rootPath);
         
         initEditor();
         initTabelaToken();
-        viewMainWindow.setLocationRelativeTo(viewMainWindow);
-        viewMainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        viewMainWindow.setVisible(true);
         
         viewMainWindow.getMenuItemAbrir().addActionListener(new ActionListener() {
             @Override
@@ -160,6 +162,27 @@ public class MainWindowPresenter {
                 }
             }
         });
+        
+        editor.addKeyListener(new KeyAdapter() {
+            
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int keyCode = e.getKeyCode();
+                if(keyCode == KeyEvent.VK_ENTER ||
+                        keyCode == KeyEvent.VK_TAB){
+                    try {
+                        updateSourceCode();
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(viewMainWindow, ex);
+                    }
+                }            
+            }
+       
+        });
+           
+        viewMainWindow.setLocationRelativeTo(viewMainWindow);
+        viewMainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        viewMainWindow.setVisible(true);
     }
     
     public final void initEditor() {
@@ -176,30 +199,30 @@ public class MainWindowPresenter {
         sp.setVisible(true);
         cp.add(sp);
         
-        viewMainWindow.getjScrollPaneCodigo().setColumnHeaderView(cp);
-        
+        viewMainWindow.getjScrollPaneCodigo().setColumnHeaderView(cp);       
     }
     
     public final void initTabelaToken() {
         String[] columnNames = {"ID", "Linha", "Token", "Lexema"};
         tblModelTokens = new DefaultTableModel(columnNames, 0);
         viewMainWindow.getTblTokens().setModel(tblModelTokens);
-        //viewMainWindow.getTblTokens().updateUI();
     }
     
     public void saveCode(File f) throws IOException {
+        
         String srcCode = editor.getText();
         FileWriter w = new FileWriter(f);
         BufferedWriter bf = new BufferedWriter(w);
         bf.write(srcCode);
+        bf.flush();
         bf.close();
     }
     
     public void runLexicalAnalysis() throws FileNotFoundException, IOException {
         
         AnalisadorLexico al = AnalisadorLexico.getInstance(codeFile);
-        al.runAnalysis();
-        tokenList = al.getTokenList();
+        this.tokenList.clear();
+        this.tokenList = al.runAnalysis();
         for (TokenModel t : tokenList) {
             System.out.println(t.getNome());
         }
@@ -264,4 +287,9 @@ public class MainWindowPresenter {
         }
     }
     
+    public void updateSourceCode() throws IOException{
+        codeFile = new File(rootPath);
+        saveCode(codeFile);
+        runLexicalAnalysis();
+    }
 }

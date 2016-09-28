@@ -10,6 +10,7 @@ import DAO.IDAO;
 import Model.TokenModel;
 import View.MainWindowView;
 import analisador_lexico.AnalisadorLexico;
+import analisador_lexico.Token;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +46,7 @@ public class MainWindowPresenter {
     private RSyntaxTextArea editor;
     private List<TokenModel> tokenList;
     private DefaultTableModel tblModelTokens;
+    private DefaultTableModel tblErros;
     private String filePath;
     private String rootPath = "saved_files/arquivo1.txt";
     private File codeFile = null;
@@ -58,6 +60,7 @@ public class MainWindowPresenter {
         
         initEditor();
         initTabelaToken();
+        initTabelaErros();
         
         viewMainWindow.getMenuItemAbrir().addActionListener(new ActionListener() {
             @Override
@@ -208,6 +211,12 @@ public class MainWindowPresenter {
         viewMainWindow.getTblTokens().setModel(tblModelTokens);
     }
     
+    public final void initTabelaErros() {
+        String[] columnNames = {"Linha", "Mensagem"};
+        tblErros = new DefaultTableModel(columnNames, 0);
+        viewMainWindow.getTblErros().setModel(tblErros);
+    }
+    
     public void saveCode(File f) throws IOException {
         
         String srcCode = editor.getText();
@@ -227,6 +236,7 @@ public class MainWindowPresenter {
             System.out.println(t.getNome());
         }
         updateTokenTable(tokenList);
+        updateErrorTable(tokenList);
     }
     
     public void updateTokenTable(List<TokenModel> tokens) {
@@ -291,5 +301,16 @@ public class MainWindowPresenter {
         codeFile = new File(rootPath);
         saveCode(codeFile);
         runLexicalAnalysis();
+    }
+    
+    public void updateErrorTable(List<TokenModel> tokens) {
+
+        tblErros.setNumRows(0);
+        for (TokenModel t : tokens) {
+            if (t.getNome().equals(Token.ERROR)) {
+                Object o[] = {t.getLinha(), "Operador inválido < " + t.getLexema() + " >"};
+                tblErros.addRow(o);
+            }
+        }
     }
 }

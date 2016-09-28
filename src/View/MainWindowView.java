@@ -205,23 +205,7 @@ public class MainWindowView extends javax.swing.JFrame {
 
         tblErros.setBackground(new java.awt.Color(255, 153, 153));
         tblErros.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        tblErros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Erros"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblErros.setGridColor(new java.awt.Color(255, 255, 255));
+        tblErros.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         tblErros.setShowVerticalLines(false);
         scrPaneErros.setViewportView(tblErros);
 

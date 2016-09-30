@@ -253,11 +253,15 @@ public class MainWindowPresenter {
             if (filePathAux.equals("")) {
                 String filename = File.separator;
                 JFileChooser fc = new JFileChooser(new File(filename));
-                fc.showSaveDialog(viewMainWindow);
-                filePathAux = fc.getSelectedFile().getAbsolutePath() + ".txt";
-                IDAO dao = new DAOTxt(filePathAux);
-                dao.salvaArquivo(editor.getText());
-                JOptionPane.showMessageDialog(null, "Arquivo Salvo!");
+                int retorno = fc.showSaveDialog(null);
+                if (retorno == JFileChooser.APPROVE_OPTION) {
+                    filePathAux = fc.getSelectedFile().getAbsolutePath() + ".txt";
+                    IDAO dao = new DAOTxt(filePathAux);
+                    dao.salvaArquivo(editor.getText());
+                    JOptionPane.showMessageDialog(null, "Arquivo Salvo!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                }
             } else {
                 IDAO dao = new DAOTxt(filePathAux);
                 dao.salvaArquivo(editor.getText());

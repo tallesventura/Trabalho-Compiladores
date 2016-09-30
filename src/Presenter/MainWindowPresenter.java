@@ -2,7 +2,7 @@
 * To change this license header, choose License Headers in Project Properties.
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
-*/
+ */
 package Presenter;
 
 import DAO.DAOTxt;
@@ -41,41 +41,42 @@ import org.fife.ui.rtextarea.RTextScrollPane;
  * @author tallesventura
  */
 public class MainWindowPresenter {
-    
+
     private MainWindowView viewMainWindow;
     private RSyntaxTextArea editor;
     private List<TokenModel> tokenList;
     private DefaultTableModel tblModelTokens;
     private DefaultTableModel tblErros;
     private String filePath;
+    private String filePathAux = "";
     private String rootPath = "saved_files/arquivo1.txt";
     private File codeFile = null;
-    
+
     public MainWindowPresenter() {
-        
+
         viewMainWindow = new MainWindowView();
         editor = new RSyntaxTextArea();
         tokenList = new ArrayList();
         codeFile = new File(rootPath);
-        
+
         initEditor();
         initTabelaToken();
         initTabelaErros();
-        
+
         viewMainWindow.getMenuItemAbrir().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lerArquivo();
             }
         });
-        
+
         viewMainWindow.getBtnAbrir().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lerArquivo();
             }
         });
-        
+
         viewMainWindow.getBtnRefazer().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,7 +87,7 @@ public class MainWindowPresenter {
                 }
             }
         });
-        
+
         viewMainWindow.getBtnDesfazer().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,7 +98,7 @@ public class MainWindowPresenter {
                 }
             }
         });
-        
+
         viewMainWindow.getBtnAvancar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,18 +109,18 @@ public class MainWindowPresenter {
                 }
             }
         });
-        
+
         viewMainWindow.getBtnVoltar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
+                try {
                     redo();
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     JOptionPane.showMessageDialog(viewMainWindow, ex.getMessage());
                 }
             }
         });
-        
+
         viewMainWindow.getMenuItemSalvar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,15 +141,15 @@ public class MainWindowPresenter {
                 }*/
             }
         });
-        
+
         viewMainWindow.getBtnSalvar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 salvarArquivo();
-               
+
             }
         });
-        
+
         viewMainWindow.getMenuItemAnaliseLex().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -165,32 +166,32 @@ public class MainWindowPresenter {
                 }
             }
         });
-        
+
         editor.addKeyListener(new KeyAdapter() {
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 int keyCode = e.getKeyCode();
-                if(keyCode == KeyEvent.VK_ENTER ||
-                        keyCode == KeyEvent.VK_TAB){
+                if (keyCode == KeyEvent.VK_ENTER
+                        || keyCode == KeyEvent.VK_TAB) {
                     try {
                         updateSourceCode();
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);
                     }
-                }            
+                }
             }
-       
+
         });
-           
+
         viewMainWindow.setLocationRelativeTo(viewMainWindow);
         viewMainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
         viewMainWindow.setVisible(true);
     }
-    
+
     public final void initEditor() {
         JPanel cp = new JPanel(new BorderLayout());
-        
+
         editor.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
         editor.setCodeFoldingEnabled(true);
         editor.setHighlightCurrentLine(true);
@@ -201,24 +202,24 @@ public class MainWindowPresenter {
         sp.setFoldIndicatorEnabled(true);
         sp.setVisible(true);
         cp.add(sp);
-        
-        viewMainWindow.getjScrollPaneCodigo().setColumnHeaderView(cp);       
+
+        viewMainWindow.getjScrollPaneCodigo().setColumnHeaderView(cp);
     }
-    
+
     public final void initTabelaToken() {
         String[] columnNames = {"ID", "Linha", "Token", "Lexema"};
         tblModelTokens = new DefaultTableModel(columnNames, 0);
         viewMainWindow.getTblTokens().setModel(tblModelTokens);
     }
-    
+
     public final void initTabelaErros() {
         String[] columnNames = {"Linha", "Mensagem"};
         tblErros = new DefaultTableModel(columnNames, 0);
         viewMainWindow.getTblErros().setModel(tblErros);
     }
-    
+
     public void saveCode(File f) throws IOException {
-        
+
         String srcCode = editor.getText();
         FileWriter w = new FileWriter(f);
         BufferedWriter bf = new BufferedWriter(w);
@@ -226,9 +227,9 @@ public class MainWindowPresenter {
         bf.flush();
         bf.close();
     }
-    
+
     public void runLexicalAnalysis() throws FileNotFoundException, IOException {
-        
+
         AnalisadorLexico al = AnalisadorLexico.getInstance(codeFile);
         this.tokenList.clear();
         this.tokenList = al.runAnalysis();
@@ -238,7 +239,7 @@ public class MainWindowPresenter {
         updateTokenTable(tokenList);
         updateErrorTable(tokenList);
     }
-    
+
     public void updateTokenTable(List<TokenModel> tokens) {
         tblModelTokens.setNumRows(0);
         for (TokenModel t : tokens) {
@@ -246,21 +247,27 @@ public class MainWindowPresenter {
             tblModelTokens.addRow(o);
         }
     }
-    
+
     public void salvarArquivo() {
         try {
-            String filename = File.separator;
-            JFileChooser fc = new JFileChooser(new File(filename));
-            fc.showSaveDialog(viewMainWindow);
-            IDAO dao = new DAOTxt(fc.getSelectedFile().getAbsolutePath() + ".txt");
-            dao.salvaArquivo(editor.getText());
-            JOptionPane.showMessageDialog(null, "Arquivo Salvo!");
-            codeFile = dao.getFile();
+            if (filePathAux.equals("")) {
+                String filename = File.separator;
+                JFileChooser fc = new JFileChooser(new File(filename));
+                fc.showSaveDialog(viewMainWindow);
+                filePathAux = fc.getSelectedFile().getAbsolutePath() + ".txt";
+                IDAO dao = new DAOTxt(filePathAux);
+                dao.salvaArquivo(editor.getText());
+                JOptionPane.showMessageDialog(null, "Arquivo Salvo!");
+            } else {
+                IDAO dao = new DAOTxt(filePathAux);
+                dao.salvaArquivo(editor.getText());
+                JOptionPane.showMessageDialog(null, "Arquivo salvo e atualizado!");
+            }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar arquivo MainPresenter");
         }
     }
-    
+
     public void lerArquivo() {
         JFileChooser abrir = new JFileChooser();
         int retorno = abrir.showOpenDialog(null);
@@ -270,7 +277,7 @@ public class MainWindowPresenter {
             codeFile = new File(caminho);
             try {
                 Scanner scan = new Scanner(codeFile);
-                while(scan.hasNextLine()) {
+                while (scan.hasNextLine()) {
                     codigo = codigo + scan.nextLine() + "\n";
                 }
                 editor.setText(codigo);
@@ -280,29 +287,29 @@ public class MainWindowPresenter {
             }
         }
     }
-    
-    public void undo() throws Exception{
-        if(editor.canUndo()){
+
+    public void undo() throws Exception {
+        if (editor.canUndo()) {
             editor.undoLastAction();
-        }else{
+        } else {
             throw new Exception("Não é possível desfazer a última ação");
         }
     }
-    
-    public void redo() throws Exception{
-        if(editor.canRedo()){
+
+    public void redo() throws Exception {
+        if (editor.canRedo()) {
             editor.redoLastAction();
-        }else{
+        } else {
             throw new Exception("Não é possível refazer a última ação");
         }
     }
-    
-    public void updateSourceCode() throws IOException{
+
+    public void updateSourceCode() throws IOException {
         codeFile = new File(rootPath);
         saveCode(codeFile);
         runLexicalAnalysis();
     }
-    
+
     public void updateErrorTable(List<TokenModel> tokens) {
 
         tblErros.setNumRows(0);

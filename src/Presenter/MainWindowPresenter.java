@@ -35,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
+import presenter_apoio.RetornaErro;
 
 /**
  *
@@ -319,7 +320,7 @@ public class MainWindowPresenter {
         tblErros.setNumRows(0);
         for (TokenModel t : tokens) {
             if (t.getNome().equals(Token.ERROR)) {
-                Object o[] = {t.getLinha(), "Operador inválido < " + t.getLexema() + " >"};
+                Object o[] = {t.getLinha(), RetornaErro.getError(1, t)};
                 tblErros.addRow(o);
             }
         }

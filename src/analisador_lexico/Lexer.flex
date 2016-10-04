@@ -37,7 +37,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }
 ({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
 
-(_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
+(_|{Letra})({Letra}|{N}|_){78} { id+=1; return Token.IDENTIFICADOR; }
 
 
 /* Operadores aritméticos */
@@ -50,7 +50,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "%" { id+=1; return Token.OP_RESTO; }
 
 /* Operadores de atribuição */
-"=" { id+=1; return Token.OP_ATRIBUICAO; }
+"=" { id+=1; return Token.ATRIBUICAO; }
 "**=" { id+=1; return Token.OP_EXPONENCIACAO_IGUAL; }
 "//=" { id+=1; return Token.OP_DIVISAO_INTEIRA_IGUAL; }
 "+=" { id+=1; return Token.OP_MAIS_IGUAL; }
@@ -70,7 +70,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 /* Operadores lógicos */
 "and" { id+=1; return Token.AND; }
 "or" { id+=1; return Token.OR; }
-"or" { id+=1; return Token.NOT; }
+"not" { id+=1; return Token.NOT; }
 
 /* Operadores bit a bit */
 ">>" { id+=1; return Token.RIGHT_SHIFT; }
@@ -82,7 +82,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "class" { id+=1; return Token.CLASS; }
 "continue" { id+=1; return Token.CONTINUE; }
 "def" { id+=1; return Token.DEF; }
-"del" { id+=1; return Token.DEL; }
+"del" { id+=1; return Token.DELETE; }
 "elif" { id+=1; return Token.ELIF; }
 "else" { id+=1; return Token.ELSE; }
 "except" { id+=1; return Token.EXCEPT; }
@@ -114,5 +114,6 @@ WhiteSpace = {LineTerminator} | [ \f]
 "," { id+=1; return Token.VIRGULA; }
 "'" { id+=1; return Token.ASPAS_SIMPLES; }
 "\"" { id+=1; return Token.ASPAS_DUPLAS; }
+"." { id+=1; return Token.PONTO; }
 
 . { id+= 1; return Token.ERROR; }

@@ -167,6 +167,14 @@ public class MainWindowPresenter {
                 }
             }
         });
+        
+        viewMainWindow.getjMenuItemSair().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewMainWindow.setVisible(false);
+                viewMainWindow.dispose();
+            }
+        });
 
         editor.addKeyListener(new KeyAdapter() {
 

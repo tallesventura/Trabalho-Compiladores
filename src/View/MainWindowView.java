@@ -129,8 +129,10 @@ public class MainWindowView extends javax.swing.JFrame {
     public JMenuItem getBtnVoltar() {
         return btnVoltar;
     }
-    
 
+    public JMenuItem getjMenuItemSair() {
+        return jMenuItemSair;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -160,6 +162,7 @@ public class MainWindowView extends javax.swing.JFrame {
         menuArquivo = new javax.swing.JMenu();
         menuItemAbrir = new javax.swing.JMenuItem();
         menuItemSalvar = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
         menuEditar = new javax.swing.JMenu();
         btnVoltar = new javax.swing.JMenuItem();
         btnAvancar = new javax.swing.JMenuItem();
@@ -242,6 +245,9 @@ public class MainWindowView extends javax.swing.JFrame {
 
         menuItemSalvar.setText("Salvar");
         menuArquivo.add(menuItemSalvar);
+
+        jMenuItemSair.setText("Sair");
+        menuArquivo.add(jMenuItemSair);
 
         jMenuBar1.add(menuArquivo);
 
@@ -332,6 +338,7 @@ public class MainWindowView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane;

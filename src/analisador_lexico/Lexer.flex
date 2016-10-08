@@ -37,7 +37,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }
 ({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
 
-(_|{Letra})({Letra}|{N}|_){0,78} { id+=1; return Token.IDENTIFICADOR; }
+(_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
 
 
 /* Operadores aritméticos */

@@ -334,7 +334,13 @@ public class MainWindowPresenter {
             if (t.getLexema().length() > 79) {
                 Object o[] = {t.getLinha(), RetornaErro.getError(2, t)};
                 tblErros.addRow(o);
+                removerToken(t);
+                updateTokenTable(tokens);
             }
         }
+    }
+    
+    public void removerToken(TokenModel t){
+        tokenList.remove(t);
     }
 }

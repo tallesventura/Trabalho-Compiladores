@@ -331,6 +331,10 @@ public class MainWindowPresenter {
                 Object o[] = {t.getLinha(), RetornaErro.getError(1, t)};
                 tblErros.addRow(o);
             }
+            if (t.getLexema().length() > 79) {
+                Object o[] = {t.getLinha(), RetornaErro.getError(2, t)};
+                tblErros.addRow(o);
+            }
         }
     }
 }

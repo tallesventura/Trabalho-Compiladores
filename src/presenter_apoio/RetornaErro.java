@@ -25,6 +25,8 @@ public class RetornaErro {
         switch(id){
             case 1:
                 return "Operador inválido < " + token.getLexema() + " >";
+            case 2:
+                return "Ultrapassou o tamanho máximo permitido para um identificador";
             default:
                 return "";
         }

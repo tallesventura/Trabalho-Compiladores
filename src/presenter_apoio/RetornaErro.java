@@ -26,7 +26,13 @@ public class RetornaErro {
             case 1:
                 return "Operador inválido < " + token.getLexema() + " >";
             case 2:
-                return "Ultrapassou o tamanho máximo permitido para um identificador";
+                return "Ultrapassou o tamanho máximo permitido para um identificador.";
+            case 3:
+                return "Token <" + token.getLexema() +  "> não esperado.";
+            case 4:
+                return "Token <NOVA_LINHA> esperado, mas foi encontrado <" + token.getLexema() + ">.";
+            case 5:
+                return "Token <" + token.getLexema() + "> esperado, mas nenhum token foie encontrado.";
             default:
                 return "";
         }

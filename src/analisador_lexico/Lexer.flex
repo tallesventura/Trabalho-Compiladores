@@ -97,6 +97,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "is" { id+=1; return Token.IS; }
 "None" { id+=1; return Token.NONE; }
 "print" { id+=1; return Token.PRINT; }
+"pass" { id+=1; return Token.PASS; }
 "range" { id+=1; return Token.RANGE; }
 "return" { id+=1; return Token.RETURN; }
 "raise" { id+=1; return Token.RAISE; }

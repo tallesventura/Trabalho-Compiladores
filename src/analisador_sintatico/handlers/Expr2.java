@@ -9,11 +9,19 @@ package analisador_sintatico.handlers;
  *
  * @author talles
  */
-public class Flow_stmt extends AbstractHandler{
+
+// TODO: terminar
+public class Expr2 extends AbstractHandler{
+
+    public Expr2() {
+        super();
+    }
+    
 
     @Override
     public boolean handle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return true;
     }
     
 }

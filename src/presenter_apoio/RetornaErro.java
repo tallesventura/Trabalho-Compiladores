@@ -32,7 +32,31 @@ public class RetornaErro {
             case 4:
                 return "Token <NOVA_LINHA> esperado, mas foi encontrado <" + token.getLexema() + ">.";
             case 5:
-                return "Token <" + token.getLexema() + "> esperado, mas nenhum token foi encontrado.";
+                return "Token <NOVA_LINHA> esperado, mas nenhum token foi encontrado.";
+            case 6:
+                return "Identificador esperado, mas foi encontrado <" + token.getLexema() + ">.";
+            case 7: 
+                return "terminal “del” esperado, mas foi encontrado <" + token.getLexema() + ">.";
+            case 8:
+                return "Expressão incompleta";
+            case 9:
+                return "terminal “pass” esperado, mas foi encontrado <" + token.getLexema() + ">.";
+            case 10:
+                return "Identificador esperado, mas nenhum token foi encontrado";
+            case 11:
+                return "Esperado um operador de atribuição, mas nenhum token foi encontrado";
+            case 12:
+                return "Esperado um operador de atribuição, mas foi encontrado <" + token.getLexema() + ">.";
+            case 13:
+                return "Esperado uma expressão, mas nenhum token foi encontrado";
+            case 14:
+                return "Esperado expressão composta, mas nenhum token foi encontrado";
+            case 15:
+                return "Esperado expressão operacional, mas nenhum token foi encontrado";
+            case 16:
+                return "Esperado expressão relacional, mas nenhum token foi encontrado";
+            case 17:
+                return "Esperado expressão aritmética, mas nenhum token foi encontrado";
             default:
                 return "";
         }

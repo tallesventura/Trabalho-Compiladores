@@ -59,6 +59,10 @@ WhiteSpace = {LineTerminator} | [ \f]
 "*=" { id+=1; return Token.OP_VEZES_IGUAL; }
 "/=" { id+=1; return Token.OP_DIVIDIDO_IGUAL; }
 "%=" { id+=1; return Token.OP_RESTO_IGUAL; }
+"@=" { id+=1; return Token.OP_ARROBA_IGUAL; }
+"^=" { id+=1; return Token.OP_CIRCUNFLEXO_IGUAL; }
+"<<=" { id+=1; return Token.OP_LEFT_SHIFT_IGUAL; }
+">>=" { id+=1; return Token.OP_RIGHT_SHIFT_IGUAL; }
 
 /* Operadores de comparação */
 ">" { id+=1; return Token.OP_MAIOR; }

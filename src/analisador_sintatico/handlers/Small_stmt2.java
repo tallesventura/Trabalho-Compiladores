@@ -9,6 +9,7 @@ package analisador_sintatico.handlers;
  *
  * @author talles
  */
+// TODO: terminar
 public class Small_stmt2 extends AbstractHandler{
 
     @Override

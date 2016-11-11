@@ -14,6 +14,11 @@ public class Small_stmt extends AbstractHandler{
     @Override
     public boolean handle() {
         
+        if(nextToken()){
+            
+        }
+        
+        return true;
     }
     
 }

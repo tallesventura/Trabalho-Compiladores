@@ -9,12 +9,11 @@ package analisador_sintatico.handlers;
  *
  * @author talles
  */
-public class Compound_stmt extends AbstractHandler{
+public class Import_stmt extends AbstractHandler{
 
     @Override
     public boolean handle() {
-      
-        return true;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

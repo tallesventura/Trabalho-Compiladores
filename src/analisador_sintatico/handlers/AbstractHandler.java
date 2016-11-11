@@ -51,7 +51,10 @@ public abstract class AbstractHandler implements IHandler{
     public int getNumTokens(){
         return tokens.size();
     }
-    
-    
+
+    public int getErrorCode() {
+        return errorCode;
+    }
+   
     
 }

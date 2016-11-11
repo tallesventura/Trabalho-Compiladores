@@ -9,12 +9,6 @@ package analisador_sintatico.handlers;
  *
  * @author talles
  */
-public class Compound_stmt extends AbstractHandler{
-
-    @Override
-    public boolean handle() {
-      
-        return true;
-    }
+public class Flow_stmt {
     
 }

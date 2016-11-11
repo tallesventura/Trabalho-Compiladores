@@ -6,6 +6,7 @@
 package analisador_sintatico;
 
 import Model.TokenModel;
+import analisador_sintatico.handlers.Single_input;
 import java.util.ArrayList;
 
 /**
@@ -15,9 +16,11 @@ import java.util.ArrayList;
 public class AnalisadorSintatico{
     
     private ArrayList<TokenModel> tokens;
+    private Single_input handler;
 
     public AnalisadorSintatico(ArrayList<TokenModel> tokens) {
         this.tokens = tokens;
+        this.handler = new Single_input(tokens);
     }
     
     

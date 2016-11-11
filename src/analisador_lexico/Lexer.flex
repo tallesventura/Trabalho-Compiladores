@@ -26,13 +26,14 @@ Num2 = \. {N}+
 Num3 =  {N}+
 Letra = [a-zA-Z]
 Comment = "#".*
-LineTerminator = \r | \n | \r\n
+LineTerminator = \r | \r\n
 WhiteSpace = {LineTerminator} | [ \f]
 
 %%
 
 {Comment} {/*Ignore*/}
-\n\t {id+=1; return Token.INDENT;}
+\t {id+=1; return Token.INDENT;}
+\n { return Token.NOVA_LINHA; }
 {WhiteSpace} {/*Ignore*/}
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }
 ({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }

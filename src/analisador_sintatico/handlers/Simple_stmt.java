@@ -11,34 +11,38 @@ import analisador_lexico.Token;
  *
  * @author talles
  */
-public class Simple_stmt extends AbstractHandler{
+public class Simple_stmt extends AbstractHandler {
 
     public Simple_stmt() {
         super();
     }
-    
 
     @Override
     public boolean handle() {
-        
-        if(nextToken()){
-            if(new Small_stmt().handle()){
-                if(new Small_stmt2().handle()){
-                    if(nextToken()){
-                        if(currentToken == Token.NOVA_LINHA){
-                            removeToken();
-                        }else{
-                            errorCode = 4;
+
+        if (nextToken()) {
+            if (new Small_stmt().handle()) {
+                if (nextToken()) {
+                    if (new Small_stmt2().handle()) {
+                        if (nextToken()) {
+                            if (currentToken == Token.NOVA_LINHA) {
+                                removeToken();
+                            } else {
+                                errorCode = 4;
+                                return false;
+                            }
+                        } else {
+                            errorCode = 5;
                             return false;
                         }
-                    }else{
-                        errorCode = 5;
-                        return false;
                     }
+                } else {
+                    errorCode = 5;
+                    return false;
                 }
             }
         }
         return true;
     }
-    
+
 }

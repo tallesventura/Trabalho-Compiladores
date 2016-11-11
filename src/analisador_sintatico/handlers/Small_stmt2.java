@@ -13,7 +13,7 @@ public class Small_stmt2 extends AbstractHandler{
 
     @Override
     public boolean handle() {
-        
+        return true;
     }
     
 }

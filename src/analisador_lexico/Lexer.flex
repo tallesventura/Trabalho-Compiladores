@@ -26,18 +26,19 @@ Num2 = \. {N}+
 Num3 =  {N}+
 Letra = [a-zA-Z]
 Comment = "#".*
-LineTerminator = \r | \n | \r\n
+LineTerminator = \r | \r\n
 WhiteSpace = {LineTerminator} | [ \f]
 
 %%
 
 {Comment} {/*Ignore*/}
-\n\t {id+=1; return Token.INDENT;}
+\t {id+=1; return Token.INDENT;}
+\n { return Token.NOVA_LINHA; }
 {WhiteSpace} {/*Ignore*/}
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }
 ({Num1}|{Num2}|{Num3}) { id+=1; return Token.NUMERO; }
 
-(_|{Letra})({Letra}|{N}|_){78} { id+=1; return Token.IDENTIFICADOR; }
+(_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
 
 
 /* Operadores aritméticos */
@@ -58,6 +59,10 @@ WhiteSpace = {LineTerminator} | [ \f]
 "*=" { id+=1; return Token.OP_VEZES_IGUAL; }
 "/=" { id+=1; return Token.OP_DIVIDIDO_IGUAL; }
 "%=" { id+=1; return Token.OP_RESTO_IGUAL; }
+"@=" { id+=1; return Token.OP_ARROBA_IGUAL; }
+"^=" { id+=1; return Token.OP_CIRCUNFLEXO_IGUAL; }
+"<<=" { id+=1; return Token.OP_LEFT_SHIFT_IGUAL; }
+">>=" { id+=1; return Token.OP_RIGHT_SHIFT_IGUAL; }
 
 /* Operadores de comparação */
 ">" { id+=1; return Token.OP_MAIOR; }

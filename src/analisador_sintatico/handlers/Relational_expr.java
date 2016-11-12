@@ -10,7 +10,6 @@ package analisador_sintatico.handlers;
  * @author talles
  */
 
-// TODO: Terminar
 public class Relational_expr extends AbstractHandler{
 
     public Relational_expr() {
@@ -20,6 +19,14 @@ public class Relational_expr extends AbstractHandler{
 
     @Override
     public boolean handle() {
+        
+        if(nextToken()){
+            if(new Comp_op().handle()){
+                if(new Operational_expr().handle()){
+                    return new Relational_expr().handle();
+                }
+            }
+        }
         
         return true;
     }

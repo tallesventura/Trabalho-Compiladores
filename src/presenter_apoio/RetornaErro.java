@@ -57,6 +57,14 @@ public class RetornaErro {
                 return "Esperado expressão relacional, mas nenhum token foi encontrado";
             case 17:
                 return "Esperado expressão aritmética, mas nenhum token foi encontrado";
+            case 18:
+                return "Esperado operador aritmético, mas nenhum token foi encontrado";
+            case 19:
+                return "Esperado operador aritmético, mas foi encontrado <" + token.getLexema() + ">.";
+            case 20:
+                return "Esperado operador relacional, mas nenhum token foi encontrado";
+            case 21:
+                return "Esperado o operador <in>, mas nenhum token foi encontrado";
             default:
                 return "";
         }

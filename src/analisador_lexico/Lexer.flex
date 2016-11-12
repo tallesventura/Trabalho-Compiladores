@@ -49,6 +49,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "//" { id+=1; return Token.OP_DIVISAO_INTEIRA; }
 "**" { id+=1; return Token.OP_EXPONENCIACAO; }
 "%" { id+=1; return Token.OP_RESTO; }
+"~" { id+=1; return Token.OP_TIL; }
 
 /* Operadores de atribuição */
 "=" { id+=1; return Token.ATRIBUICAO; }
@@ -71,6 +72,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "<=" { id+=1; return Token.OP_MENOR_IGUAL; }
 "==" { id+=1; return Token.OP_IGUALDADE; }
 "!=" { id+=1; return Token.OP_DIFERENTE; }
+"<>" { id+=1; return Token.OP_DIFERENTE; }
 
 /* Operadores lógicos */
 "and" { id+=1; return Token.AND; }

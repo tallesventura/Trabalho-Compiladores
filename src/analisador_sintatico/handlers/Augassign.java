@@ -15,7 +15,7 @@ public class Augassign extends AbstractHandler{
 
     public Augassign() {
         super();
-        terminais.add(Token.OP_IGUALDADE);
+        terminais.add(Token.OP_ATRIBUICAO);
         terminais.add(Token.OP_MAIS_IGUAL);
         terminais.add(Token.OP_MENOS_IGUAL);
         terminais.add(Token.OP_VEZES_IGUAL);

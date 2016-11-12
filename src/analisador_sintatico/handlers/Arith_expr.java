@@ -10,7 +10,6 @@ package analisador_sintatico.handlers;
  * @author talles
  */
 
-// TODO: terminar
 public class Arith_expr extends AbstractHandler{
 
     public Arith_expr() {
@@ -20,7 +19,27 @@ public class Arith_expr extends AbstractHandler{
     
     @Override
     public boolean handle() {
+        
+        if(nextToken()){
+            if(new Arith_op().handle()){
+                if(nextToken()){
+                    if(new Term().handle()){
+                        if(nextToken()){
+                            return new Arith_expr().handle();
+                        }else{
+                            errorCode = 17;
+                            return false;
+                        }
+                    }
+                }else{
+                    errorCode = 8;
+                    return false;
+                }
+            }     
+        }else{
+            errorCode = 18;
+            return false;
+        }    
         return true;
-    }
-    
+    }   
 }

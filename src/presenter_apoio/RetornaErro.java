@@ -33,6 +33,8 @@ public class RetornaErro {
                 return "Token <NOVA_LINHA> esperado, mas foi encontrado <" + token.getLexema() + ">.";
             case 5:
                 return "Token <" + token.getLexema() + "> esperado, mas nenhum token foi encontrado.";
+            case 6:
+                return "identificador esperado, mas foi encontrado <" + token.getLexema() + ">.";
             default:
                 return "";
         }

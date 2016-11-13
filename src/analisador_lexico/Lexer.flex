@@ -104,6 +104,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "True" { id+=1; return Token.TRUE; }
 "try" { id+=1; return Token.TRY; }
 "while" { id+=1; return Token.WHILE; }
+"yield" { id+=1; return Token.YIELD; }
 
 /* Pontuacao */
 ":" { id+=1; return Token.DOIS_PONTOS; }

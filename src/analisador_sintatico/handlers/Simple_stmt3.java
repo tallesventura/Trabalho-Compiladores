@@ -9,11 +9,9 @@ package analisador_sintatico.handlers;
  *
  * @author talles
  */
+public class Simple_stmt3 extends AbstractHandler{
 
-// TODO: terminar
-public class Expr2 extends AbstractHandler{
-
-    public Expr2() {
+    public Simple_stmt3() {
         super();
     }
     
@@ -22,13 +20,12 @@ public class Expr2 extends AbstractHandler{
     public boolean handle() {
         
         if(nextToken()){
-            if(new Rel_op().handle()){
-                if(new Comp_expr().handle()){
-                    return new Expr2().handle();
-                }
+            if(new Small_stmt().handle()){
+                return new Small_stmt2().handle();
             }
         }
         
         return true;
-    }   
+    }
+    
 }

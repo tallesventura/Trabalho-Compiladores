@@ -10,7 +10,6 @@ package analisador_sintatico.handlers;
  * @author talles
  */
 
-// TODO: terminar
 public class Term extends AbstractHandler{
 
     public Term() {
@@ -20,7 +19,15 @@ public class Term extends AbstractHandler{
     @Override
     public boolean handle() {
         
+        if(nextToken()){
+            if(new Unary_expr().handle()){
+                return new Multiplicative_expr().handle();
+            }
+        }else{
+            errorCode = 26;
+            return false;
+        }
+        
         return true;
-    }
-    
+    }  
 }

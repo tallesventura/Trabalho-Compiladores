@@ -6,31 +6,30 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
-import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Global_stmt extends AbstractHandler {
+public class Else_stmt extends AbstractHandler {
 
-    public Global_stmt() {
+    public Else_stmt() {
         super();
-        terminais.add(Token.GLOBAL);
-        terminais.add(Token.IDENTIFICADOR);
+        terminais.add(Token.ELSE);
+        terminais.add(Token.DOIS_PONTOS);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (terminais.contains(currentToken)) {//ELSE
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {
+                    if (terminais.contains(currentToken)) {//DOIS_PONTOS
                         removeToken();
                         if (nextToken()) {
-                            if (!(new Arglist().handle())) {
-                                //ouve algun erro no handler do arglist
+                            if (!(new Suite().handle())) {
+                                //ouve algum erro no handler do Suite
                                 return false;
                             }
                         } else {
@@ -38,7 +37,7 @@ public class Global_stmt extends AbstractHandler {
                             return false;
                         }
                     } else {
-                        //token "NAME" não foi encontrado
+                        //token ":" não foi encontrado
                         return false;
                     }
                 } else {
@@ -46,14 +45,10 @@ public class Global_stmt extends AbstractHandler {
                     return false;
                 }
             } else {
-                //token "global" não foi encontrado
-                return false;
+                //token "else" não foi encontrado
+                //Else_stmt permite vazio
             }
-        } else {
-            //lista de tokens vazia
-            return false;
         }
-
         return true;
     }
 

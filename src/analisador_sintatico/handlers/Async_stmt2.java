@@ -7,27 +7,29 @@ package analisador_sintatico.handlers;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
+public class Async_stmt2 extends AbstractHandler{
 
-public class Term extends AbstractHandler{
-
-    public Term() {
+    public Async_stmt2() {
         super();
     }
-    
+
     @Override
     public boolean handle() {
-        
         if(nextToken()){
-            if(new Unary_expr().handle()){
-                return new Multiplicative_expr().handle();
-            }
+            if(new Funcdef().handle()){
+                //funcdef
+            }else if(new With_stmt().handle()){
+                //with
+            }else
+                return new For_stmt().handle();
         }else{
-            errorCode = 26;
+            //lista de tokens vazia
             return false;
         }
-        
         return true;
-    }  
+        
+    }
+    
 }

@@ -6,31 +6,28 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
-import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Global_stmt extends AbstractHandler {
+public class Typedargslist extends AbstractHandler {
 
-    public Global_stmt() {
+    public Typedargslist() {
         super();
-        terminais.add(Token.GLOBAL);
         terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (terminais.contains(currentToken)) {//NAME
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {
-                        removeToken();
+                    if (new Arg_Assign().handle()) {
                         if (nextToken()) {
-                            if (!(new Arglist().handle())) {
-                                //ouve algun erro no handler do arglist
+                            if (!(new More_arg().handle())) {
+                                //ouve algum erro no handler do More_arg
                                 return false;
                             }
                         } else {
@@ -38,22 +35,21 @@ public class Global_stmt extends AbstractHandler {
                             return false;
                         }
                     } else {
-                        //token "NAME" não foi encontrado
+                        //ouve algum erro no handler do Arg_Assign
                         return false;
                     }
-                } else {
+                }else{
                     //lista de tokens vazia
                     return false;
                 }
             } else {
-                //token "global" não foi encontrado
+                //token "NAME" não foi encontrado
                 return false;
             }
         } else {
             //lista de tokens vazia
             return false;
         }
-
         return true;
     }
 

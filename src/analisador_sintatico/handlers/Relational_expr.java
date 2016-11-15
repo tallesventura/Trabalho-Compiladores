@@ -29,7 +29,5 @@ public class Relational_expr extends AbstractHandler{
         }
         
         return true;
-    }
-    
-    
+    }  
 }

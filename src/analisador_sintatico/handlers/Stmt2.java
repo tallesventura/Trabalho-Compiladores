@@ -7,28 +7,22 @@ package analisador_sintatico.handlers;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
+public class Stmt2 extends AbstractHandler {
 
-// TODO: terminar
-public class Expr2 extends AbstractHandler{
-
-    public Expr2() {
+    public Stmt2() {
         super();
     }
-    
 
     @Override
     public boolean handle() {
-        
-        if(nextToken()){
-            if(new Rel_op().handle()){
-                if(new Comp_expr().handle()){
-                    return new Expr2().handle();
-                }
+        if (nextToken()) {
+            if (!(new Stmt().handle())) {
+                //ouve algum erro no handler do Stmt
+                return false;
             }
         }
-        
         return true;
-    }   
+    }
 }

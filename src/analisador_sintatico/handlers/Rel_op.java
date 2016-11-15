@@ -5,30 +5,36 @@
  */
 package analisador_sintatico.handlers;
 
+import analisador_lexico.Token;
+
 /**
  *
  * @author talles
  */
+public class Rel_op extends AbstractHandler{
 
-// TODO: terminar
-public class Expr2 extends AbstractHandler{
-
-    public Expr2() {
+    public Rel_op() {
         super();
+        terminais.add(Token.AND);
+        terminais.add(Token.OR);
     }
-    
 
     @Override
     public boolean handle() {
         
         if(nextToken()){
-            if(new Rel_op().handle()){
-                if(new Comp_expr().handle()){
-                    return new Expr2().handle();
-                }
+            if(terminais.contains(currentToken)){
+                removeToken();
+            }else{
+                errorCode = 24;
+                return false;
             }
+        }else{
+            errorCode = 23;
+            return false;
         }
         
         return true;
-    }   
+    }
+    
 }

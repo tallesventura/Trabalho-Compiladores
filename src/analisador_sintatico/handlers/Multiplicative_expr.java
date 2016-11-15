@@ -10,10 +10,9 @@ package analisador_sintatico.handlers;
  * @author talles
  */
 
-// TODO: terminar
-public class Expr2 extends AbstractHandler{
+public class Multiplicative_expr extends AbstractHandler{
 
-    public Expr2() {
+    public Multiplicative_expr() {
         super();
     }
     
@@ -22,13 +21,14 @@ public class Expr2 extends AbstractHandler{
     public boolean handle() {
         
         if(nextToken()){
-            if(new Rel_op().handle()){
-                if(new Comp_expr().handle()){
-                    return new Expr2().handle();
+            if(new Multiplicative_op().handle()){
+                if(new Unary_expr().handle()){
+                    return new Multiplicative_expr().handle();
                 }
             }
         }
         
         return true;
-    }   
+    }
+    
 }

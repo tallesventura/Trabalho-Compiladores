@@ -6,39 +6,39 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
-import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Global_stmt extends AbstractHandler {
+public class Parameters extends AbstractHandler {
 
-    public Global_stmt() {
+    public Parameters() {
         super();
-        terminais.add(Token.GLOBAL);
-        terminais.add(Token.IDENTIFICADOR);
+        terminais.add(Token.ABRE_PARENTESES);
+        terminais.add(Token.FECHA_PARENTESES);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (terminais.contains(currentToken)) {//ABRA_PARENTESES
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {
-                        removeToken();
-                        if (nextToken()) {
-                            if (!(new Arglist().handle())) {
-                                //ouve algun erro no handler do arglist
+                    if (new Typedargslist().handle()) {
+                        if(nextToken()){
+                            if(terminais.contains(currentToken)){//FECHA_PARENTESES
+                                removeToken();
+                            }else{
+                                //token ")" não foi encontrado
                                 return false;
                             }
-                        } else {
+                        }else{
                             //lista de tokens vazia
                             return false;
                         }
                     } else {
-                        //token "NAME" não foi encontrado
+                        //ouve algum erro no handler do Typedargslist
                         return false;
                     }
                 } else {
@@ -46,14 +46,12 @@ public class Global_stmt extends AbstractHandler {
                     return false;
                 }
             } else {
-                //token "global" não foi encontrado
-                return false;
+                //token "(" não foi encontrado
             }
         } else {
             //lista de tokens vazia
             return false;
         }
-
         return true;
     }
 

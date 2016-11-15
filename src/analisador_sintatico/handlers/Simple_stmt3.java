@@ -5,33 +5,37 @@
  */
 package analisador_sintatico.handlers;
 
-import analisador_lexico.Token;
-
 /**
  *
- * @author talles
+ * @author yrmao
  */
-// TODO: terminar
-public class Small_stmt2 extends AbstractHandler {
+public class Simple_stmt3 extends AbstractHandler {
+
+    public Simple_stmt3() {
+        super();
+    }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (currentToken == Token.PONTO_VIRGULA) {
+            if (new Small_stmt().handle()) {
                 if (nextToken()) {
-                    if(true ){//simple_stmt
+                    if(new Small_stmt2().handle()){
                         
+                    }else{
+                        //small_stmt não encontrado
                     }
-
+                    
                 } else {
                     //lista de tokens vazia
                     errorCode = 6;
                     return false;
                 }
             } else {
-                //Small_stmt2 permite volor vazio
-                //tokem ponto_virgula não encontrado
+                //small_stmt3 não encontrado
+                //small_stmt3 permite valor vazio
             }
+
         } else {
             //lista de tokens vazia
             errorCode = 6;

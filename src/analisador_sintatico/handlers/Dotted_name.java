@@ -6,38 +6,41 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
+import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-// TODO: terminar
-public class Small_stmt2 extends AbstractHandler {
+public class Dotted_name extends AbstractHandler {
+
+    public Dotted_name() {
+        super();
+        terminais.add(Token.IDENTIFICADOR);
+    }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (currentToken == Token.PONTO_VIRGULA) {
+            if (terminais.contains(currentToken)) {
+                removeToken();
                 if (nextToken()) {
-                    if(true ){//simple_stmt
-                        
+                    if (!(new Dotted_name2().handle())) {
+                        //ouve algum erro no handler do dotted_name2
+                        return false;
                     }
-
                 } else {
                     //lista de tokens vazia
-                    errorCode = 6;
                     return false;
                 }
             } else {
-                //Small_stmt2 permite volor vazio
-                //tokem ponto_virgula não encontrado
+                //O token identificador não foi encontrado
+                return false;
             }
         } else {
             //lista de tokens vazia
-            errorCode = 6;
             return false;
         }
         return true;
     }
-
 }

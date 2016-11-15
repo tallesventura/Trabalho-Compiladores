@@ -7,38 +7,34 @@ public class Del_stmt extends AbstractHandler{
 
     public Del_stmt() {
         super();
+        terminais.add(Token.DELETE);
+        terminais.add(Token.IDENTIFICADOR);
     }
     
     @Override
     public boolean handle() {
         if(nextToken()){
-            if(currentToken == Token.DELETE){
+            if(terminais.contains(currentToken)){
                 removeToken();
                 if(nextToken()){
-                    if(currentToken == Token.IDENTIFICADOR){
+                    if(terminais.contains(currentToken)){
                         removeToken();
                     }else{
-                        //token "NAME" - > IDENTIFICADOR não foi encontrado
-                        errorCode = 6;
+                        //token "NAME" não foi encontrado
                         return false;
                     }
                 }else{
                     //lista de tokens vazia
-                    errorCode = 6;
                     return false;
                 }
             }else{
-                //token "del" - > DELETE não foi encontrado
-                errorCode = 7;
+                //token "del" não foi encontrado
                 return false;
             }
         }else{
             //lista de tokens vazia
-            errorCode = 6;
             return false;
         }
-        
         return true;
     }
-    
 }

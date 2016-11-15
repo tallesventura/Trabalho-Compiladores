@@ -5,32 +5,29 @@
  */
 package analisador_sintatico.handlers;
 
-import analisador_lexico.Token;
-
 /**
  *
  * @author talles
  */
-public class Expr_stmt extends AbstractHandler {
 
-    public Expr_stmt() {
+public class Arith_expr extends AbstractHandler{
+
+    public Arith_expr() {
         super();
     }
-    
-    
 
+    
     @Override
     public boolean handle() {
-
-        if (nextToken()) {
-            if (currentToken == Token.IDENTIFICADOR) {
-                removeToken();
-                if (nextToken()) {
-                    if (new Augassign().handle()) {
-                        if (nextToken()) {
-                            return new Expr().handle();
+        
+        if(nextToken()){
+            if(new Arith_op().handle()){
+                if(nextToken()){
+                    if(new Term().handle()){
+                        if(nextToken()){
+                            return new Arith_expr().handle();
                         }else{
-                            errorCode = 13;
+                            errorCode = 17;
                             return false;
                         }
                     }
@@ -38,15 +35,11 @@ public class Expr_stmt extends AbstractHandler {
                     errorCode = 8;
                     return false;
                 }
-            } else {
-                errorCode = 6;
-            }
-        } else {
-            errorCode = 10;
+            }     
+        }else{
+            errorCode = 18;
             return false;
-        }
-
+        }    
         return true;
-    }
-
+    }   
 }

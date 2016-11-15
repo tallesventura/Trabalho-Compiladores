@@ -16,36 +16,33 @@ public class Arglist extends AbstractHandler{
 
     public Arglist() {
         super();
+        terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
     public boolean handle() {
         
         if (nextToken()) {
-            if (currentToken == Token.IDENTIFICADOR) {
+            if (terminais.contains(currentToken)) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Argument_list().handle()) {//função argument_list
-                        //função
-                    } else {
-                        //função argument_list não foi encontrada
+//                    return new Argument_list().handle(); //por que não é permitido
+                    if (!(new Argument_list().handle())) {
+                        //ouve algun erro no handler do argument_list
+                        return false;
                     }
                 } else {
                     //lista de tokens vazia
-                    errorCode = 6;
                     return false;
                 }
-
             } else {
-                //token "NAME" - > IDENTIFICADOR não foi encontrado
+                //token "NAME" não foi encontrado
+                return false;
             }
-
         } else {
-            //parameters_opt permite que não tenha nada
+            // lista de Tokens vazia
+            return false;
         }
-       
         return true;
-        
     }
-    
 }

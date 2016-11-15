@@ -11,11 +11,15 @@ package analisador_sintatico.handlers;
  */
 
 // TODO: terminar
-public class Compound_stmt extends AbstractHandler{
+public class Term extends AbstractHandler{
 
+    public Term() {
+        super();
+    }
+    
     @Override
     public boolean handle() {
-      
+        
         return true;
     }
     

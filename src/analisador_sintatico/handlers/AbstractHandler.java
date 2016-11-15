@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public abstract class AbstractHandler implements IHandler{
     
     protected ArrayList<TokenModel> tokens;
-    protected ArrayList<Integer> terminais;
+    protected ArrayList<Token> terminais;
     protected static Token currentToken;
     protected int errorCode = 0;
 

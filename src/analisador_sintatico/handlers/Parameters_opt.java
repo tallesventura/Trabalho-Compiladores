@@ -15,49 +15,40 @@ public class Parameters_opt extends AbstractHandler {
 
     public Parameters_opt() {
         super();
+        terminais.add(Token.ABRE_PARENTESES);
+        terminais.add(Token.FECHA_PARENTESES);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (currentToken == Token.ABRE_PARENTESES) {
+            if (terminais.contains(currentToken)) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Arglist().handle()) {//função argslist
+                    if (new Arglist().handle()) {
                         if (nextToken()) {
-                            if(currentToken == Token.FECHA_PARENTESES){
+                            if(terminais.contains(currentToken)){
                                 removeToken();                             
                             }else{
-                                //token ")" - > FECHA_PARENTESES não foi encontrado
+                                //token ")" não foi encontrado
+                                return false;
                             }
-                            
                         } else {
                             //lista de tokens vazia
-                            errorCode = 6;
                             return false;
                         }
-
                     } else {
-                        //função argslist não foi encontrada
+                        //ouve algun erro no handler do argslist
+                        return false;
                     }
                 } else {
                     //lista de tokens vazia
-                    errorCode = 6;
                     return false;
                 }
-
-            } else {
-                //token "(" - > ABRE_PARENTESES não foi encontrado
-
-                //parameters_opt permite que não tenha nada
+            }else{
+                //token "(" não foi encontrado
             }
-
-        } else {
-            //lista de tokens vazia
-            errorCode = 6;
-            return false;
         }
-
         return true;
     }
 

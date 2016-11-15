@@ -1,13 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
-public class Argument_list extends AbstractHandler {
+/**
+ *
+ * @author yrmao
+ */
+public class Dotted_name2 extends AbstractHandler {
 
-    public Argument_list() {
+    public Dotted_name2() {
         super();
-        terminais.add(Token.VIRGULA);
+        terminais.add(Token.PONTO);
         terminais.add(Token.IDENTIFICADOR);
     }
 
@@ -18,17 +27,13 @@ public class Argument_list extends AbstractHandler {
                 removeToken();
                 if (nextToken()) {
                     if (terminais.contains(currentToken)) {
-                        if (nextToken()) {
-                            if(!(new Argument_list().handle())){
-                                //argument_list não foi encontrado
-                                return false;
-                            }
-                        } else {
-                            //lista de tokens vazia
+                        removeToken();
+                        if (!(new Dotted_name2().handle())) {
+                            //ouve algum erro no handler do dotted_name2
                             return false;
                         }
                     } else {
-                        //token "NAME" não foi encontrado
+                        //identificador não encontrado
                         return false;
                     }
                 } else {
@@ -36,13 +41,13 @@ public class Argument_list extends AbstractHandler {
                     return false;
                 }
             } else {
-                //token "," não foi encontrado
-                return false;
+                //dotted_name permite que não tenha nada
             }
         } else {
             //lista de tokens vazia
-            //argument_list permite que não tenha nada
+            return false;
         }
         return true;
     }
+
 }

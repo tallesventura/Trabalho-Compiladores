@@ -16,40 +16,31 @@ public class Return_stmt extends AbstractHandler {
 
     public Return_stmt() {
         super();
+        terminais.add(Token.RETURN);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (currentToken == Token.RETURN) {
+            if (terminais.contains(currentToken)) {
                 removeToken();
-
                 if (nextToken()) {
-                    if(new Parameters_opt().handle()){
-                        //função parametrs_opt
-                        
-                    }else{
-                        //parameters_opt não encontrado
-                    
+                    if(!(new Parameters_opt().handle())){
+                        //ouve algun erro no handler do parameters_opt
+                        return false;
                     }
                 } else {
                     //lista de tokens vazia
-                    errorCode = 6;
-                    return false;
-
+                    //return_stmt permite que não tenha nada
                 }
-
             } else {
-                //Return permite que não tenha nada
-
+                //esperado um tokem return
+                return false;
             }
         } else {
             //lista de tokens vazia
-            errorCode = 6;
             return false;
         }
-
         return true;
     }
-
 }

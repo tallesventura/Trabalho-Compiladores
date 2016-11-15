@@ -5,21 +5,20 @@ import analisador_lexico.Token;
 public class Pass extends AbstractHandler{
     public Pass() {
         super();
+        terminais.add(Token.PASS);
     }
     
     @Override
     public boolean handle() {
         if(nextToken()){
-            if(currentToken == Token.PASS){
+            if(terminais.contains(currentToken)){
                 removeToken();
             }else{
-                //token "pass" - > PASS não foi encontrado
-                errorCode = 9;
+                //token "pass" não foi encontrado
                 return false;
             }        
         }else{
             //lista de tokens vazia
-            errorCode = 9;
             return false;
         }    
         return true;

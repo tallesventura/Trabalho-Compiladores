@@ -3,35 +3,31 @@ package analisador_sintatico.handlers;
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
-public class Flow_stmt extends AbstractHandler{
+/**
+ *
+ * @author talles
+ */
+public class Flow_stmt extends AbstractHandler {
+
+    public Flow_stmt() {
+        super();
+        terminais.add(Token.BREAK);
+        terminais.add(Token.CONTINUE);
+    }
 
     @Override
     public boolean handle() {
-        if(nextToken()){
-                       
-            if(currentToken == Token.BREAK){
+        if (nextToken()) {
+            if (terminais.contains(currentToken)) {
                 removeToken();
-            
-            }else if(currentToken == Token.CONTINUE){
-                //token "continue" -> CONTINUE não foi encontrado
-                errorCode = 7;
-                return false;
-            }else if(new Return_stmt().handle()){
-                //função return
-                
-            }else if(new Yield_stmt().handle()){//yield_stmt
-                //função yield
-            }else{
-                
-            }
-            
-        }else{
+            } else if (new Return_stmt().handle()) {
+                //função Return
+            } else 
+                return new Yield_stmt().handle();
+        }else {
             //lista de tokens vazia
-            errorCode = 6;
             return false;
         }
-        
         return true;
     }
-    
 }

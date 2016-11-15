@@ -87,6 +87,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 /* Palavras reservadas */
 "and" { id+=1; return Token.AND; }
 "as" { id+=1; return Token.AS; }
+"async" { id+=1; return Token.ASYNC; }
 "break" { id+=1; return Token.BREAK; }
 "class" { id+=1; return Token.CLASS; }
 "continue" { id+=1; return Token.CONTINUE; }

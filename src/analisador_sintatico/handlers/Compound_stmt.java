@@ -9,14 +9,36 @@ package analisador_sintatico.handlers;
  *
  * @author talles
  */
-
 // TODO: terminar
-public class Compound_stmt extends AbstractHandler{
+public class Compound_stmt extends AbstractHandler {
+
+    public Compound_stmt() {
+        super();
+    }
+    
 
     @Override
     public boolean handle() {
-      
+        if (nextToken()) {
+            if (new If_stmt().handle()) {
+
+            } else if (new While_stmt().handle()) {
+
+            } else if (new With_stmt().handle()) {
+
+            } else if (new Funcdef().handle()) {
+
+            } else if (new Classdef().handle()) {
+
+            } else if (new Decorated().handle()) {
+
+            } else if (new Async_stmt().handle()) {
+
+            } else {
+                errorCode = 3;
+                return false;
+            }
+        }
         return true;
     }
-    
 }

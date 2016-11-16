@@ -6,29 +6,28 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
-import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Import_stmt extends AbstractHandler {
+public class Typedargslist extends AbstractHandler {
 
-    public Import_stmt() {
+    public Typedargslist() {
         super();
-        terminais.add(Token.IMPORT);
+        terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (terminais.contains(currentToken)) {//NAME
                 removeToken();
                 if (nextToken()) {
-                    if (new Dotted_name().handle()) {
+                    if (new Arg_Assign().handle()) {
                         if (nextToken()) {
-                            if (!(new Import_as_name().handle())) {
-                                //ouve algum erro no handler do import_as_name
+                            if (!(new More_arg().handle())) {
+                                //ouve algum erro no handler do More_arg
                                 return false;
                             }
                         } else {
@@ -36,15 +35,15 @@ public class Import_stmt extends AbstractHandler {
                             return false;
                         }
                     } else {
-                        //ouve algum erro no handler do dotted_name
+                        //ouve algum erro no handler do Arg_Assign
                         return false;
                     }
-                } else {
+                }else{
                     //lista de tokens vazia
                     return false;
                 }
             } else {
-                //O token import não foi encontrado
+                //token "NAME" não foi encontrado
                 return false;
             }
         } else {
@@ -53,4 +52,5 @@ public class Import_stmt extends AbstractHandler {
         }
         return true;
     }
+
 }

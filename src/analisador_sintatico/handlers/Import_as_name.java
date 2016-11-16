@@ -10,13 +10,14 @@ import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Import_stmt extends AbstractHandler {
+public class Import_as_name extends AbstractHandler {
 
-    public Import_stmt() {
+    public Import_as_name() {
         super();
-        terminais.add(Token.IMPORT);
+        terminais.contains(Token.AS);
+        terminais.contains(Token.IDENTIFICADOR);
     }
 
     @Override
@@ -25,18 +26,10 @@ public class Import_stmt extends AbstractHandler {
             if (terminais.contains(currentToken)) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Dotted_name().handle()) {
-                        if (nextToken()) {
-                            if (!(new Import_as_name().handle())) {
-                                //ouve algum erro no handler do import_as_name
-                                return false;
-                            }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
-                        }
+                    if (terminais.contains(currentToken)) {
+                        removeToken();
                     } else {
-                        //ouve algum erro no handler do dotted_name
+                        //token "NAME" não foi encontrado
                         return false;
                     }
                 } else {
@@ -44,8 +37,8 @@ public class Import_stmt extends AbstractHandler {
                     return false;
                 }
             } else {
-                //O token import não foi encontrado
-                return false;
+                //token "as" não foi encontrado
+                //Import_as_name permite que não seja esperado nada
             }
         } else {
             //lista de tokens vazia
@@ -53,4 +46,5 @@ public class Import_stmt extends AbstractHandler {
         }
         return true;
     }
+
 }

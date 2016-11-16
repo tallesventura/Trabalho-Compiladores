@@ -7,40 +7,36 @@ package analisador_sintatico.handlers;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Simple_stmt3 extends AbstractHandler{
+public class Decorated extends AbstractHandler {
 
-    public Simple_stmt3() {
+    public Decorated() {
         super();
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new Small_stmt().handle()) {
+            if (new Decorator().handle()) {
                 if (nextToken()) {
-                    if(new Small_stmt2().handle()){
-                        
-                    }else{
-                        //small_stmt não encontrado
+                    if (!(new Definitions().handle())) {
+                        //ouve algum erro no handler do Definicions
+                        return false;
                     }
-                    
                 } else {
                     //lista de tokens vazia
-                    errorCode = 6;
                     return false;
                 }
             } else {
-                //small_stmt3 não encontrado
-                //small_stmt3 permite valor vazio
+                //ouve algum erro no handler do Decorator
+                return false;
             }
-
         } else {
-            //lista de tokens vazia
-            errorCode = 6;
+            //lista de tkens vazia
             return false;
         }
         return true;
     }
+
 }

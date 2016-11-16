@@ -6,37 +6,39 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
-import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Import_stmt extends AbstractHandler {
+public class Parameters extends AbstractHandler {
 
-    public Import_stmt() {
+    public Parameters() {
         super();
-        terminais.add(Token.IMPORT);
+        terminais.add(Token.ABRE_PARENTESES);
+        terminais.add(Token.FECHA_PARENTESES);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (terminais.contains(currentToken)) {//ABRA_PARENTESES
                 removeToken();
                 if (nextToken()) {
-                    if (new Dotted_name().handle()) {
-                        if (nextToken()) {
-                            if (!(new Import_as_name().handle())) {
-                                //ouve algum erro no handler do import_as_name
+                    if (new Typedargslist().handle()) {
+                        if(nextToken()){
+                            if(terminais.contains(currentToken)){//FECHA_PARENTESES
+                                removeToken();
+                            }else{
+                                //token ")" não foi encontrado
                                 return false;
                             }
-                        } else {
+                        }else{
                             //lista de tokens vazia
                             return false;
                         }
                     } else {
-                        //ouve algum erro no handler do dotted_name
+                        //ouve algum erro no handler do Typedargslist
                         return false;
                     }
                 } else {
@@ -44,8 +46,7 @@ public class Import_stmt extends AbstractHandler {
                     return false;
                 }
             } else {
-                //O token import não foi encontrado
-                return false;
+                //token "(" não foi encontrado
             }
         } else {
             //lista de tokens vazia
@@ -53,4 +54,5 @@ public class Import_stmt extends AbstractHandler {
         }
         return true;
     }
+
 }

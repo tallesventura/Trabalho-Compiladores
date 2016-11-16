@@ -10,13 +10,14 @@ import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Import_stmt extends AbstractHandler {
+public class Dotted_name2 extends AbstractHandler {
 
-    public Import_stmt() {
+    public Dotted_name2() {
         super();
-        terminais.add(Token.IMPORT);
+        terminais.add(Token.PONTO);
+        terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
@@ -25,18 +26,14 @@ public class Import_stmt extends AbstractHandler {
             if (terminais.contains(currentToken)) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Dotted_name().handle()) {
-                        if (nextToken()) {
-                            if (!(new Import_as_name().handle())) {
-                                //ouve algum erro no handler do import_as_name
-                                return false;
-                            }
-                        } else {
-                            //lista de tokens vazia
+                    if (terminais.contains(currentToken)) {
+                        removeToken();
+                        if (!(new Dotted_name2().handle())) {
+                            //ouve algum erro no handler do dotted_name2
                             return false;
                         }
                     } else {
-                        //ouve algum erro no handler do dotted_name
+                        //identificador não encontrado
                         return false;
                     }
                 } else {
@@ -44,8 +41,7 @@ public class Import_stmt extends AbstractHandler {
                     return false;
                 }
             } else {
-                //O token import não foi encontrado
-                return false;
+                //dotted_name permite que não tenha nada
             }
         } else {
             //lista de tokens vazia
@@ -53,4 +49,5 @@ public class Import_stmt extends AbstractHandler {
         }
         return true;
     }
+
 }

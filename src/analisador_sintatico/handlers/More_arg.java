@@ -6,31 +6,40 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
-import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Nonlocal_stmt extends AbstractHandler{
+public class More_arg extends AbstractHandler {
 
-    public Nonlocal_stmt() {
+    public More_arg() {
         super();
-        terminais.add(Token.NONLOCAL);
+        terminais.add(Token.VIRGULA);
         terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (terminais.contains(currentToken)) {//VIRGULA
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {
+                    if (terminais.contains(currentToken)) {//IDENTIFICADOR
                         removeToken();
                         if (nextToken()) {
-                            if (!(new Arglist().handle())) {
-                                //ouve algun erro no handler do nonlocal_stmt
+                            if (new Arg_Assign().handle()) {
+                                if (nextToken()) {
+                                    if (!(new More_arg().handle())) {
+                                        //ouve algum erro no handler do More_arg
+                                        return false;
+                                    }
+                                } else {
+                                    //lista de tokens vazia
+                                    return false;
+                                }
+                            } else {
+                                //ouve algum erro no handler do Arg_Assign
                                 return false;
                             }
                         } else {
@@ -39,21 +48,15 @@ public class Nonlocal_stmt extends AbstractHandler{
                         }
                     } else {
                         //token "NAME" não foi encontrado
-                        return false;
                     }
+
                 } else {
-                    //lista de tokens vazia
+                    //lista de token vazia
                     return false;
                 }
-            } else {
-                //token "nonlocal" não foi encontrado
-                return false;
             }
-        } else {
-            //lista de tokens vazia
-            return false;
         }
         return true;
     }
-    
+
 }

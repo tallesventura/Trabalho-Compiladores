@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
-/**
- *
- * @author talles
- */
-public class Import_stmt extends AbstractHandler {
+public class Argument_list extends AbstractHandler {
 
-    public Import_stmt() {
+    public Argument_list() {
         super();
-        terminais.add(Token.IMPORT);
+        terminais.add(Token.VIRGULA);
+        terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
@@ -25,10 +17,10 @@ public class Import_stmt extends AbstractHandler {
             if (terminais.contains(currentToken)) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Dotted_name().handle()) {
+                    if (terminais.contains(currentToken)) {
                         if (nextToken()) {
-                            if (!(new Import_as_name().handle())) {
-                                //ouve algum erro no handler do import_as_name
+                            if(!(new Argument_list().handle())){
+                                //argument_list não foi encontrado
                                 return false;
                             }
                         } else {
@@ -36,7 +28,7 @@ public class Import_stmt extends AbstractHandler {
                             return false;
                         }
                     } else {
-                        //ouve algum erro no handler do dotted_name
+                        //token "NAME" não foi encontrado
                         return false;
                     }
                 } else {
@@ -44,12 +36,12 @@ public class Import_stmt extends AbstractHandler {
                     return false;
                 }
             } else {
-                //O token import não foi encontrado
+                //token "," não foi encontrado
                 return false;
             }
         } else {
             //lista de tokens vazia
-            return false;
+            //argument_list permite que não tenha nada
         }
         return true;
     }

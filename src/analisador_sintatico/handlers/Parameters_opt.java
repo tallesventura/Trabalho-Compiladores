@@ -6,17 +6,17 @@
 package analisador_sintatico.handlers;
 
 import analisador_lexico.Token;
-import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 
 /**
  *
- * @author talles
+ * @author yrmao
  */
-public class Import_stmt extends AbstractHandler {
+public class Parameters_opt extends AbstractHandler {
 
-    public Import_stmt() {
+    public Parameters_opt() {
         super();
-        terminais.add(Token.IMPORT);
+        terminais.add(Token.ABRE_PARENTESES);
+        terminais.add(Token.FECHA_PARENTESES);
     }
 
     @Override
@@ -25,10 +25,12 @@ public class Import_stmt extends AbstractHandler {
             if (terminais.contains(currentToken)) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Dotted_name().handle()) {
+                    if (new Arglist().handle()) {
                         if (nextToken()) {
-                            if (!(new Import_as_name().handle())) {
-                                //ouve algum erro no handler do import_as_name
+                            if(terminais.contains(currentToken)){
+                                removeToken();                             
+                            }else{
+                                //token ")" não foi encontrado
                                 return false;
                             }
                         } else {
@@ -36,21 +38,18 @@ public class Import_stmt extends AbstractHandler {
                             return false;
                         }
                     } else {
-                        //ouve algum erro no handler do dotted_name
+                        //ouve algun erro no handler do argslist
                         return false;
                     }
                 } else {
                     //lista de tokens vazia
                     return false;
                 }
-            } else {
-                //O token import não foi encontrado
-                return false;
+            }else{
+                //token "(" não foi encontrado
             }
-        } else {
-            //lista de tokens vazia
-            return false;
         }
         return true;
     }
+
 }

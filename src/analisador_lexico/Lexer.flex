@@ -86,6 +86,8 @@ WhiteSpace = {LineTerminator} | [ \f]
 
 /* Palavras reservadas */
 "and" { id+=1; return Token.AND; }
+"as" { id+=1; return Token.AS; }
+"async" { id+=1; return Token.ASYNC; }
 "break" { id+=1; return Token.BREAK; }
 "class" { id+=1; return Token.CLASS; }
 "continue" { id+=1; return Token.CONTINUE; }
@@ -103,13 +105,16 @@ WhiteSpace = {LineTerminator} | [ \f]
 "in" { id+=1; return Token.IN; }
 "is" { id+=1; return Token.IS; }
 "None" { id+=1; return Token.NONE; }
+"nonlocal" { id+=1; return Token.NONLOCAL; }
 "print" { id+=1; return Token.PRINT; }
+"pass" { id+=1; return Token.PASS; }
 "range" { id+=1; return Token.RANGE; }
 "return" { id+=1; return Token.RETURN; }
 "raise" { id+=1; return Token.RAISE; }
 "True" { id+=1; return Token.TRUE; }
 "try" { id+=1; return Token.TRY; }
 "while" { id+=1; return Token.WHILE; }
+"yield" { id+=1; return Token.YIELD; }
 
 /* Pontuacao */
 ":" { id+=1; return Token.DOIS_PONTOS; }
@@ -123,5 +128,6 @@ WhiteSpace = {LineTerminator} | [ \f]
 "'" { id+=1; return Token.ASPAS_SIMPLES; }
 "\"" { id+=1; return Token.ASPAS_DUPLAS; }
 "." { id+=1; return Token.PONTO; }
+";" { id+=1; return Token.PONTO_VIRGULA; }
 
 . { id+= 1; return Token.ERROR; }

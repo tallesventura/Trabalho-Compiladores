@@ -39,6 +39,22 @@ public abstract class AbstractHandler implements IHandler{
         }
     }
     
+    public String getCurrentLexema(){
+        String lexema = "";
+        if(tokens.size() > 0){
+            lexema = tokens.get(0).getLexema();
+        }
+        return lexema;
+    }
+    
+    public int getCurrentLine(){
+        int line = -1;
+        if(tokens.size() > 0){
+            line = tokens.get(0).getLinha();
+        }
+        return line;
+    }
+    
     public boolean removeToken(){
         if(tokens.size() > 0 ){
             tokens.remove(0);

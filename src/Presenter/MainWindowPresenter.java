@@ -7,6 +7,7 @@ package Presenter;
 
 import DAO.DAOTxt;
 import DAO.IDAO;
+import Model.ErrorModel;
 import Model.TokenModel;
 import View.MainWindowView;
 import analisador_lexico.AnalisadorLexico;
@@ -45,7 +46,8 @@ public class MainWindowPresenter {
 
     private MainWindowView viewMainWindow;
     private RSyntaxTextArea editor;
-    private List<TokenModel> tokenList;
+    private ArrayList<TokenModel> tokenList;
+    private ArrayList<ErrorModel> errorList;
     private DefaultTableModel tblModelTokens;
     private DefaultTableModel tblErros;
     private String filePath;
@@ -58,8 +60,10 @@ public class MainWindowPresenter {
         viewMainWindow = new MainWindowView();
         editor = new RSyntaxTextArea();
         tokenList = new ArrayList();
+        errorList = new ArrayList();
         codeFile = new File(rootPath);
-
+        
+        
         initEditor();
         initTabelaToken();
         initTabelaErros();
@@ -246,7 +250,11 @@ public class MainWindowPresenter {
             System.out.println(t.getNome());
         }
         updateTokenTable(tokenList);
-        updateErrorTable(tokenList);
+        updateErrorTable(errorList);
+    }
+    
+    public void runSyntaxAnalysis(ArrayList<TokenModel> tokens){
+        
     }
 
     public void updateTokenTable(List<TokenModel> tokens) {
@@ -317,14 +325,22 @@ public class MainWindowPresenter {
         }
     }
 
+    // TODO: fazer com que a análise léxica retorne uma lista de erros
     public void updateSourceCode() throws IOException {
         codeFile = new File(rootPath);
         saveCode(codeFile);
         runLexicalAnalysis();
+        runSyntaxAnalysis(tokenList);
     }
 
-    public void updateErrorTable(List<TokenModel> tokens) {
-
+    public void updateErrorTable(List<ErrorModel> errors) {
+        
+        tblErros.setNumRows(0);
+        for (ErrorModel e : errors) {
+            
+        }
+        
+        /*
         tblErros.setNumRows(0);
         for (TokenModel t : tokens) {
             if (t.getNome().equals(Token.ERROR)) {
@@ -338,6 +354,7 @@ public class MainWindowPresenter {
                 updateTokenTable(tokens);
             }
         }
+        */
     }
     
     public void removerToken(TokenModel t){

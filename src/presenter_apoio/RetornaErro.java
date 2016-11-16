@@ -81,6 +81,8 @@ public class RetornaErro {
                 return "Esperado operador multiplicativo, mas nenhum token foi encontrado";
             case 29:
                 return "Esperado operador multiplicativo, mas foi encontrado <" + token.getLexema() + ">.";
+            case 30:
+                return "Esperado operador relacional, mas foi encontrado <" + token.getLexema() + ">.";
             default:
                 return "";
         }

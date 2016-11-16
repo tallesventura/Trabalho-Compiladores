@@ -22,36 +22,33 @@ public class Comp_op extends AbstractHandler{
         terminais.add(Token.OP_MENOR_IGUAL);
         terminais.add(Token.OP_DIFERENTE);
         terminais.add(Token.IN);
-        terminais.add(Token.NOT);
-        terminais.add(Token.IS);
     }
     
-    // TODO: ver se "is" está ambíguo
     @Override
     public boolean handle() {
         
         if(nextToken()){
             if(terminais.contains(currentToken)){
                 removeToken();
-                if(currentToken == Token.NOT){
-                    if(nextToken()){
-                        if(currentToken != Token.IN){
-                            errorCode = 22;
-                            return false;
-                        }else{
-                            removeToken();
-                        }
+            }else if(currentToken == Token.NOT){
+                removeToken();
+                if(nextToken()){
+                    if(currentToken == Token.IN){
+                        removeToken();
                     }else{
-                        errorCode = 21;
+                        errorCode = 22;
                         return false;
                     }
-                }else if(currentToken == Token.IS){
-                    if(nextToken()){
-                        if(currentToken == Token.NOT){
-                            removeToken();
-                        }
-                    }
+                }else{
+                    errorCode = 21;
+                    return false;
                 }
+            }else if(currentToken == Token.IS){
+                removeToken();
+                return new Is_not().handle();
+            }else{
+                errorCode = 30;
+                return false;
             }
         }else{
             errorCode = 20;

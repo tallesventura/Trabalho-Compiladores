@@ -48,7 +48,7 @@ public class AnalisadorSintatico{
         tokensRecomeco.add(Token.NONLOCAL);   
     }
     
-    public ArrayList run(){
+    public ArrayList<ErrorModel> run(){
         
         Iterator<TokenModel> it = tokens.iterator();
         while(it.hasNext()){

@@ -5,6 +5,7 @@
  */
 package analisador_lexico;
 
+import Model.ErrorModel;
 import Model.TokenModel;
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,11 +25,13 @@ public class AnalisadorLexico {
     private static File sourceCode;
     private static AnalisadorLexico instance = null;
     private Lexer lexer;
+    private ArrayList<ErrorModel> errorList;
     
     private AnalisadorLexico(File sourceCode) throws FileNotFoundException{
         this.sourceCode = sourceCode;
         Reader reader = new BufferedReader(new FileReader(sourceCode));
         this.lexer = new Lexer(reader);
+        errorList = new ArrayList();
     }
    
     public File getSourceCode() {
@@ -42,6 +45,19 @@ public class AnalisadorLexico {
         AnalisadorLexico.sourceCode = sourceCode;
         
         return instance;
+    }
+    
+    private void montaListaErros(ArrayList<TokenModel> tokenList){
+        
+        for(TokenModel tm : tokenList){
+            if (tm.getNome().equals(Token.ERROR)) {
+                ErrorModel e = new ErrorModel(1,tm.getLexema(),tm.getLinha());
+                errorList.add(e);
+            }else if(tm.getNome() == Token.IDENTIFICADOR && tm.getLexema().length() > 79) {
+                ErrorModel e = new ErrorModel(2,tm.getLexema(),tm.getLinha());
+                errorList.add(e);
+            }
+        }
     }
     
     public ArrayList<TokenModel> runAnalysis() throws IOException{
@@ -62,7 +78,13 @@ public class AnalisadorLexico {
             tokenList.add(tokenModel);           
         }
         
+        montaListaErros(tokenList);
+        
         return tokenList;
+    }
+
+    public ArrayList<ErrorModel> getErrorList() {
+        return errorList;
     }
    
 }

@@ -14,7 +14,7 @@ import analisador_lexico.Token;
 public class Arg_Assign extends AbstractHandler {
 
     public Arg_Assign() {
-        super();
+        super(tokens);
         terminais.add(Token.OP_ATRIBUICAO);
     }
 

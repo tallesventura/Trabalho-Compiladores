@@ -14,7 +14,7 @@ import analisador_lexico.Token;
 public class Simple_stmt extends AbstractHandler {
 
     public Simple_stmt() {
-        super();
+        super(tokens);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Simple_stmt extends AbstractHandler {
         if (nextToken()) {
             if (new Small_stmt().handle()) {
                 if (nextToken()) {
-                    if (new Small_stmt2().handle()) {
+                    if (new Small_stmt2(tokens).handle()) {
                         if (nextToken()) {
                             if (currentToken == Token.NOVA_LINHA) {
                                 removeToken();

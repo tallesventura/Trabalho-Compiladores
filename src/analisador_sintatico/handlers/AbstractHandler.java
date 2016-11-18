@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public abstract class AbstractHandler implements IHandler{
     
-    protected ArrayList<TokenModel> tokens;
+    protected static ArrayList<TokenModel> tokens;
     protected ArrayList<Token> terminais;
     protected static Token currentToken;
     protected int errorCode = 0;
@@ -23,10 +23,6 @@ public abstract class AbstractHandler implements IHandler{
     public AbstractHandler(ArrayList<TokenModel> tokenList) {
         this.terminais = new ArrayList();
         this.tokens = tokenList;
-    }
-    
-    public AbstractHandler(){
-        this.terminais = new ArrayList();
     }
     
     public boolean nextToken(){

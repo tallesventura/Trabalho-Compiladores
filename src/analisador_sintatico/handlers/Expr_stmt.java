@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Expr_stmt extends AbstractHandler {
 
-    public Expr_stmt() {
-        super();
+    public Expr_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
     
@@ -26,9 +28,9 @@ public class Expr_stmt extends AbstractHandler {
             if (currentToken == Token.IDENTIFICADOR) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Augassign().handle()) {
+                    if (new Augassign(tokens).handle()) {
                         if (nextToken()) {
-                            return new Expr().handle();
+                            return new Expr(tokens).handle();
                         }else{
                             errorCode = 13;
                             return false;

@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Rel_op extends AbstractHandler{
 
-    public Rel_op() {
-        super();
+    public Rel_op(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.AND);
         terminais.add(Token.OR);
     }

@@ -5,6 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
@@ -12,8 +15,8 @@ package analisador_sintatico.handlers;
 
 public class Relational_expr extends AbstractHandler{
 
-    public Relational_expr() {
-        super();
+    public Relational_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
 
@@ -21,9 +24,9 @@ public class Relational_expr extends AbstractHandler{
     public boolean handle() {
         
         if(nextToken()){
-            if(new Comp_op().handle()){
-                if(new Operational_expr().handle()){
-                    return new Relational_expr().handle();
+            if(new Comp_op(tokens).handle()){
+                if(new Operational_expr(tokens).handle()){
+                    return new Relational_expr(tokens).handle();
                 }
             }
         }

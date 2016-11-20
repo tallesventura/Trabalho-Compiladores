@@ -5,6 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
@@ -12,8 +15,8 @@ package analisador_sintatico.handlers;
 
 public class Arith_expr extends AbstractHandler{
 
-    public Arith_expr() {
-        super();
+    public Arith_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     
@@ -21,11 +24,11 @@ public class Arith_expr extends AbstractHandler{
     public boolean handle() {
         
         if(nextToken()){
-            if(new Arith_op().handle()){
+            if(new Arith_op(tokens).handle()){
                 if(nextToken()){
-                    if(new Term().handle()){
+                    if(new Term(tokens).handle()){
                         if(nextToken()){
-                            return new Arith_expr().handle();
+                            return new Arith_expr(tokens).handle();
                         }else{
                             errorCode = 17;
                             return false;

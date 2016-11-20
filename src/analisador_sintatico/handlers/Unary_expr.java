@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,8 +16,8 @@ import analisador_lexico.Token;
 
 public class Unary_expr extends AbstractHandler{
 
-    public Unary_expr() {
-        super();
+    public Unary_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     

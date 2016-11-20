@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,9 @@ import analisador_lexico.Token;
  */
 public class Augassign extends AbstractHandler{
 
-    public Augassign() {
-        super();
+    public Augassign(ArrayList<TokenModel> tokens) {
+        super(tokens);
+        
         terminais.add(Token.OP_ATRIBUICAO);
         terminais.add(Token.OP_MAIS_IGUAL);
         terminais.add(Token.OP_MENOS_IGUAL);

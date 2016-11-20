@@ -5,15 +5,17 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
  */
-// TODO: terminar
 public class Compound_stmt extends AbstractHandler {
 
-    public Compound_stmt() {
-        super();
+    public Compound_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
 

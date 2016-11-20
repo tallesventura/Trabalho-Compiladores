@@ -5,6 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
@@ -12,8 +15,8 @@ package analisador_sintatico.handlers;
 
 public class Multiplicative_expr extends AbstractHandler{
 
-    public Multiplicative_expr() {
-        super();
+    public Multiplicative_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
 
@@ -21,9 +24,9 @@ public class Multiplicative_expr extends AbstractHandler{
     public boolean handle() {
         
         if(nextToken()){
-            if(new Multiplicative_op().handle()){
-                if(new Unary_expr().handle()){
-                    return new Multiplicative_expr().handle();
+            if(new Multiplicative_op(tokens).handle()){
+                if(new Unary_expr(tokens).handle()){
+                    return new Multiplicative_expr(tokens).handle();
                 }
             }
         }

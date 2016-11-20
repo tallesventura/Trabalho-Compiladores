@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Is_not extends AbstractHandler{
 
-    public Is_not() {
-        super();
+    public Is_not(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     

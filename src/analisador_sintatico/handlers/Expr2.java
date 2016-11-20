@@ -5,6 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
@@ -13,8 +16,8 @@ package analisador_sintatico.handlers;
 // TODO: terminar
 public class Expr2 extends AbstractHandler{
 
-    public Expr2() {
-        super();
+    public Expr2(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
 
@@ -23,8 +26,8 @@ public class Expr2 extends AbstractHandler{
         
         if(nextToken()){
             if(new Rel_op().handle()){
-                if(new Comp_expr().handle()){
-                    return new Expr2().handle();
+                if(new Comp_expr(tokens).handle()){
+                    return new Expr2(tokens).handle();
                 }
             }
         }

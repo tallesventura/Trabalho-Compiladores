@@ -5,6 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
@@ -12,27 +15,24 @@ package analisador_sintatico.handlers;
 // TODO: terminar
 public class Compound_stmt extends AbstractHandler {
 
-    public Compound_stmt() {
-        super();
+    public Compound_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
-    
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new If_stmt().handle()) {
+            if (new If_stmt(tokens).handle()) {
 
-            } else if (new While_stmt().handle()) {
+            } else if (new While_stmt(tokens).handle()) {
 
-            } else if (new With_stmt().handle()) {
+            } else if (new Funcdef(tokens).handle()) {
 
-            } else if (new Funcdef().handle()) {
+            } else if (new Classdef(tokens).handle()) {
 
-            } else if (new Classdef().handle()) {
+            } else if (new Decorated(tokens).handle()) {
 
-            } else if (new Decorated().handle()) {
-
-            } else if (new Async_stmt().handle()) {
+            } else if (new Async_stmt(tokens).handle()) {
 
             } else {
                 errorCode = 3;

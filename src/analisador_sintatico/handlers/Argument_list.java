@@ -1,12 +1,14 @@
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
+import java.util.ArrayList;
 
 public class Argument_list extends AbstractHandler {
 
-    public Argument_list() {
-        super();
+    public Argument_list(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.VIRGULA);
         terminais.add(Token.IDENTIFICADOR);
     }
@@ -14,34 +16,32 @@ public class Argument_list extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.VIRGULA) {//VIRGULA
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {
+                    if (currentToken == Token.IDENTIFICADOR) {//NAME
                         if (nextToken()) {
-                            if(!(new Argument_list().handle())){
-                                //argument_list não foi encontrado
+                            if(!(new Argument_list(tokens).handle())){
+                                errorCode = 33;
                                 return false;
                             }
                         } else {
-                            //lista de tokens vazia
+                            errorCode = 34;
                             return false;
                         }
                     } else {
-                        //token "NAME" não foi encontrado
+                        errorCode = 6;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
             } else {
                 //token "," não foi encontrado
+                errorCode = 35;
                 return false;
             }
-        } else {
-            //lista de tokens vazia
-            //argument_list permite que não tenha nada
         }
         return true;
     }

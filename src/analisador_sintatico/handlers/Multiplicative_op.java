@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,8 +16,8 @@ import analisador_lexico.Token;
 
 public class Multiplicative_op extends AbstractHandler{
 
-    public Multiplicative_op() {
-        super();
+    public Multiplicative_op(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.OP_DIVISAO);
         terminais.add(Token.OP_MULTIPLICACAO);
         terminais.add(Token.OP_RESTO);

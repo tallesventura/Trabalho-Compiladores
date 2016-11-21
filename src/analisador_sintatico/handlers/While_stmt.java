@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class While_stmt extends AbstractHandler {
 
-    public While_stmt() {
-        super();
+    public While_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.WHILE);
         terminais.add(Token.DOIS_PONTOS);
 
@@ -23,16 +25,16 @@ public class While_stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//WHILE
+            if (currentToken == Token.WHILE) {//WHILE
                 removeToken();
                 if (nextToken()) {
                     if (new Expr().handle()) {
                         if (nextToken()) {
-                            if (terminais.contains(currentToken)) {//DOIS_PONTOS
+                            if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
                                 removeToken();
-                                if (new Suite().handle()) {
+                                if (new Suite(tokens).handle()) {
                                     if (nextToken()) {
-                                        if (!(new Else_stmt().handle())) {
+                                        if (!(new Else_stmt(tokens).handle())) {
                                             //ouve algum erro no handler do Else_stmt
                                             return false;
                                         }

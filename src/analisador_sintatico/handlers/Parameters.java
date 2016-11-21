@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Parameters extends AbstractHandler {
 
-    public Parameters() {
-        super();
+    public Parameters(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.ABRE_PARENTESES);
         terminais.add(Token.FECHA_PARENTESES);
     }
@@ -22,12 +24,12 @@ public class Parameters extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//ABRA_PARENTESES
+            if (currentToken == Token.ABRE_PARENTESES) {//ABRA_PARENTESES
                 removeToken();
                 if (nextToken()) {
-                    if (new Typedargslist().handle()) {
+                    if (new Typedargslist(tokens).handle()) {
                         if(nextToken()){
-                            if(terminais.contains(currentToken)){//FECHA_PARENTESES
+                            if(currentToken == Token.FECHA_PARENTESES){//FECHA_PARENTESES
                                 removeToken();
                             }else{
                                 //token ")" não foi encontrado

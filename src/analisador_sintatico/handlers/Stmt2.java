@@ -5,20 +5,23 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author yrmao
  */
 public class Stmt2 extends AbstractHandler {
 
-    public Stmt2() {
-        super();
+    public Stmt2(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (!(new Stmt().handle())) {
+            if (!(new Stmt(tokens).handle())) {
                 //ouve algum erro no handler do Stmt
                 return false;
             }

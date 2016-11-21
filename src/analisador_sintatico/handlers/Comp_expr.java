@@ -5,23 +5,26 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
  */
 public class Comp_expr extends AbstractHandler{
 
-    public Comp_expr() {
-        super();
+    public Comp_expr(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
     
     @Override
     public boolean handle() {
         
         if(nextToken()){
-            if(new Operational_expr().handle()){
+            if(new Operational_expr(tokens).handle()){
                 if(nextToken()){
-                    return new Relational_expr().handle();
+                    return new Relational_expr(tokens).handle();
                 }else{
                     errorCode = 16;
                     return false;

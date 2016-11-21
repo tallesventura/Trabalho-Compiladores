@@ -5,42 +5,43 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
+import java.util.ArrayList;
 
 /**
  *
  * @author yrmao
  */
-public class Arglist extends AbstractHandler{
+public class Arglist extends AbstractHandler {
 
-    public Arglist() {
-        super();
+    public Arglist(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
     public boolean handle() {
-        
+
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.IDENTIFICADOR) {
                 removeToken();
                 if (nextToken()) {
-//                    return new Argument_list().handle(); //por que não é permitido
-                    if (!(new Argument_list().handle())) {
-                        //ouve algun erro no handler do argument_list
+                    if (!(new Argument_list(tokens).handle())) {//return new Argument_list().handle(); //por que não é permitido
+                        errorCode = 33;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 33;
                     return false;
                 }
             } else {
-                //token "NAME" não foi encontrado
+                errorCode = 6;
                 return false;
             }
         } else {
-            // lista de Tokens vazia
+            errorCode = 10;
             return false;
         }
         return true;

@@ -5,14 +5,17 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
  */
 public class Small_stmt extends AbstractHandler{
 
-    public Small_stmt() {
-        super();
+    public Small_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
     
 
@@ -20,19 +23,19 @@ public class Small_stmt extends AbstractHandler{
     public boolean handle() {
         
         if(nextToken()){
-            if(new Expr_stmt().handle()){
+            if(new Expr_stmt(tokens).handle()){
                 
-            }else if(new Del_stmt().handle()){
+            }else if(new Del_stmt(tokens).handle()){
                 
-            }else if(new Pass().handle()){
+            }else if(new Pass(tokens).handle()){
                 
-            }else if(new Flow_stmt().handle()){
+            }else if(new Flow_stmt(tokens).handle()){
                 
-            }else if(new Import_stmt().handle()){
+            }else if(new Import_stmt(tokens).handle()){
                 
-            }else if(new Global_stmt().handle()){
+            }else if(new Global_stmt(tokens).handle()){
                 
-            }else if(new Nonlocal_stmt().handle()){
+            }else if(new Nonlocal_stmt(tokens).handle()){
                 
             }else{
                 errorCode = 3;

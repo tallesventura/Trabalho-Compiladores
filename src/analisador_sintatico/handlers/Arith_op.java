@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Arith_op extends AbstractHandler{
 
-    public Arith_op() {
-        super();
+    public Arith_op(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.OP_ADICAO);
         terminais.add(Token.OP_SUBTRACAO);
         terminais.add(Token.OP_TIL);

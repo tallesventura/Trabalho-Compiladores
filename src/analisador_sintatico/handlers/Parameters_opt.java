@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Parameters_opt extends AbstractHandler {
 
-    public Parameters_opt() {
-        super();
+    public Parameters_opt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.ABRE_PARENTESES);
         terminais.add(Token.FECHA_PARENTESES);
     }
@@ -22,34 +24,31 @@ public class Parameters_opt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.ABRE_PARENTESES) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Arglist().handle()) {
+                    if (new Arglist(tokens).handle()) {
                         if (nextToken()) {
-                            if(terminais.contains(currentToken)){
+                            if(currentToken == Token.FECHA_PARENTESES){
                                 removeToken();                             
                             }else{
-                                //token ")" não foi encontrado
+                                errorCode = 31;
                                 return false;
                             }
                         } else {
-                            //lista de tokens vazia
+                            errorCode = 32;
                             return false;
                         }
                     } else {
-                        //ouve algun erro no handler do argslist
+                        errorCode = 33;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 34;
                     return false;
                 }
-            }else{
-                //token "(" não foi encontrado
             }
         }
         return true;
     }
-
 }

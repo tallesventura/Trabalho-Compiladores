@@ -1,12 +1,14 @@
 
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 public class Del_stmt extends AbstractHandler{
 
-    public Del_stmt() {
-        super();
+    public Del_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.DELETE);
         terminais.add(Token.IDENTIFICADOR);
     }
@@ -14,25 +16,25 @@ public class Del_stmt extends AbstractHandler{
     @Override
     public boolean handle() {
         if(nextToken()){
-            if(terminais.contains(currentToken)){
+            if(currentToken == Token.DELETE){
                 removeToken();
                 if(nextToken()){
-                    if(terminais.contains(currentToken)){
+                    if(currentToken == Token.IDENTIFICADOR){
                         removeToken();
                     }else{
-                        //token "NAME" não foi encontrado
+                        errorCode = 6;
                         return false;
                     }
                 }else{
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
             }else{
-                //token "del" não foi encontrado
+                errorCode = 7;
                 return false;
             }
         }else{
-            //lista de tokens vazia
+            errorCode = 38;
             return false;
         }
         return true;

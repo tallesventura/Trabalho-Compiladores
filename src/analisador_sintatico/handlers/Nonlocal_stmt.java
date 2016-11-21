@@ -5,8 +5,10 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,8 +16,8 @@ import static analisador_sintatico.handlers.AbstractHandler.currentToken;
  */
 public class Nonlocal_stmt extends AbstractHandler{
 
-    public Nonlocal_stmt() {
-        super();
+    public Nonlocal_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.NONLOCAL);
         terminais.add(Token.IDENTIFICADOR);
     }
@@ -23,13 +25,13 @@ public class Nonlocal_stmt extends AbstractHandler{
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.NONLOCAL) {
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {
+                    if (currentToken == Token.IDENTIFICADOR) {
                         removeToken();
                         if (nextToken()) {
-                            if (!(new Arglist().handle())) {
+                            if (!(new Arglist(tokens).handle())) {
                                 //ouve algun erro no handler do nonlocal_stmt
                                 return false;
                             }

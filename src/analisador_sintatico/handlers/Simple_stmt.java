@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,17 +15,17 @@ import analisador_lexico.Token;
  */
 public class Simple_stmt extends AbstractHandler {
 
-    public Simple_stmt() {
-        super();
+    public Simple_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
 
     @Override
     public boolean handle() {
 
         if (nextToken()) {
-            if (new Small_stmt().handle()) {
+            if (new Small_stmt(tokens).handle()) {
                 if (nextToken()) {
-                    if (new Small_stmt2().handle()) {
+                    if (new Small_stmt2(tokens).handle()) {
                         if (nextToken()) {
                             if (currentToken == Token.NOVA_LINHA) {
                                 removeToken();

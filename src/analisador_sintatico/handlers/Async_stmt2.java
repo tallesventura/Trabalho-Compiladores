@@ -5,25 +5,26 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author yrmao
  */
 public class Async_stmt2 extends AbstractHandler{
 
-    public Async_stmt2() {
-        super();
+    public Async_stmt2(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
 
     @Override
     public boolean handle() {
         if(nextToken()){
-            if(new Funcdef().handle()){
+            if(new Funcdef(tokens).handle()){
                 //funcdef
-            }else if(new With_stmt().handle()){
-                //with
             }else
-                return new For_stmt().handle();
+                return new For_stmt(tokens).handle();
         }else{
             //lista de tokens vazia
             return false;

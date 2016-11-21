@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,31 +15,24 @@ import analisador_lexico.Token;
  */
 public class Arg_Assign extends AbstractHandler {
 
-    public Arg_Assign() {
-        super();
+    public Arg_Assign(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.OP_ATRIBUICAO);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//OP_ATRIBUICAO
+            if (currentToken == Token.OP_ATRIBUICAO) {//OP_ATRIBUICAO
                 removeToken();
                 if (nextToken()) {
-                    if (!(new Expr().handle())) {
-                        //ouve algum erro no handler do Expr
-                        return false;
-                    }
-                }else{
-                    //lista de tokens vazia
-                    return false;
+                    return new Expr().handle();
                 }
+            } else {
+                errorCode = 37;
+                return false;
             }
-        } else {
-            //lista de tokens vazia
-            //permite returnar nada
         }
         return true;
     }
-
 }

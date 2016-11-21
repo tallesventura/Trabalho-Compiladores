@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Elif_stmt extends AbstractHandler {
 
-    public Elif_stmt() {
-        super();
+    public Elif_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.ELIF);
         terminais.add(Token.DOIS_PONTOS);
     }
@@ -22,17 +24,17 @@ public class Elif_stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.ELIF) {
                 removeToken();
                 if (nextToken()) {
                     if (new Expr().handle()) {
                         if (nextToken()) {
-                            if (terminais.contains(currentToken)) {
+                            if (currentToken == Token.DOIS_PONTOS) {
                                 removeToken();
                                 if (nextToken()) {
-                                    if (new Suite().handle()) {
+                                    if (new Suite(tokens).handle()) {
                                         if (nextToken()) {
-                                            if (!(new Elif_stmt().handle())) {
+                                            if (!(new Elif_stmt(tokens).handle())) {
                                                 //ouve algum erro no handler do Suite
                                                 return false;
                                             }

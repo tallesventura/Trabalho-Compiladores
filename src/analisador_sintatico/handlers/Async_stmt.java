@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,18 +15,18 @@ import analisador_lexico.Token;
  */
 public class Async_stmt extends AbstractHandler {
 
-    public Async_stmt() {
-        super();
+    public Async_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.ASYNC);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//ASYNC
+            if (currentToken == Token.ASYNC) {//ASYNC
                 removeToken();
                 if (nextToken()) {
-                    if (!(new Async_stmt2().handle())) {
+                    if (!(new Async_stmt2(tokens).handle())) {
                         //ouve algum erro no handler do Async_stmt2
                         return false;
                     }

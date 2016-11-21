@@ -5,6 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
@@ -12,16 +15,16 @@ package analisador_sintatico.handlers;
 
 public class Term extends AbstractHandler{
 
-    public Term() {
-        super();
+    public Term(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
     
     @Override
     public boolean handle() {
         
         if(nextToken()){
-            if(new Unary_expr().handle()){
-                return new Multiplicative_expr().handle();
+            if(new Unary_expr(tokens).handle()){
+                return new Multiplicative_expr(tokens).handle();
             }
         }else{
             errorCode = 26;

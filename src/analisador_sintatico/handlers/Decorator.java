@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Decorator extends AbstractHandler {
 
-    public Decorator() {
-        super();
+    public Decorator(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.OP_ARROBA);
         terminais.add(Token.NOVA_LINHA);
     }
@@ -22,14 +24,14 @@ public class Decorator extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//@
+            if (currentToken == Token.OP_ARROBA) {//@
                 removeToken();
-                if (new Dotted_name().handle()) {
+                if (new Dotted_name(tokens).handle()) {
                     if (nextToken()) {
-                        if (terminais.contains(currentToken)) {//NOVA_LINHA
+                        if (currentToken == Token.NOVA_LINHA) {//NOVA_LINHA
                             removeToken();
                             if (nextToken()) {
-                                if (!(new Decorator().handle())) {
+                                if (!(new Decorator(tokens).handle())) {
                                     //ouve algum erro no handler do Dotted_name
                                     return false;
                                 }

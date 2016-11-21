@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Suite extends AbstractHandler {
 
-    public Suite() {
-        super();
+    public Suite(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.NOVA_LINHA);
         terminais.add(Token.INDENT);
         terminais.add(Token.DEDENT);
@@ -23,50 +25,55 @@ public class Suite extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new Simple_stmt().handle()) {
+            if (new Simple_stmt(tokens).handle()) {
                 //nada
-            } else if (terminais.contains(currentToken)) {//NEWLINE
+            } else if (currentToken == Token.NOVA_LINHA) {//NEWLINE
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {//INDENT
+                    if (currentToken == Token.INDENT) {//INDENT
                         removeToken();
                         if (nextToken()) {
-                            if (new Stmt().handle()) {
+                            if (new Stmt(tokens).handle()) {
                                 if (nextToken()) {
-                                    if (new Stmt2().handle()) {
-                                        if (terminais.contains(currentToken)) {//DEDENT
-                                            removeToken();
-                                        }else{
-                                            // token DEDENT não foi encontrado
+                                    if (new Stmt2(tokens).handle()) {
+                                        if (nextToken()) {
+                                            if (currentToken == Token.DEDENT) {
+                                                removeToken();
+                                            } else {
+                                                errorCode = 102; //token DEDENT não foi encontrado
+                                                return false;
+                                            }
+                                        } else {
+                                            errorCode = 101;
                                             return false;
                                         }
                                     } else {
-                                        //ouve algum erro no handler do Stmt2
+                                        errorCode = 104;//ouve algum erro no handler do Stmt2
                                         return false;
                                     }
                                 } else {
-                                    //lista de Tokens vazia
+                                    errorCode = 104;
                                     return false;
                                 }
                             } else {
-                                //ouve algum erro no handler do Stmt
+                                errorCode = 104;//ouve algum erro no handler do Stmt
                                 return false;
                             }
                         } else {
-                            //lista de Tokens vazia
+                            errorCode = 104;
                             return false;
                         }
                     } else {
-                        // token INDENT não foi encontrado
+                        errorCode = 102;
                         return false;
                     }
 
                 } else {
-                    //lista de Tokens vazia
+                    errorCode = 103;
                     return false;
                 }
             } else {
-                //ouve algum erro no handler do Elif_stmt ou não foi encontrado New Line
+                errorCode = 104;
                 return false;
             }
         } else {

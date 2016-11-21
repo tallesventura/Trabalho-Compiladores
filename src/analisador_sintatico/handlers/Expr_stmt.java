@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Expr_stmt extends AbstractHandler {
 
-    public Expr_stmt() {
-        super();
+    public Expr_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
     
     
@@ -40,12 +42,12 @@ public class Expr_stmt extends AbstractHandler {
                 }
             } else {
                 errorCode = 6;
+                return false;
             }
         } else {
             errorCode = 10;
             return false;
         }
-
         return true;
     }
 

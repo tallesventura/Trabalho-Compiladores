@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Funcdef extends AbstractHandler {
 
-    public Funcdef() {
-        super();
+    public Funcdef(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.DEF);
         terminais.add(Token.IDENTIFICADOR);
         terminais.add(Token.DOIS_PONTOS);
@@ -23,18 +25,18 @@ public class Funcdef extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//DEF
+            if (currentToken == Token.DEF) {//DEF
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {//NAME
+                    if (currentToken == Token.IDENTIFICADOR) {//NAME
                         removeToken();
                         if (nextToken()) {
-                            if (new Parameters().handle()) {
+                            if (new Parameters(tokens).handle()) {
                                 if (nextToken()) {
-                                    if (terminais.contains(currentToken)) {//DOID_PONTOS
+                                    if (currentToken == Token.DOIS_PONTOS) {//DOID_PONTOS
                                         removeToken();
                                         if (nextToken()) {
-                                            if (!(new Suite().handle())) {
+                                            if (!(new Suite(tokens).handle())) {
                                                 //ouve algum erro no handler do Suite
                                                 return false;
                                             }

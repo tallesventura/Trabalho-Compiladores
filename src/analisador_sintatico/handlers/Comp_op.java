@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Comp_op extends AbstractHandler{
 
-    public Comp_op() {
-        super();
+    public Comp_op(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.OP_MENOR);
         terminais.add(Token.OP_MAIOR);
         terminais.add(Token.OP_IGUALDADE);
@@ -45,7 +47,7 @@ public class Comp_op extends AbstractHandler{
                 }
             }else if(currentToken == Token.IS){
                 removeToken();
-                return new Is_not().handle();
+                return new Is_not(tokens).handle();
             }else{
                 errorCode = 30;
                 return false;

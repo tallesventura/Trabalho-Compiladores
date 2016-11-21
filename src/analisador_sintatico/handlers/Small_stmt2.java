@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +15,10 @@ import analisador_lexico.Token;
  */
 // TODO: terminar
 public class Small_stmt2 extends AbstractHandler {
+
+    public Small_stmt2(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
+    }
 
     @Override
     public boolean handle() {

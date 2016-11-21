@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class More_arg extends AbstractHandler {
 
-    public More_arg() {
-        super();
+    public More_arg(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.VIRGULA);
         terminais.add(Token.IDENTIFICADOR);
     }
@@ -22,15 +24,15 @@ public class More_arg extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//VIRGULA
+            if (currentToken == Token.VIRGULA) {//VIRGULA
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {//IDENTIFICADOR
+                    if (currentToken == Token.IDENTIFICADOR) {//IDENTIFICADOR
                         removeToken();
                         if (nextToken()) {
-                            if (new Arg_Assign().handle()) {
+                            if (new Arg_Assign(tokens).handle()) {
                                 if (nextToken()) {
-                                    if (!(new More_arg().handle())) {
+                                    if (!(new More_arg(tokens).handle())) {
                                         //ouve algum erro no handler do More_arg
                                         return false;
                                     }

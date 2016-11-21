@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,18 +15,18 @@ import analisador_lexico.Token;
  */
 public class Async_funcdef extends AbstractHandler{
 
-    public Async_funcdef() {
-        super();
+    public Async_funcdef(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.ASYNC);
     }
 
     @Override
     public boolean handle() {
         if(nextToken()){
-            if(terminais.contains(currentToken)){
+            if(currentToken == Token.ASYNC){
                 removeToken();
                 if(nextToken()){
-                    if(!(new Funcdef().handle())){
+                    if(!(new Funcdef(tokens).handle())){
                         //ouve algum erro no handler do Funcdef
                         return false;
                     }

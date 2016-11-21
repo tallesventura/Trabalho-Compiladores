@@ -5,8 +5,10 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,8 +16,8 @@ import static analisador_sintatico.handlers.AbstractHandler.currentToken;
  */
 public class Dotted_name2 extends AbstractHandler {
 
-    public Dotted_name2() {
-        super();
+    public Dotted_name2(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.PONTO);
         terminais.add(Token.IDENTIFICADOR);
     }
@@ -23,12 +25,12 @@ public class Dotted_name2 extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.PONTO) {
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {
+                    if (currentToken == Token.IDENTIFICADOR) {
                         removeToken();
-                        if (!(new Dotted_name2().handle())) {
+                        if (!(new Dotted_name2(tokens).handle())) {
                             //ouve algum erro no handler do dotted_name2
                             return false;
                         }

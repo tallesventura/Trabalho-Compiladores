@@ -5,8 +5,10 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,20 +16,20 @@ import static analisador_sintatico.handlers.AbstractHandler.currentToken;
  */
 public class Import_stmt extends AbstractHandler {
 
-    public Import_stmt() {
-        super();
+    public Import_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.IMPORT);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.IMPORT) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Dotted_name().handle()) {
+                    if (new Dotted_name(tokens).handle()) {
                         if (nextToken()) {
-                            if (!(new Import_as_name().handle())) {
+                            if (!(new Import_as_name(tokens).handle())) {
                                 //ouve algum erro no handler do import_as_name
                                 return false;
                             }

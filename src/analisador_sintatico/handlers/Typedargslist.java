@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,20 +15,20 @@ import analisador_lexico.Token;
  */
 public class Typedargslist extends AbstractHandler {
 
-    public Typedargslist() {
-        super();
+    public Typedargslist(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.IDENTIFICADOR);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//NAME
+            if (currentToken == Token.IDENTIFICADOR) {//NAME
                 removeToken();
                 if (nextToken()) {
-                    if (new Arg_Assign().handle()) {
+                    if (new Arg_Assign(tokens).handle()) {
                         if (nextToken()) {
-                            if (!(new More_arg().handle())) {
+                            if (!(new More_arg(tokens).handle())) {
                                 //ouve algum erro no handler do More_arg
                                 return false;
                             }

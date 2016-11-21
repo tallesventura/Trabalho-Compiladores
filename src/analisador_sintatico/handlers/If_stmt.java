@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class If_stmt extends AbstractHandler {
 
-    public If_stmt() {
-        super();
+    public If_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.IF);
         terminais.add(Token.DOIS_PONTOS);
     }
@@ -22,18 +24,18 @@ public class If_stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//IF
+            if (currentToken == Token.IF) {//IF
                 removeToken();
                 if (nextToken()) {
                     if (new Expr().handle()) {
                         if (nextToken()) {
-                            if (terminais.contains(currentToken)) {//DOIS_PONTOS
+                            if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
                                 removeToken();
-                                if (new Suite().handle()) {
+                                if (new Suite(tokens).handle()) {
                                     if (nextToken()) {
-                                        if (new Elif_stmt().handle()) {
+                                        if (new Elif_stmt(tokens).handle()) {
                                             if (nextToken()) {
-                                                if (!(new Else_stmt().handle())) {
+                                                if (!(new Else_stmt(tokens).handle())) {
                                                     //ouve algum erro no handler do Else_stmt
                                                     return false;
                                                 }

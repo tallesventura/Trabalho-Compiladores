@@ -5,22 +5,27 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import analisador_lexico.Token;
+import static analisador_sintatico.handlers.AbstractHandler.currentToken;
+import java.util.ArrayList;
+
 /**
  *
  * @author yrmao
  */
 public class Decorated extends AbstractHandler {
 
-    public Decorated() {
-        super();
+    public Decorated(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new Decorator().handle()) {
+            if (new Decorator(tokens).handle()) {
                 if (nextToken()) {
-                    if (!(new Definitions().handle())) {
+                    if (!(new Definitions(tokens).handle())) {
                         //ouve algum erro no handler do Definicions
                         return false;
                     }

@@ -5,25 +5,28 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author yrmao
  */
 public class Definitions extends AbstractHandler {
 
-    public Definitions() {
-        super();
+    public Definitions(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new Funcdef().handle()) {
+            if (new Funcdef(tokens).handle()) {
                 //Funcdef
-            } else if (new Async_stmt().handle()) {
+            } else if (new Async_stmt(tokens).handle()) {
                 //Async_funcdef
             } else {
-                return new Classdef().handle(); 
+                return new Classdef(tokens).handle(); 
                 //ouve algum erro no handler do Funcdef/Async_fundef/Classdef
             }
         } else {

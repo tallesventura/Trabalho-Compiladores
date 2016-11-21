@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,8 @@ import analisador_lexico.Token;
  */
 public class Else_stmt extends AbstractHandler {
 
-    public Else_stmt() {
-        super();
+    public Else_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.ELSE);
         terminais.add(Token.DOIS_PONTOS);
     }
@@ -22,13 +24,13 @@ public class Else_stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {//ELSE
+            if (currentToken == Token.ELSE) {//ELSE
                 removeToken();
                 if (nextToken()) {
-                    if (terminais.contains(currentToken)) {//DOIS_PONTOS
+                    if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
                         removeToken();
                         if (nextToken()) {
-                            if (!(new Suite().handle())) {
+                            if (!(new Suite(tokens).handle())) {
                                 //ouve algum erro no handler do Suite
                                 return false;
                             }

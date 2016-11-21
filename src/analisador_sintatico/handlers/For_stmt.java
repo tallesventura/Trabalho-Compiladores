@@ -5,14 +5,17 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author yrmao
  */
 public class For_stmt extends AbstractHandler{
 
-    public For_stmt() {
-        super();
+    public For_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
     }
 
     @Override

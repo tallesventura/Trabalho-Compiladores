@@ -1,10 +1,12 @@
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 public class Pass extends AbstractHandler{
-    public Pass() {
-        super();
+    public Pass(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.PASS);
     }
     
@@ -14,11 +16,11 @@ public class Pass extends AbstractHandler{
             if(terminais.contains(currentToken)){
                 removeToken();
             }else{
-                //token "pass" não foi encontrado
+                errorCode = 39;
                 return false;
             }        
         }else{
-            //lista de tokens vazia
+            errorCode = 40;
             return false;
         }    
         return true;

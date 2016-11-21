@@ -5,8 +5,10 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
 import static analisador_sintatico.handlers.AbstractHandler.currentToken;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,31 +16,28 @@ import static analisador_sintatico.handlers.AbstractHandler.currentToken;
  */
 public class Return_stmt extends AbstractHandler {
 
-    public Return_stmt() {
-        super();
+    public Return_stmt(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
         terminais.add(Token.RETURN);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (terminais.contains(currentToken)) {
+            if (currentToken == Token.RETURN) {
                 removeToken();
                 if (nextToken()) {
-                    if(!(new Parameters_opt().handle())){
-                        //ouve algun erro no handler do parameters_opt
+                    if(!(new Parameters_opt(tokens).handle())){
+                        errorCode = 44 ;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
-                    //return_stmt permite que não tenha nada
+                    errorCode = 45;
+                    return false;
                 }
-            } else {
-                //esperado um tokem return
-                return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 43;
             return false;
         }
         return true;

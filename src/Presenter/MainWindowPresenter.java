@@ -12,12 +12,12 @@ import Model.TokenModel;
 import View.MainWindowView;
 import analisador_lexico.AnalisadorLexico;
 import analisador_lexico.Token;
+import analisador_sintatico.AnalisadorSintatico;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,8 +26,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -52,7 +50,7 @@ public class MainWindowPresenter {
     private DefaultTableModel tblErros;
     private String filePath;
     private String filePathAux = "";
-    private String rootPath = "saved_files/arquivo1.txt";
+    private String rootPath = "arquivo1.txt";
     private File codeFile = null;
 
     public MainWindowPresenter() {
@@ -62,8 +60,7 @@ public class MainWindowPresenter {
         tokenList = new ArrayList();
         errorList = new ArrayList();
         codeFile = new File(rootPath);
-        
-        
+
         initEditor();
         initTabelaToken();
         initTabelaErros();
@@ -171,7 +168,7 @@ public class MainWindowPresenter {
                 }
             }
         });
-        
+
         viewMainWindow.getjMenuItemSair().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -241,7 +238,7 @@ public class MainWindowPresenter {
         bf.close();
     }
 
-    public void runLexicalAnalysis() throws FileNotFoundException, IOException {
+    public ArrayList<ErrorModel> runLexicalAnalysis() throws FileNotFoundException, IOException {
 
         AnalisadorLexico al = AnalisadorLexico.getInstance(codeFile);
         this.tokenList.clear();
@@ -251,17 +248,25 @@ public class MainWindowPresenter {
         }
         updateTokenTable(tokenList);
         updateErrorTable(errorList);
+
+        return al.getErrorList();
     }
-    
-    public void runSyntaxAnalysis(ArrayList<TokenModel> tokens){
-        
+
+    public ArrayList<ErrorModel> runSyntaxAnalysis(ArrayList<TokenModel> tokens) {
+
+        AnalisadorSintatico as = new AnalisadorSintatico(tokens);
+        ArrayList<ErrorModel> errors = as.run();
+
+        return errors;
     }
 
     public void updateTokenTable(List<TokenModel> tokens) {
         tblModelTokens.setNumRows(0);
         for (TokenModel t : tokens) {
-            Object o[] = {t.getID(), t.getLinha(), t.getNome(), t.getLexema()};
-            tblModelTokens.addRow(o);
+            if (t.getNome() != Token.ERROR) {
+                Object o[] = {t.getID(), t.getLinha(), t.getNome(), t.getLexema()};
+                tblModelTokens.addRow(o);
+            }
         }
     }
 
@@ -325,39 +330,29 @@ public class MainWindowPresenter {
         }
     }
 
-    // TODO: fazer com que a análise léxica retorne uma lista de erros
     public void updateSourceCode() throws IOException {
         codeFile = new File(rootPath);
         saveCode(codeFile);
-        runLexicalAnalysis();
-        runSyntaxAnalysis(tokenList);
+        errorList.clear();
+        ArrayList<ErrorModel> lexicalErrors = runLexicalAnalysis();
+        errorList.addAll(lexicalErrors);
+        ArrayList<ErrorModel> syntaticErrors = runSyntaxAnalysis(tokenList);
+        errorList.addAll(syntaticErrors);
+        updateErrorTable(errorList);
+
     }
 
     public void updateErrorTable(List<ErrorModel> errors) {
-        
+
         tblErros.setNumRows(0);
         for (ErrorModel e : errors) {
-            
+            String msg = RetornaErro.getError(e);
+            Object o[] = {e.getLinha(), msg};
+            tblErros.addRow(o);
         }
-        
-        /*
-        tblErros.setNumRows(0);
-        for (TokenModel t : tokens) {
-            if (t.getNome().equals(Token.ERROR)) {
-                Object o[] = {t.getLinha(), RetornaErro.getError(1, t)};
-                tblErros.addRow(o);
-            }
-            if (t.getLexema().length() > 79) {
-                Object o[] = {t.getLinha(), RetornaErro.getError(2, t)};
-                tblErros.addRow(o);
-                removerToken(t);
-                updateTokenTable(tokens);
-            }
-        }
-        */
     }
-    
-    public void removerToken(TokenModel t){
+
+    public void removerToken(TokenModel t) {
         tokenList.remove(t);
     }
 }

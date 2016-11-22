@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class Multiplicative_op extends AbstractHandler{
 
-    public Multiplicative_op(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Multiplicative_op(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.OP_DIVISAO);
         terminais.add(Token.OP_MULTIPLICACAO);
         terminais.add(Token.OP_RESTO);

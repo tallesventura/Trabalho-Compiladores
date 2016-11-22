@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class Arith_expr extends AbstractHandler{
 
-    public Arith_expr(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Arith_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     

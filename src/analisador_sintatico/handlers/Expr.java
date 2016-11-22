@@ -5,11 +5,20 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author talles
  */
 public class Expr extends AbstractHandler{
+
+    public Expr(ArrayList<TokenModel> tokenList) {
+        super(tokenList);
+    }
+    
+    
 
     @Override
     public boolean handle() {

@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Rel_op extends AbstractHandler{
 
-    public Rel_op(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Rel_op(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.AND);
         terminais.add(Token.OR);
     }

@@ -14,9 +14,8 @@ import java.util.ArrayList;
  */
 
 public class Relational_expr extends AbstractHandler{
-
-    public Relational_expr(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Relational_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
 

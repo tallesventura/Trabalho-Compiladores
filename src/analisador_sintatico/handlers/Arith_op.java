@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Arith_op extends AbstractHandler{
 
-    public Arith_op(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Arith_op(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.OP_ADICAO);
         terminais.add(Token.OP_SUBTRACAO);
         terminais.add(Token.OP_TIL);

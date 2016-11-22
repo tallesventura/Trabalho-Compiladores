@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Comp_op extends AbstractHandler{
 
-    public Comp_op(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Comp_op(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.OP_MENOR);
         terminais.add(Token.OP_MAIOR);
         terminais.add(Token.OP_IGUALDADE);

@@ -5,7 +5,9 @@
  */
 package analisador_sintatico.handlers;
 
+import Model.TokenModel;
 import analisador_lexico.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +15,9 @@ import analisador_lexico.Token;
  */
 public class Augassign extends AbstractHandler{
 
-    public Augassign() {
-        super();
+    public Augassign(ArrayList<TokenModel> tokens) {
+        super(tokens);
+        
         terminais.add(Token.OP_ATRIBUICAO);
         terminais.add(Token.OP_MAIS_IGUAL);
         terminais.add(Token.OP_MENOS_IGUAL);
@@ -39,7 +42,7 @@ public class Augassign extends AbstractHandler{
             if(!terminais.contains(currentToken)){
                 errorCode = 12;
                 return false;
-            }
+            }//aqui não precisa remover(consumir) o token após o reconhecimento
         }else{
             errorCode = 11;
             return false;

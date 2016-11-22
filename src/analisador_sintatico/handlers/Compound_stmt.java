@@ -12,7 +12,6 @@ import java.util.ArrayList;
  *
  * @author talles
  */
-// TODO: terminar
 public class Compound_stmt extends AbstractHandler {
 
     public Compound_stmt(ArrayList<TokenModel> tokenList) {

@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Comp_expr extends AbstractHandler{
 
-    public Comp_expr(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Comp_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
     @Override

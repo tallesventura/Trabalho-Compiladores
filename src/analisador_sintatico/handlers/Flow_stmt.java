@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public class Flow_stmt extends AbstractHandler {
 
-    public Flow_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Flow_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.BREAK);
         terminais.add(Token.CONTINUE);
     }

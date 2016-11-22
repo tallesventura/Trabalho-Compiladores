@@ -27,7 +27,7 @@ public class Elif_stmt extends AbstractHandler {
             if (currentToken == Token.ELIF) {
                 removeToken();
                 if (nextToken()) {
-                    if (new Expr().handle()) {
+                    if (new Expr(tokens).handle()) {
                         if (nextToken()) {
                             if (currentToken == Token.DOIS_PONTOS) {
                                 removeToken();

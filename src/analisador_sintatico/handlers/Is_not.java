@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Is_not extends AbstractHandler{
 
-    public Is_not(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Is_not(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     

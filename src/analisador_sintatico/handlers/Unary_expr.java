@@ -15,9 +15,8 @@ import java.util.ArrayList;
  */
 
 public class Unary_expr extends AbstractHandler{
-
-    public Unary_expr(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Unary_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     

@@ -12,26 +12,24 @@ import java.util.ArrayList;
  *
  * @author talles
  */
-
 // TODO: terminar
-public class Expr2 extends AbstractHandler{
+public class Expr2 extends AbstractHandler {
 
-    public Expr2(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Expr2(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
-    
 
     @Override
     public boolean handle() {
-        
-        if(nextToken()){
-            if(new Rel_op(tokens).handle()){
-                if(new Comp_expr(tokens).handle()){
+
+        if (nextToken()) {
+            if (new Rel_op(tokens).handle()) {
+                if (new Comp_expr(tokens).handle()) {
                     return new Expr2(tokens).handle();
                 }
             }
         }
-        
+
         return true;
-    }   
+    }
 }

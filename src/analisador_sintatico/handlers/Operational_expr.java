@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Operational_expr extends AbstractHandler{
 
-    public Operational_expr(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Operational_expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
 

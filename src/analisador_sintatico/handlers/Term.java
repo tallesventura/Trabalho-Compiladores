@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class Term extends AbstractHandler{
 
-    public Term(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Term(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
     @Override

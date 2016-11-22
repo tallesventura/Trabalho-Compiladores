@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Arg_Assign extends AbstractHandler {
 
-    public Arg_Assign(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Arg_Assign(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.OP_ATRIBUICAO);
     }
 
@@ -26,7 +26,7 @@ public class Arg_Assign extends AbstractHandler {
             if (currentToken == Token.OP_ATRIBUICAO) {//OP_ATRIBUICAO
                 removeToken();
                 if (nextToken()) {
-                    return new Expr().handle();
+                    return new Expr(tokens).handle();
                 }
             } else {
                 errorCode = 37;

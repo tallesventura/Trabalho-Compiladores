@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Single_input extends AbstractHandler {
 
-    public Single_input(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Single_input(ArrayList<TokenModel> tokens) {
+        super(tokens);
         this.terminais = new ArrayList();
     }
 

@@ -42,7 +42,9 @@ public class Augassign extends AbstractHandler{
             if(!terminais.contains(currentToken)){
                 errorCode = 12;
                 return false;
-            }//aqui não precisa remover(consumir) o token após o reconhecimento
+            }else{
+                removeToken();
+            }
         }else{
             errorCode = 11;
             return false;

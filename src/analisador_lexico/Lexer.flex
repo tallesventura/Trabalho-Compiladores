@@ -32,7 +32,6 @@ WhiteSpace = {LineTerminator} | [ \f]
 %%
 
 {Comment} {/*Ignore*/}
-\t { id+=1; return Token.INDENT; }
 \n { return Token.NOVA_LINHA; }
 {WhiteSpace} {/*Ignore*/}
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }

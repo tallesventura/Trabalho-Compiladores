@@ -158,6 +158,8 @@ public class MainWindowView extends javax.swing.JFrame {
         jTabbedPane = new javax.swing.JTabbedPane();
         scrPaneTokens = new javax.swing.JScrollPane();
         tblTokens = new javax.swing.JTable();
+        scrPaneArvoreDerivacao = new javax.swing.JScrollPane();
+        jTreeArvoreDerivacao = new javax.swing.JTree();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         menuItemAbrir = new javax.swing.JMenuItem();
@@ -237,6 +239,10 @@ public class MainWindowView extends javax.swing.JFrame {
         }
 
         jTabbedPane.addTab("Tabela de Simbolos", scrPaneTokens);
+
+        scrPaneArvoreDerivacao.setViewportView(jTreeArvoreDerivacao);
+
+        jTabbedPane.addTab("Arvore de Derivação", scrPaneArvoreDerivacao);
 
         menuArquivo.setText("Arquivo");
 
@@ -343,6 +349,7 @@ public class MainWindowView extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JTree jTreeArvoreDerivacao;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JCheckBoxMenuItem menuChkBoxAnalise;
     private javax.swing.JMenu menuEditar;
@@ -351,6 +358,7 @@ public class MainWindowView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemAbrir;
     private javax.swing.JMenuItem menuItemAnaliseLex;
     private javax.swing.JMenuItem menuItemSalvar;
+    private javax.swing.JScrollPane scrPaneArvoreDerivacao;
     private javax.swing.JScrollPane scrPaneEditor;
     private javax.swing.JScrollPane scrPaneErros;
     private javax.swing.JScrollPane scrPaneTokens;

@@ -6,6 +6,8 @@
 package analisador_sintatico.handlers;
 
 import Model.TokenModel;
+import analisador_lexico.Token;
+import static analisador_sintatico.handlers.AbstractHandler.currentToken;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +23,9 @@ public class Stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new Simple_stmt(tokens).handle())  {
+            if (currentToken == Token.S)  {
                 //simple
+                return new Simple_stmt(tokens).handle();
             } else if (new Compound_stmt(tokens).handle()) {
                 //compound
             } else {

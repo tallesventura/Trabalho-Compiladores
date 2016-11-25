@@ -6,6 +6,7 @@
 package analisador_sintatico.handlers;
 
 import Model.TokenModel;
+import analisador_lexico.Token;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,9 @@ public class Async_stmt2 extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (!(new Funcdef(tokens).handle())) {
+            if (currentToken == Token.DEF) {
+                return new Funcdef(tokens).handle();
+            } else if(currentToken == Token.FOR){
                 return new For_stmt(tokens).handle();
             }
         }

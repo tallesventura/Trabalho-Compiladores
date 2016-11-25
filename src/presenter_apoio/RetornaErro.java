@@ -84,6 +84,10 @@ public class RetornaErro {
                 return "Esperado operador multiplicativo, mas foi encontrado <" + error.getLexema() + ">.";
             case 30:
                 return "Esperado operador relacional, mas foi encontrado <" + error.getLexema() + ">.";
+            case 31:
+                return "Esperado o token <(>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 32:
+                return "Esperado o token <(>, mas nenhum token foi encontrado";
             default:
                 return "";
         }

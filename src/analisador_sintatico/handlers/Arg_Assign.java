@@ -25,12 +25,7 @@ public class Arg_Assign extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.OP_ATRIBUICAO) {//OP_ATRIBUICAO
                 removeToken();
-                if (nextToken()) {
-                    return new Expr(tokens).handle();
-                }
-            } else {
-                errorCode = 37;
-                return false;
+                return new Expr(tokens).handle();
             }
         }
         return true;

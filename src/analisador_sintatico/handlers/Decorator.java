@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Decorator extends AbstractHandler {
 
-    public Decorator(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Decorator(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.OP_ARROBA);
         terminais.add(Token.NOVA_LINHA);
     }
@@ -34,6 +34,7 @@ public class Decorator extends AbstractHandler {
                                 if (!(new Decorator(tokens).handle())) {
                                     //ouve algum erro no handler do Dotted_name
                                     return false;
+                                    //return new Decorator(tokens).handle();
                                 }
                             } else {
                                 //lista de tokens vazia
@@ -47,9 +48,6 @@ public class Decorator extends AbstractHandler {
                         //lista de tokens vazia
                         return false;
                     }
-                } else {
-                    //ouve algum erro no handler do Dotted_name
-                    return false;
                 }
             } else {
                 //token "@" não foi encontrado

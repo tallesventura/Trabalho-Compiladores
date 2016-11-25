@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Async_funcdef extends AbstractHandler{
 
-    public Async_funcdef(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Async_funcdef(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.ASYNC);
     }
 

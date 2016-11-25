@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Suite extends AbstractHandler {
 
-    public Suite(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Suite(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.NOVA_LINHA);
         terminais.add(Token.ABRE_CHAVES);
         terminais.add(Token.FECHA_CHAVES);

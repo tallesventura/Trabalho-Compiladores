@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Arglist extends AbstractHandler {
 
-    public Arglist(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Arglist(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.IDENTIFICADOR);
     }
 
@@ -28,7 +28,7 @@ public class Arglist extends AbstractHandler {
             if (currentToken == Token.IDENTIFICADOR) {
                 removeToken();
                 if (nextToken()) {
-                    if (!(new Argument_list(tokens).handle())) {//return new Argument_list().handle(); //por que não é permitido
+                    if (!(new Argument_list(tokens).handle())) {
                         errorCode = 33;
                         return false;
                     }

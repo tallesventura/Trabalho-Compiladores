@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Global_stmt extends AbstractHandler {
 
-    public Global_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Global_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.GLOBAL);
         terminais.add(Token.IDENTIFICADOR);
     }
@@ -34,6 +34,7 @@ public class Global_stmt extends AbstractHandler {
                             if (!(new Arglist(tokens).handle())) {
                                 //ouve algun erro no handler do arglist
                                 return false;
+                                //return new Arglist(tokens).handle()
                             }
                         } else {
                             //lista de tokens vazia

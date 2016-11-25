@@ -51,9 +51,6 @@ public class Funcdef extends AbstractHandler {
                                     //lista de tokens vazia
                                     return false;
                                 }
-                            } else {
-                                //ouve algum erro no handler do Parameters
-                                return false;
                             }
                         } else {
                             //lista de tokens vazia

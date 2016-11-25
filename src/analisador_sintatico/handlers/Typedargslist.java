@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Typedargslist extends AbstractHandler {
 
-    public Typedargslist(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Typedargslist(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.IDENTIFICADOR);
     }
 
@@ -31,14 +31,12 @@ public class Typedargslist extends AbstractHandler {
                             if (!(new More_arg(tokens).handle())) {
                                 //ouve algum erro no handler do More_arg
                                 return false;
+                                //return new More_arg(tokens).handle();
                             }
                         } else {
                             //lista de tokens vazia
                             return false;
                         }
-                    } else {
-                        //ouve algum erro no handler do Arg_Assign
-                        return false;
                     }
                 }else{
                     //lista de tokens vazia

@@ -14,17 +14,14 @@ import java.util.ArrayList;
  */
 public class Stmt2 extends AbstractHandler {
 
-    public Stmt2(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Stmt2(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (!(new Stmt(tokens).handle())) {
-                //ouve algum erro no handler do Stmt
-                return false;
-            }
+            return new Stmt(tokens).handle();
         }
         return true;
     }

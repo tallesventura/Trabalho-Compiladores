@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Else_stmt extends AbstractHandler {
 
-    public Else_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Else_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.ELSE);
         terminais.add(Token.DOIS_PONTOS);
     }
@@ -33,6 +33,7 @@ public class Else_stmt extends AbstractHandler {
                             if (!(new Suite(tokens).handle())) {
                                 //ouve algum erro no handler do Suite
                                 return false;
+                                //return new Suite(tokens).handle();
                             }
                         } else {
                             //lista de tokens vazia
@@ -46,9 +47,6 @@ public class Else_stmt extends AbstractHandler {
                     //lista de tokens vazia
                     return false;
                 }
-            } else {
-                //token "else" não foi encontrado
-                //Else_stmt permite vazio
             }
         }
         return true;

@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Elif_stmt extends AbstractHandler {
 
-    public Elif_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Elif_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.ELIF);
         terminais.add(Token.DOIS_PONTOS);
     }
@@ -37,14 +37,12 @@ public class Elif_stmt extends AbstractHandler {
                                             if (!(new Elif_stmt(tokens).handle())) {
                                                 //ouve algum erro no handler do Suite
                                                 return false;
+                                                //return new Elif_stmt(tokens).handle();
                                             }
                                         } else {
                                             //lista de tokens vazia
                                             return false;
                                         }
-                                    } else {
-                                        //ouve algum erro no handler do Suite
-                                        return false;
                                     }
                                 } else {
                                     //lista de tokens vazia
@@ -58,9 +56,6 @@ public class Elif_stmt extends AbstractHandler {
                             //lista de tokens vazia
                             return false;
                         }
-                    } else {
-                        //ouve algum erro no handler do Elif_stmt
-                        return false;
                     }
                 } else {
                     //lista de tokens vazia

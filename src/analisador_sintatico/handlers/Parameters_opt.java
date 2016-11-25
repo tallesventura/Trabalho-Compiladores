@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Parameters_opt extends AbstractHandler {
 
-    public Parameters_opt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Parameters_opt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.ABRE_PARENTESES);
         terminais.add(Token.FECHA_PARENTESES);
     }

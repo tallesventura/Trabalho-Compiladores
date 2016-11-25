@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Decorated extends AbstractHandler {
 
-    public Decorated(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Decorated(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override
@@ -28,14 +28,12 @@ public class Decorated extends AbstractHandler {
                     if (!(new Definitions(tokens).handle())) {
                         //ouve algum erro no handler do Definicions
                         return false;
+                        //return new Definitions(tokens).handle();
                     }
                 } else {
                     //lista de tokens vazia
                     return false;
                 }
-            } else {
-                //ouve algum erro no handler do Decorator
-                return false;
             }
         } else {
             //lista de tkens vazia

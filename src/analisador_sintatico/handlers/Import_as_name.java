@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Import_as_name extends AbstractHandler {
 
-    public Import_as_name(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Import_as_name(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.contains(Token.AS);
         terminais.contains(Token.IDENTIFICADOR);
     }
@@ -38,9 +38,6 @@ public class Import_as_name extends AbstractHandler {
                     //lista de tokens vazia
                     return false;
                 }
-            } else {
-                //token "as" não foi encontrado
-                //Import_as_name permite que não seja esperado nada
             }
         } else {
             //lista de tokens vazia

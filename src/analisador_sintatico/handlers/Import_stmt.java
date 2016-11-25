@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Import_stmt extends AbstractHandler {
 
-    public Import_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Import_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.IMPORT);
     }
 
@@ -32,14 +32,12 @@ public class Import_stmt extends AbstractHandler {
                             if (!(new Import_as_name(tokens).handle())) {
                                 //ouve algum erro no handler do import_as_name
                                 return false;
+                                //return new Import_as_name(tokens).handle();
                             }
                         } else {
                             //lista de tokens vazia
                             return false;
                         }
-                    } else {
-                        //ouve algum erro no handler do dotted_name
-                        return false;
                     }
                 } else {
                     //lista de tokens vazia

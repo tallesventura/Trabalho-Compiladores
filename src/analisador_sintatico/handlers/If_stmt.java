@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class If_stmt extends AbstractHandler {
 
-    public If_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public If_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.IF);
         terminais.add(Token.DOIS_PONTOS);
     }
@@ -38,22 +38,17 @@ public class If_stmt extends AbstractHandler {
                                                 if (!(new Else_stmt(tokens).handle())) {
                                                     //ouve algum erro no handler do Else_stmt
                                                     return false;
+                                                    //return new Else_stmt(tokens).handle();
                                                 }
                                             } else {
                                                 //lista de Tokens vazia
                                                 return false;
                                             }
-                                        } else {
-                                            //ouve algum erro no handler do Elif_stmt
-                                            return false;
                                         }
                                     } else {
                                         //lista de Tokens vazia
                                         return false;
                                     }
-                                } else {
-                                    //ouve algum erro no handler do Suite
-                                    return false;
                                 }
                             } else {
                                 //Token ":" não foi encontrado
@@ -64,9 +59,6 @@ public class If_stmt extends AbstractHandler {
                             return false;
 
                         }
-                    } else {
-                        //ouve algum erro no handler do Expr
-                        return false;
                     }
                 } else {
                     //lista de Tokens vazia

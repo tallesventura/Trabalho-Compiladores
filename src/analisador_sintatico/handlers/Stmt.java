@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Stmt extends AbstractHandler {
 
-    public Stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override

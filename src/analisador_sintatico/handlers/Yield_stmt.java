@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Yield_stmt extends AbstractHandler {
 
-    public Yield_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Yield_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.YIELD);
     }
 

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Argument_list extends AbstractHandler {
 
-    public Argument_list(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Argument_list(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.VIRGULA);
         terminais.add(Token.IDENTIFICADOR);
     }

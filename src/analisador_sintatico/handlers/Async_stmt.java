@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Async_stmt extends AbstractHandler {
 
-    public Async_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Async_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.ASYNC);
     }
 
@@ -26,20 +26,14 @@ public class Async_stmt extends AbstractHandler {
             if (currentToken == Token.ASYNC) {//ASYNC
                 removeToken();
                 if (nextToken()) {
-                    if (!(new Async_stmt2(tokens).handle())) {
-                        //ouve algum erro no handler do Async_stmt2
-                        return false;
-                    }
-                } else {
-                    //lista de Tokens vazia
-                    return false;
+                    return new Async_stmt2(tokens).handle();
                 }
             } else {
-                //token "async" não foi encontrado
+                errorCode = 47;
                 return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 46;
             return false;
         }
         return true;

@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Nonlocal_stmt extends AbstractHandler{
 
-    public Nonlocal_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Nonlocal_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.NONLOCAL);
         terminais.add(Token.IDENTIFICADOR);
     }
@@ -34,6 +34,7 @@ public class Nonlocal_stmt extends AbstractHandler{
                             if (!(new Arglist(tokens).handle())) {
                                 //ouve algun erro no handler do nonlocal_stmt
                                 return false;
+                                //return new Arglist(tokens).handle();
                             }
                         } else {
                             //lista de tokens vazia

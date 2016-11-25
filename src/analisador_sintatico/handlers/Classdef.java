@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Classdef extends AbstractHandler {
 
-    public Classdef(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Classdef(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.CLASS);
         terminais.add(Token.IDENTIFICADOR);
         terminais.add(Token.DOIS_PONTOS);
@@ -36,24 +36,16 @@ public class Classdef extends AbstractHandler {
                                     if (currentToken == Token.DOIS_PONTOS) {//DOID_PONTOS
                                         removeToken();
                                         if (nextToken()) {
-                                            if (!(new Suite(tokens).handle())) {
-                                                //ouve algum erro no handler do Suite
-                                                return false;
-                                            }
-                                        } else {
-                                            //lista de tokens vazia
-                                            return false;
+                                            return new Suite(tokens).handle();
                                         }
                                     } else {
-                                        //token ":" não foi encontrado
+                                        errorCode = 49;
+                                        return false;
                                     }
                                 } else {
-                                    //lista de tokens vazia
+                                    errorCode = 48;
                                     return false;
                                 }
-                            } else {
-                                //ouve algum erro no handler do Parameters_opt
-                                return false;
                             }
                         } else {
                             //lista de tokens vazia

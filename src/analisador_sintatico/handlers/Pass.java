@@ -5,8 +5,8 @@ import analisador_lexico.Token;
 import java.util.ArrayList;
 
 public class Pass extends AbstractHandler{
-    public Pass(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Pass(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.PASS);
     }
     

@@ -14,12 +14,10 @@ import java.util.ArrayList;
  */
 public class Expr extends AbstractHandler{
 
-    public Expr(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Expr(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
     
-    
-
     @Override
     public boolean handle() {
         

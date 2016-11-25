@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Compound_stmt extends AbstractHandler {
 
-    public Compound_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Compound_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override

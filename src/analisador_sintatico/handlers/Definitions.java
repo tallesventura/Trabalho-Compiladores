@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Definitions extends AbstractHandler {
 
-    public Definitions(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Definitions(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override

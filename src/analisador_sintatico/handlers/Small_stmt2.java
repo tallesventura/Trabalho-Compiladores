@@ -16,8 +16,8 @@ import java.util.ArrayList;
 // TODO: terminar
 public class Small_stmt2 extends AbstractHandler {
 
-    public Small_stmt2(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Small_stmt2(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override
@@ -25,18 +25,12 @@ public class Small_stmt2 extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.PONTO_VIRGULA) {
                 if (nextToken()) {
-                    if(true ){//simple_stmt
-                        
-                    }
-
-                } else {
-                    //lista de tokens vazia
-                    errorCode = 6;
-                    return false;
+                    return new Small_stmt2(tokens).handle();
                 }
             } else {
-                //Small_stmt2 permite volor vazio
-                //tokem ponto_virgula não encontrado
+                //lista de tokens vazia
+                errorCode = 6;
+                return false;
             }
         } else {
             //lista de tokens vazia

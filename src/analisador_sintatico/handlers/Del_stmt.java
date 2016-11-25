@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Del_stmt extends AbstractHandler{
 
-    public Del_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Del_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.DELETE);
         terminais.add(Token.IDENTIFICADOR);
     }

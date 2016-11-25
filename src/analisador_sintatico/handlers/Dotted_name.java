@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Dotted_name extends AbstractHandler {
 
-    public Dotted_name(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Dotted_name(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.IDENTIFICADOR);
     }
 
@@ -30,6 +30,7 @@ public class Dotted_name extends AbstractHandler {
                     if (!(new Dotted_name2(tokens).handle())) {
                         //ouve algum erro no handler do dotted_name2
                         return false;
+                        //return new Dotted_name2(tokens).handle();
                     }
                 } else {
                     //lista de tokens vazia

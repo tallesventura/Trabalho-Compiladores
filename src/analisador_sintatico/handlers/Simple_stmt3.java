@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Simple_stmt3 extends AbstractHandler{
 
-    public Simple_stmt3(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Simple_stmt3(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Simple_stmt3 extends AbstractHandler{
                     }else{
                         //small_stmt não encontrado
                     }
-                    
+                    //return new Small_stmt2(tokens).handle();
                 } else {
                     //lista de tokens vazia
                     errorCode = 6;

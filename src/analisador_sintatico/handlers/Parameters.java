@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Parameters extends AbstractHandler {
 
-    public Parameters(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Parameters(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.ABRE_PARENTESES);
         terminais.add(Token.FECHA_PARENTESES);
     }
@@ -39,16 +39,14 @@ public class Parameters extends AbstractHandler {
                             //lista de tokens vazia
                             return false;
                         }
-                    } else {
-                        //ouve algum erro no handler do Typedargslist
-                        return false;
-                    }
+                    } 
                 } else {
                     //lista de tokens vazia
                     return false;
                 }
             } else {
                 //token "(" não foi encontrado
+                return false;
             }
         } else {
             //lista de tokens vazia

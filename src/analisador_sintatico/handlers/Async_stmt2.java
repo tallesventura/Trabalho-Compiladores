@@ -12,25 +12,20 @@ import java.util.ArrayList;
  *
  * @author yrmao
  */
-public class Async_stmt2 extends AbstractHandler{
+public class Async_stmt2 extends AbstractHandler {
 
-    public Async_stmt2(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Async_stmt2(ArrayList<TokenModel> tokens) {
+        super(tokens);
     }
 
     @Override
     public boolean handle() {
-        if(nextToken()){
-            if(new Funcdef(tokens).handle()){
-                //funcdef
-            }else
+        if (nextToken()) {
+            if (!(new Funcdef(tokens).handle())) {
                 return new For_stmt(tokens).handle();
-        }else{
-            //lista de tokens vazia
-            return false;
+            }
         }
         return true;
-        
     }
-    
+
 }

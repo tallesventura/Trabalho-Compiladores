@@ -6,6 +6,7 @@
 package analisador_sintatico.handlers;
 
 import Model.TokenModel;
+import analisador_lexico.Token;
 import java.util.ArrayList;
 
 /**
@@ -21,22 +22,23 @@ public class Small_stmt extends AbstractHandler{
 
     @Override
     public boolean handle() {
-        
+        // break, continue, return yield
         if(nextToken()){
-            if(new Expr_stmt(tokens).handle()){
-                
-            }else if(new Del_stmt(tokens).handle()){
-                
-            }else if(new Pass(tokens).handle()){
-                
-            }else if(new Flow_stmt(tokens).handle()){
-                
-            }else if(new Import_stmt(tokens).handle()){
-                
-            }else if(new Global_stmt(tokens).handle()){
-                
-            }else if(new Nonlocal_stmt(tokens).handle()){
-                
+            if(currentToken == Token.IDENTIFICADOR){
+                return new Expr_stmt(tokens).handle();
+            }else if(currentToken == Token.DELETE){
+                return new Del_stmt(tokens).handle();
+            }else if(currentToken == Token.PASS){
+                return new Pass(tokens).handle();
+            }else if(currentToken == Token.BREAK || currentToken == Token.CONTINUE ||
+                    currentToken == Token.RETURN || currentToken == Token.YIELD){
+                return new Flow_stmt(tokens).handle();
+            }else if(currentToken == Token.IMPORT){
+                return new Import_stmt(tokens).handle();
+            }else if(currentToken == Token.GLOBAL){
+                return new Global_stmt(tokens).handle();
+            }else if(currentToken == Token.NONLOCAL){
+                return new Nonlocal_stmt(tokens).handle();
             }else{
                 errorCode = 3;
                 return false;

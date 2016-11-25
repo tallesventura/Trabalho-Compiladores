@@ -20,9 +20,9 @@ public abstract class AbstractHandler implements IHandler{
     protected static Token currentToken;
     protected int errorCode = 0;
 
-    public AbstractHandler(ArrayList<TokenModel> tokenList) {
+    public AbstractHandler(ArrayList<TokenModel> tokens) {
         this.terminais = new ArrayList();
-        this.tokens = tokenList;
+        this.tokens = tokens;
     }
     
     public boolean nextToken(){

@@ -30,25 +30,22 @@ public class Dotted_name2 extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {
                         removeToken();
-                        if (!(new Dotted_name2(tokens).handle())) {
-                            //ouve algum erro no handler do dotted_name2
-                            return false;
-                            //return new Dotted_name2(tokens).handle();
-                        }
+                        return new Dotted_name2(tokens).handle();
                     } else {
-                        //identificador não encontrado
+                        errorCode = 6;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
+            } else {
+                errorCode = 55;
+                return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 54;
             return false;
         }
-        return true;
     }
-
 }

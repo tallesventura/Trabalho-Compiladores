@@ -31,17 +31,14 @@ public class Import_as_name extends AbstractHandler {
                     if (currentToken == Token.IDENTIFICADOR) {
                         removeToken();
                     } else {
-                        //token "NAME" não foi encontrado
+                        errorCode = 6;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
             }
-        } else {
-            //lista de tokens vazia
-            return false;
         }
         return true;
     }

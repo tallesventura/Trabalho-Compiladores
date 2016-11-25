@@ -26,50 +26,32 @@ public class If_stmt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.IF) {//IF
                 removeToken();
-                if (nextToken()) {
-                    if (new Expr(tokens).handle()) {
-                        if (nextToken()) {
-                            if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
-                                removeToken();
-                                if (new Suite(tokens).handle()) {
-                                    if (nextToken()) {
-                                        if (new Elif_stmt(tokens).handle()) {
-                                            if (nextToken()) {
-                                                if (!(new Else_stmt(tokens).handle())) {
-                                                    //ouve algum erro no handler do Else_stmt
-                                                    return false;
-                                                    //return new Else_stmt(tokens).handle();
-                                                }
-                                            } else {
-                                                //lista de Tokens vazia
-                                                return false;
-                                            }
-                                        }
-                                    } else {
-                                        //lista de Tokens vazia
-                                        return false;
-                                    }
+                if (new Expr(tokens).handle()) {
+                    if (nextToken()) {
+                        if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
+                            removeToken();
+                            if (new Suite(tokens).handle()) {
+                                if (new Elif_stmt(tokens).handle()) {
+                                    return new Else_stmt(tokens).handle();
                                 }
-                            } else {
-                                //Token ":" não foi encontrado
-                                return false;
                             }
-                        } else {
-                            //lista de Tokens vazia
-                            return false;
-
                         }
+                    } else {
+                        errorCode = 49;
+                        return false;
                     }
                 } else {
-                    //lista de Tokens vazia
+                    errorCode = 48;
                     return false;
+
                 }
+
             } else {
-                //token "if" não foi encontrado
+                errorCode = 62;
                 return false;
             }
         } else {
-            //lista de Tokens vazia
+            errorCode = 61;
             return false;
         }
         return true;

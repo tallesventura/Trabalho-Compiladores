@@ -26,29 +26,15 @@ public class Import_stmt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.IMPORT) {
                 removeToken();
-                if (nextToken()) {
-                    if (new Dotted_name(tokens).handle()) {
-                        if (nextToken()) {
-                            if (!(new Import_as_name(tokens).handle())) {
-                                //ouve algum erro no handler do import_as_name
-                                return false;
-                                //return new Import_as_name(tokens).handle();
-                            }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
-                        }
-                    }
-                } else {
-                    //lista de tokens vazia
-                    return false;
+                if (new Dotted_name(tokens).handle()) {
+                    return new Import_as_name(tokens).handle();
                 }
             } else {
                 //O token import não foi encontrado
                 return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 62;
             return false;
         }
         return true;

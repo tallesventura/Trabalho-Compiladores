@@ -47,27 +47,23 @@ public class Classdef extends AbstractHandler {
                                     return false;
                                 }
                             }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
                         }
                     } else {
-                        //token "NAME" não foi encontrado
+                        errorCode = 6;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
             } else {
-                //token "class" não foi encontrado
+                errorCode = 51;
                 return false;
             }
         } else {
-            //liste de tokens vazia
+            errorCode = 50;
             return false;
         }
-
         return true;
     }
 

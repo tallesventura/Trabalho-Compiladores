@@ -24,20 +24,8 @@ public class Decorated extends AbstractHandler {
     public boolean handle() {
         if (nextToken()) {
             if (new Decorator(tokens).handle()) {
-                if (nextToken()) {
-                    if (!(new Definitions(tokens).handle())) {
-                        //ouve algum erro no handler do Definicions
-                        return false;
-                        //return new Definitions(tokens).handle();
-                    }
-                } else {
-                    //lista de tokens vazia
-                    return false;
-                }
+                return new Definitions(tokens).handle();
             }
-        } else {
-            //lista de tkens vazia
-            return false;
         }
         return true;
     }

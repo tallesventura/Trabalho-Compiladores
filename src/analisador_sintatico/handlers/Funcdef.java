@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class Funcdef extends AbstractHandler {
 
-    public Funcdef(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Funcdef(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.DEF);
         terminais.add(Token.IDENTIFICADOR);
         terminais.add(Token.DOIS_PONTOS);
@@ -30,49 +30,36 @@ public class Funcdef extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {//NAME
                         removeToken();
-                        if (nextToken()) {
-                            if (new Parameters(tokens).handle()) {
-                                if (nextToken()) {
-                                    if (currentToken == Token.DOIS_PONTOS) {//DOID_PONTOS
-                                        removeToken();
-                                        if (nextToken()) {
-                                            if (!(new Suite(tokens).handle())) {
-                                                //ouve algum erro no handler do Suite
-                                                return false;
-                                            }
-                                        } else {
-                                            //lista de tokens vazia
-                                            return false;
-                                        }
-                                    } else {
-                                        //token ":" não foi encontrado
-                                    }
+                        if (new Parameters(tokens).handle()) {
+                            if (nextToken()) {
+                                if (currentToken == Token.DOIS_PONTOS) {//DOID_PONTOS
+                                    removeToken();
+                                    return new Suite(tokens).handle(); 
                                 } else {
-                                    //lista de tokens vazia
+                                    errorCode = 49;
                                     return false;
                                 }
+                            } else {
+                                errorCode = 48;
+                                return false;
                             }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
                         }
                     } else {
-                        //token "NAME" não foi encontrado
+                        errorCode = 6;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
             } else {
-                //token "def" não foi encontrado
+                errorCode = 60;
                 return false;
             }
         } else {
-            //liste de tokens vazia
+            errorCode = 59;
             return false;
         }
-
         return true;
     }
 

@@ -33,27 +33,18 @@ public class Elif_stmt extends AbstractHandler {
                                 removeToken();
                                 if (nextToken()) {
                                     if (new Suite(tokens).handle()) {
-                                        if (nextToken()) {
-                                            if (!(new Elif_stmt(tokens).handle())) {
-                                                //ouve algum erro no handler do Suite
-                                                return false;
-                                                //return new Elif_stmt(tokens).handle();
-                                            }
-                                        } else {
-                                            //lista de tokens vazia
-                                            return false;
-                                        }
+                                        return new Elif_stmt(tokens).handle();
                                     }
                                 } else {
                                     //lista de tokens vazia
                                     return false;
                                 }
                             } else {
-                                //Token ":" não foi encontrado
+                                errorCode = 49;
                                 return false;
                             }
                         } else {
-                            //lista de tokens vazia
+                            errorCode = 48;
                             return false;
                         }
                     }
@@ -61,8 +52,6 @@ public class Elif_stmt extends AbstractHandler {
                     //lista de tokens vazia
                     return false;
                 }
-            } else {
-                //token "elif" não foi encontrado
             }
         }
         return true;

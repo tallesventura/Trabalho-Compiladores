@@ -30,21 +30,14 @@ public class Else_stmt extends AbstractHandler {
                     if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
                         removeToken();
                         if (nextToken()) {
-                            if (!(new Suite(tokens).handle())) {
-                                //ouve algum erro no handler do Suite
-                                return false;
-                                //return new Suite(tokens).handle();
-                            }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
+                            return new Suite(tokens).handle();
                         }
                     } else {
-                        //token ":" não foi encontrado
+                        errorCode = 49;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 48;
                     return false;
                 }
             }

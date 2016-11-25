@@ -30,31 +30,22 @@ public class Decorator extends AbstractHandler {
                     if (nextToken()) {
                         if (currentToken == Token.NOVA_LINHA) {//NOVA_LINHA
                             removeToken();
-                            if (nextToken()) {
-                                if (!(new Decorator(tokens).handle())) {
-                                    //ouve algum erro no handler do Dotted_name
-                                    return false;
-                                    //return new Decorator(tokens).handle();
-                                }
-                            } else {
-                                //lista de tokens vazia
-                                return false;
-                            }
+                            return new Decorator(tokens).handle();
                         } else {
-                            //token "NOVA_LINHA" não foi encontrado
+                            errorCode = 4;
                             return false;
                         }
                     } else {
-                        //lista de tokens vazia
+                        errorCode = 5;
                         return false;
                     }
                 }
             } else {
-                //token "@" não foi encontrado
+                errorCode = 53;
                 return false;
             }
         } else {
-            //list de tokens vazia
+            errorCode = 52;
             return false;
         }
         return true;

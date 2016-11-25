@@ -36,7 +36,6 @@ public class More_arg extends AbstractHandler {
                         errorCode = 6;
                         return false;
                     }
-
                 } else {
                     errorCode = 10;
                     return false;

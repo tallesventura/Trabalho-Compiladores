@@ -37,10 +37,6 @@ public class Argument_list extends AbstractHandler {
                     errorCode = 10;
                     return false;
                 }
-            } else {
-                //token "," não foi encontrado
-                errorCode = 35;
-                return false;
             }
         }
         return true;

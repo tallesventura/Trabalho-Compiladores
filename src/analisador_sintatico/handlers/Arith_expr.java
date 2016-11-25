@@ -33,16 +33,15 @@ public class Arith_expr extends AbstractHandler{
                             errorCode = 17;
                             return false;
                         }
+                    }else{
+                        return false;
                     }
                 }else{
                     errorCode = 8;
                     return false;
                 }
             }     
-        }else{
-            errorCode = 18;
-            return false;
-        }    
+        }   
         return true;
     }   
 }

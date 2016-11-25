@@ -27,6 +27,8 @@ public class Multiplicative_expr extends AbstractHandler{
             if(new Multiplicative_op(tokens).handle()){
                 if(new Unary_expr(tokens).handle()){
                     return new Multiplicative_expr(tokens).handle();
+                }else{
+                    return false;
                 }
             }
         }

@@ -34,9 +34,11 @@ public class Elif_stmt extends AbstractHandler {
                                 if (nextToken()) {
                                     if (new Suite(tokens).handle()) {
                                         return new Elif_stmt(tokens).handle();
+                                    }else{
+                                        return false;
                                     }
                                 } else {
-                                    //lista de tokens vazia
+                                    errorCode = 25;
                                     return false;
                                 }
                             } else {
@@ -47,9 +49,11 @@ public class Elif_stmt extends AbstractHandler {
                             errorCode = 48;
                             return false;
                         }
+                    }else{
+                        return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 13;
                     return false;
                 }
             }

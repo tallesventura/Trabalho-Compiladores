@@ -31,6 +31,9 @@ public class Else_stmt extends AbstractHandler {
                         removeToken();
                         if (nextToken()) {
                             return new Suite(tokens).handle();
+                        }else{
+                            errorCode = 25;
+                            return false;
                         }
                     } else {
                         errorCode = 49;

@@ -27,7 +27,6 @@ public class Relational_expr extends AbstractHandler{
                 if(new Operational_expr(tokens).handle()){
                     return new Relational_expr(tokens).handle();
                 }else{
-                    errorCode = 69;
                     return false;
                 }
             }

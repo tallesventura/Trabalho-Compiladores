@@ -6,6 +6,7 @@
 package analisador_sintatico.handlers;
 
 import Model.TokenModel;
+import analisador_lexico.Token;
 import java.util.ArrayList;
 
 /**
@@ -21,18 +22,18 @@ public class Compound_stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new If_stmt(tokens).handle()) {
-
-            } else if (new While_stmt(tokens).handle()) {
-
-            } else if (new Funcdef(tokens).handle()) {
-
-            } else if (new Classdef(tokens).handle()) {
-
-            } else if (new Decorated(tokens).handle()) {
-
-            } else if (new Async_stmt(tokens).handle()) {
-
+            if (currentToken == Token.IF) {
+                return new If_stmt(tokens).handle();
+            } else if (currentToken == Token.WHILE) {
+                return new While_stmt(tokens).handle();
+            } else if (currentToken == Token.DEF) {
+                return new Funcdef(tokens).handle();
+            } else if (currentToken == Token.CLASS) {
+                return new Classdef(tokens).handle();
+            } else if (currentToken == Token.OP_ARROBA) {
+                return new Decorated(tokens).handle();
+            } else if (currentToken == Token.ASYNC) {
+                return new Async_stmt(tokens).handle();
             } else {
                 errorCode = 3;
                 return false;

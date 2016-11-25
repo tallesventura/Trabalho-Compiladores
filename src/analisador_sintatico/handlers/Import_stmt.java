@@ -30,11 +30,11 @@ public class Import_stmt extends AbstractHandler {
                     return new Import_as_name(tokens).handle();
                 }
             } else {
-                //O token import não foi encontrado
+                errorCode = 64;
                 return false;
             }
         } else {
-            errorCode = 62;
+            errorCode = 63;
             return false;
         }
         return true;

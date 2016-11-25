@@ -30,33 +30,22 @@ public class Nonlocal_stmt extends AbstractHandler{
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {
                         removeToken();
-                        if (nextToken()) {
-                            if (!(new Arglist(tokens).handle())) {
-                                //ouve algun erro no handler do nonlocal_stmt
-                                return false;
-                                //return new Arglist(tokens).handle();
-                            }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
-                        }
+                        return new Arglist(tokens).handle();
                     } else {
-                        //token "NAME" não foi encontrado
+                        errorCode = 6;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
             } else {
-                //token "nonlocal" não foi encontrado
+                errorCode = 66;
                 return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 65;
             return false;
         }
-        return true;
     }
-    
 }

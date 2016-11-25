@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Return_stmt extends AbstractHandler {
 
-    public Return_stmt(ArrayList<TokenModel> tokenList) {
-        super(tokenList);
+    public Return_stmt(ArrayList<TokenModel> tokens) {
+        super(tokens);
         terminais.add(Token.RETURN);
     }
 
@@ -26,20 +26,8 @@ public class Return_stmt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.RETURN) {
                 removeToken();
-                if (nextToken()) {
-                    if(!(new Parameters_opt(tokens).handle())){
-                        errorCode = 44 ;
-                        return false;
-                        //return new Parameters_opt(tokens).handle();
-                    }
-                } else {
-                    errorCode = 45;
-                    return false;
-                }
+                return new Parameters_opt(tokens).handle();
             }
-        } else {
-            errorCode = 43;
-            return false;
         }
         return true;
     }

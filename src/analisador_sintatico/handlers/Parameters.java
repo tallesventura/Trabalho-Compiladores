@@ -26,30 +26,25 @@ public class Parameters extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.ABRE_PARENTESES) {//ABRA_PARENTESES
                 removeToken();
-                if (nextToken()) {
-                    if (new Typedargslist(tokens).handle()) {
-                        if(nextToken()){
-                            if(currentToken == Token.FECHA_PARENTESES){//FECHA_PARENTESES
-                                removeToken();
-                            }else{
-                                //token ")" não foi encontrado
-                                return false;
-                            }
-                        }else{
-                            //lista de tokens vazia
+                if (new Typedargslist(tokens).handle()) {
+                    if (nextToken()) {
+                        if (currentToken == Token.FECHA_PARENTESES) {//FECHA_PARENTESES
+                            removeToken();
+                        } else {
+                            errorCode = 68;
                             return false;
                         }
-                    } 
-                } else {
-                    //lista de tokens vazia
-                    return false;
+                    } else {
+                        errorCode = 67;
+                        return false;
+                    }
                 }
             } else {
-                //token "(" não foi encontrado
+                errorCode = 31;
                 return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 32;
             return false;
         }
         return true;

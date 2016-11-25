@@ -18,26 +18,26 @@ public class Suite extends AbstractHandler {
     public Suite(ArrayList<TokenModel> tokenList) {
         super(tokenList);
         terminais.add(Token.NOVA_LINHA);
-        terminais.add(Token.INDENT);
-        terminais.add(Token.DEDENT);
+        terminais.add(Token.ABRE_CHAVES);
+        terminais.add(Token.FECHA_CHAVES);
     }
 
     @Override
     public boolean handle() {
         if (nextToken()) {
             if (new Simple_stmt(tokens).handle()) {
-                //nada
+                return true;
             } else if (currentToken == Token.NOVA_LINHA) {//NEWLINE
                 removeToken();
                 if (nextToken()) {
-                    if (currentToken == Token.INDENT) {//INDENT
+                    if (currentToken == Token.ABRE_CHAVES) {//ABRE_CHAVES
                         removeToken();
                         if (nextToken()) {
                             if (new Stmt(tokens).handle()) {
                                 if (nextToken()) {
                                     if (new Stmt2(tokens).handle()) {
                                         if (nextToken()) {
-                                            if (currentToken == Token.DEDENT) {
+                                            if (currentToken == Token.FECHA_CHAVES) {//FECHA_CHAVES
                                                 removeToken();
                                             } else {
                                                 errorCode = 102; //token DEDENT não foi encontrado
@@ -47,17 +47,11 @@ public class Suite extends AbstractHandler {
                                             errorCode = 101;
                                             return false;
                                         }
-                                    } else {
-                                        errorCode = 104;//ouve algum erro no handler do Stmt2
-                                        return false;
                                     }
                                 } else {
                                     errorCode = 104;
                                     return false;
                                 }
-                            } else {
-                                errorCode = 104;//ouve algum erro no handler do Stmt
-                                return false;
                             }
                         } else {
                             errorCode = 104;

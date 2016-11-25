@@ -23,9 +23,9 @@ public class Flow_stmt extends AbstractHandler {
             if (terminais.contains(currentToken)) {
                 removeToken();
             } else if (new Return_stmt(tokens).handle()) {
-                //função Return
+                return true;
             } else if(new Yield_stmt(tokens).handle()){
-                //função Yield
+                return true;
             }else{
                 errorCode = 41;
                 return false;

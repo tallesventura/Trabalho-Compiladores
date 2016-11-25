@@ -23,11 +23,12 @@ public class Stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (currentToken == Token.S)  {
+            if (currentToken == Token.IDENTIFICADOR || currentToken == Token.DELETE || currentToken == Token.PASS || currentToken == Token.BREAK || currentToken == Token.CONTINUE || currentToken == Token.RETURN || currentToken == Token.YIELD || currentToken == Token.IMPORT || currentToken == Token.GLOBAL || currentToken == Token.NONLOCAL)  {
                 //simple
                 return new Simple_stmt(tokens).handle();
-            } else if (new Compound_stmt(tokens).handle()) {
+            } else if (currentToken == Token.IF || currentToken == Token.WHILE || currentToken == Token.DEF || currentToken == Token.CLASS || currentToken == Token.OP_ARROBA || currentToken == Token.ASYNC) {
                 //compound
+                return new Compound_stmt(tokens).handle();
             } else {
                 //ouve algum erro no handler do Simple/Compound
                 return false;
@@ -36,6 +37,5 @@ public class Stmt extends AbstractHandler {
             //lista de Tokens vazia
             return false;
         }
-        return true;
     }
 }

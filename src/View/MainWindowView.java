@@ -61,6 +61,14 @@ public class MainWindowView extends javax.swing.JFrame {
         return jMenuBar1;
     }
 
+    public JMenuItem getMenuItemAnaliseSinta() {
+        return menuItemAnaliseSinta;
+    }
+
+    public JButton getBtnCompilar() {
+        return btnCompilar;
+    }
+
     public JButton getBtnRefazer() {
         return btnRefazer;
     }
@@ -152,6 +160,7 @@ public class MainWindowView extends javax.swing.JFrame {
         btnDesfazer = new javax.swing.JButton();
         btnRefazer = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
+        btnCompilar = new javax.swing.JButton();
         scrPaneEditor = new javax.swing.JScrollPane();
         scrPaneErros = new javax.swing.JScrollPane();
         tblErros = new javax.swing.JTable();
@@ -172,6 +181,7 @@ public class MainWindowView extends javax.swing.JFrame {
         menuChkBoxAnalise = new javax.swing.JCheckBoxMenuItem();
         menuExecutar = new javax.swing.JMenu();
         menuItemAnaliseLex = new javax.swing.JMenuItem();
+        menuItemAnaliseSinta = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -207,6 +217,13 @@ public class MainWindowView extends javax.swing.JFrame {
         btnRefazer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnRefazer);
         jToolBar1.add(jSeparator3);
+
+        btnCompilar.setText("Compilar");
+        btnCompilar.setFocusable(false);
+        btnCompilar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCompilar.setMargin(new java.awt.Insets(2, 5, 2, 14));
+        btnCompilar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnCompilar);
 
         tblErros.setBackground(new java.awt.Color(255, 153, 153));
         tblErros.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -249,6 +266,7 @@ public class MainWindowView extends javax.swing.JFrame {
         menuItemAbrir.setText("Abrir");
         menuArquivo.add(menuItemAbrir);
 
+        menuItemSalvar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         menuItemSalvar.setText("Salvar");
         menuArquivo.add(menuItemSalvar);
 
@@ -284,8 +302,13 @@ public class MainWindowView extends javax.swing.JFrame {
 
         menuExecutar.setText("Executar");
 
+        menuItemAnaliseLex.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         menuItemAnaliseLex.setText("Análise Léxica");
         menuExecutar.add(menuItemAnaliseLex);
+
+        menuItemAnaliseSinta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemAnaliseSinta.setText("Análise Sintática");
+        menuExecutar.add(menuItemAnaliseSinta);
 
         jMenuBar1.add(menuExecutar);
 
@@ -296,19 +319,17 @@ public class MainWindowView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrPaneErros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrPaneEditor)))))
+                    .addComponent(scrPaneErros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrPaneEditor)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,6 +358,7 @@ public class MainWindowView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
     private javax.swing.JMenuItem btnAvancar;
+    private javax.swing.JButton btnCompilar;
     private javax.swing.JButton btnDesfazer;
     private javax.swing.JButton btnRefazer;
     private javax.swing.JButton btnSalvar;
@@ -357,6 +379,7 @@ public class MainWindowView extends javax.swing.JFrame {
     private javax.swing.JMenu menuFerramentas;
     private javax.swing.JMenuItem menuItemAbrir;
     private javax.swing.JMenuItem menuItemAnaliseLex;
+    private javax.swing.JMenuItem menuItemAnaliseSinta;
     private javax.swing.JMenuItem menuItemSalvar;
     private javax.swing.JScrollPane scrPaneArvoreDerivacao;
     private javax.swing.JScrollPane scrPaneEditor;

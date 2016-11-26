@@ -64,6 +64,7 @@ public class AnalisadorLexico {
         
         Reader reader = new BufferedReader(new FileReader(sourceCode));
         this.lexer = new Lexer(reader);
+        this.errorList.clear();
         
         ArrayList<TokenModel> tokenList = new ArrayList();
         while(true){

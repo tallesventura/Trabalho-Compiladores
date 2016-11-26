@@ -28,6 +28,8 @@ public class Import_stmt extends AbstractHandler {
                 removeToken();
                 if (new Dotted_name(tokens).handle()) {
                     return new Import_as_name(tokens).handle();
+                }else{
+                    return false;
                 }
             } else {
                 errorCode = 64;
@@ -37,6 +39,5 @@ public class Import_stmt extends AbstractHandler {
             errorCode = 63;
             return false;
         }
-        return true;
     }
 }

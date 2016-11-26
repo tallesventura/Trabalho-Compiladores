@@ -24,7 +24,7 @@ public class Simple_stmt3 extends AbstractHandler{
             if (new Small_stmt(tokens).handle()) {
                 return new Small_stmt2(tokens).handle();
             }
-        } 
+        }
         return true;
     }
 }

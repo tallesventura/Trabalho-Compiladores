@@ -28,10 +28,7 @@ public class Arglist extends AbstractHandler {
             if (currentToken == Token.IDENTIFICADOR) {
                 removeToken();
                 if (nextToken()) {
-                    if (!(new Argument_list(tokens).handle())) {
-                        errorCode = 33;
-                        return false;
-                    }
+                    return new Argument_list(tokens).handle();
                 } else {
                     errorCode = 33;
                     return false;
@@ -44,6 +41,5 @@ public class Arglist extends AbstractHandler {
             errorCode = 10;
             return false;
         }
-        return true;
     }
 }

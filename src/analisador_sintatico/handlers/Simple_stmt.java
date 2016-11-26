@@ -37,12 +37,19 @@ public class Simple_stmt extends AbstractHandler {
                             errorCode = 5;
                             return false;
                         }
+                    } else{
+                        return false;
                     }
                 } else {
-                    errorCode = 8;
+                    errorCode = 25;
                     return false;
                 }
+            } else{
+                return false;
             }
+        }else{
+            errorCode = 25;
+            return false;
         }
         return true;
     }

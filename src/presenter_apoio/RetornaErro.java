@@ -88,6 +88,102 @@ public class RetornaErro {
                 return "Esperado o token <(>, mas foi encontrado <" + error.getLexema() + ">.";
             case 32:
                 return "Esperado o token <(>, mas nenhum token foi encontrado";
+            case 33: 
+                return "Houve algum erro na lista de argumentos";
+            case 34: 
+                return "Lista de argumentos vazia";
+            case 35: 
+                return "Esperado o token <,>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 36: 
+                return "Esperado o token <,>, mas nenhum token foi encontrado";
+            case 37: 
+                return "Esperado operador de atribuição , mas nenhum token foi encontrado";
+            case 38: 
+                return "terminal <del> esperado, mas nenhum token foi encontrado";
+            case 39: 
+                return "terminal <pass> esperado, mas foi encontrado <" + error.getLexema() + ">." ;
+            case 40: 
+                return "terminal <pass> esperado, mas nenhum token foi encontrado" ;
+            case 41: 
+                return "Esperado expressão de controle de fluxo, mas foi encontrado <" + error.getLexema() + ">.";
+            case 42: 
+                return "Esperado expressão de controle de fluxo, mas nenhum token foi encontrado" ;
+            case 43: 
+                return "Terminal <return> esperado, mas nenhum token foi encontrado" ;
+            case 44: 
+                return "Esperado parâmetros, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 45: 
+                return "Terminal <yield> esperado, mas nenhum token foi encontrado" ;
+            case 46: 
+                return "Terminal <async> esperado, mas nenhum token foi encontrado" ;
+            case 47: 
+                return "Terminal <async> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 48: 
+                return "Terminal <:> esperado, mas nenhum token foi encontrado" ;
+            case 49: 
+                return "Terminal <:> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 50: 
+                return "Terminal <class> esperado, mas nenhum token foi encontrado" ;
+            case 51: 
+                return "Terminal <class> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 52: 
+                return "Terminal <@> esperado, mas nenhum token foi encontrado" ;
+            case 53: 
+                return "Terminal <@> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 54: 
+                return "Terminal <.> esperado, mas nenhum token foi encontrado" ;
+            case 55: 
+                return "Terminal <.> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 56: 
+                return "expressão condicional incompleta";
+            case 57: 
+                return "Terminal <for> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 58: 
+                return "Terminal <in> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 59: 
+                return "Terminal <def> esperado, mas nenhum token foi encontrado" ;
+            case 60: 
+                return "Terminal <def> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 61: 
+                return "Terminal <if> esperado, mas nenhum token foi encontrado" ;
+            case 62: 
+                return "Terminal <if> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 63: 
+                return "Terminal <import> esperado, mas nenhum token foi encontrado" ;
+            case 64: 
+                return "Terminal <import> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 65: 
+                return "Terminal <nonlocal> esperado, mas nenhum token foi encontrado" ;
+            case 66:
+                return "Terminal <nonlocal> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+            case 67: 
+                return "Terminal <)> esperado, mas nenhum token foi encontrado";
+            case 68: 
+                return "Terminal <)> esperado, mas foi encontrado <" + error.getLexema() + ">.";
+            case 69: 
+                return "Esperado expressão operacional, mas foi encontrado <" + error.getLexema() + ">.";
+            case 70: 
+                return "Esperado definição de função ou de classe, mas nenhum token foi encontrado";
+            case 71: 
+                return "Esperado o token < = >, mas nenhum token foi encontrado";
+            case 72: 
+                return "Esperado o token <global>, mas nenhum token foi encontrado";
+            case 73: 
+                return "Esperado o token <global>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 74:
+                return "Esperado o token <while>, mas nenhum token foi encontrado";
+            case 75: 
+                return "Esperado o token <while>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 76: 
+                return "Terminal <for> esperado, mas nenhum token foi encontrado";
+            case 77: 
+                return "Esperado o token <{>, mas nenhum token foi encontrado";
+            case 78: 
+                return "Esperado o token <{>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 79: 
+                return "Esperado o token <}>, mas nenhum token foi encontrado";
+            case 80: 
+                return "Esperado o token <}>, mas foi encontrado <" + error.getLexema() + ">.";
             default:
                 return "";
         }

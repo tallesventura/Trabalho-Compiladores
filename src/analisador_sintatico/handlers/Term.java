@@ -25,12 +25,12 @@ public class Term extends AbstractHandler{
         if(nextToken()){
             if(new Unary_expr(tokens).handle()){
                 return new Multiplicative_expr(tokens).handle();
+            }else{
+                return false;
             }
         }else{
             errorCode = 26;
             return false;
         }
-        
-        return true;
     }  
 }

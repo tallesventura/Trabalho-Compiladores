@@ -25,9 +25,7 @@ public class Async_stmt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.ASYNC) {//ASYNC
                 removeToken();
-                if (nextToken()) {
-                    return new Async_stmt2(tokens).handle();
-                }
+                return new Async_stmt2(tokens).handle();
             } else {
                 errorCode = 47;
                 return false;
@@ -36,6 +34,5 @@ public class Async_stmt extends AbstractHandler {
             errorCode = 46;
             return false;
         }
-        return true;
     }
 }

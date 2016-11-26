@@ -32,46 +32,39 @@ public class Suite extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.ABRE_CHAVES) {//ABRE_CHAVES
                         removeToken();
-                        if (nextToken()) {
-                            if (new Stmt(tokens).handle()) {
+                        if (new Stmt(tokens).handle()) {
+                            if (new Stmt2(tokens).handle()) {
                                 if (nextToken()) {
-                                    if (new Stmt2(tokens).handle()) {
-                                        if (nextToken()) {
-                                            if (currentToken == Token.FECHA_CHAVES) {//FECHA_CHAVES
-                                                removeToken();
-                                            } else {
-                                                errorCode = 102; //token DEDENT não foi encontrado
-                                                return false;
-                                            }
-                                        } else {
-                                            errorCode = 101;
-                                            return false;
-                                        }
+                                    if (currentToken == Token.FECHA_CHAVES) {
+                                        removeToken();
+                                    } else {
+                                        errorCode = 80;
+                                        return false;
                                     }
                                 } else {
-                                    errorCode = 104;
+                                    errorCode = 79;
                                     return false;
                                 }
+                            }else{
+                                return false;
                             }
                         } else {
-                            errorCode = 104;
                             return false;
                         }
                     } else {
-                        errorCode = 102;
+                        errorCode = 78;
                         return false;
                     }
-
                 } else {
-                    errorCode = 103;
+                    errorCode = 77;
                     return false;
                 }
             } else {
-                errorCode = 104;
+                errorCode = 3;
                 return false;
             }
         } else {
-            //lista de Tokens vazia
+            errorCode = 25;
             return false;
         }
         return true;

@@ -37,9 +37,6 @@ WhiteSpace = {LineTerminator} | [ \f]
 (\".*\") | (\'.*\') { id+=1; return Token.STRING; }
 ({Num1}|{Num2}|{Num3}) { id+=1; return Token.IDENTIFICADOR; }
 
-(_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
-
-
 /* Operadores aritméticos */
 "+" { id+=1; return Token.OP_ADICAO; }
 "-" { id+=1; return Token.OP_SUBTRACAO; }
@@ -128,5 +125,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "\"" { id+=1; return Token.ASPAS_DUPLAS; }
 "." { id+=1; return Token.PONTO; }
 ";" { id+=1; return Token.PONTO_VIRGULA; }
+
+(_|{Letra})({Letra}|{N}|_)* { id+=1; return Token.IDENTIFICADOR; }
 
 . { id+= 1; return Token.ERROR; }

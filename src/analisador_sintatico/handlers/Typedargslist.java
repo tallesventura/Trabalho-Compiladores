@@ -27,30 +27,22 @@ public class Typedargslist extends AbstractHandler {
                 removeToken();
                 if (nextToken()) {
                     if (new Arg_Assign(tokens).handle()) {
-                        if (nextToken()) {
-                            if (!(new More_arg(tokens).handle())) {
-                                //ouve algum erro no handler do More_arg
-                                return false;
-                                //return new More_arg(tokens).handle();
-                            }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
-                        }
+                        return new More_arg(tokens).handle();
+                    } else{
+                        return false;
                     }
                 }else{
-                    //lista de tokens vazia
+                    errorCode = 71;
                     return false;
                 }
             } else {
-                //token "NAME" não foi encontrado
+                errorCode = 6;
                 return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 10;
             return false;
         }
-        return true;
     }
 
 }

@@ -30,24 +30,26 @@ public class Classdef extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {//NAME
                         removeToken();
-                        if (nextToken()) {
-                            if (new Parameters_opt(tokens).handle()) {
-                                if (nextToken()) {
-                                    if (currentToken == Token.DOIS_PONTOS) {//DOID_PONTOS
-                                        removeToken();
-                                        if (nextToken()) {
-                                            return new Suite(tokens).handle();
-                                        }
-                                    } else {
-                                        errorCode = 49;
-                                        return false;
+
+                        if (new Parameters_opt(tokens).handle()) {
+                            if (nextToken()) {
+                                if (currentToken == Token.DOIS_PONTOS) {//DOID_PONTOS
+                                    removeToken();
+                                    if (nextToken()) {
+                                        return new Suite(tokens).handle();
                                     }
                                 } else {
-                                    errorCode = 48;
+                                    errorCode = 49;
                                     return false;
                                 }
+                            } else {
+                                errorCode = 48;
+                                return false;
                             }
+                        }else{
+                            return false;
                         }
+
                     } else {
                         errorCode = 6;
                         return false;

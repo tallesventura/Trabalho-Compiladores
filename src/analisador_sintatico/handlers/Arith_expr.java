@@ -12,37 +12,24 @@ import java.util.ArrayList;
  *
  * @author talles
  */
-
-public class Arith_expr extends AbstractHandler{
+public class Arith_expr extends AbstractHandler {
 
     public Arith_expr(ArrayList<TokenModel> tokens) {
         super(tokens);
     }
 
-    
     @Override
     public boolean handle() {
-        
-        if(nextToken()){
-            if(new Arith_op(tokens).handle()){
-                if(nextToken()){
-                    if(new Term(tokens).handle()){
-                        if(nextToken()){
-                            return new Arith_expr(tokens).handle();
-                        }else{
-                            errorCode = 17;
-                            return false;
-                        }
-                    }
-                }else{
-                    errorCode = 8;
+
+        if (nextToken()) {
+            if (new Arith_op(tokens).handle()) {
+                if (new Term(tokens).handle()) {
+                    return new Arith_expr(tokens).handle();
+                } else {
                     return false;
                 }
-            }     
-        }else{
-            errorCode = 18;
-            return false;
-        }    
+            }
+        }
         return true;
-    }   
+    }
 }

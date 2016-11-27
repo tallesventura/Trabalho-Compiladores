@@ -12,30 +12,25 @@ import java.util.ArrayList;
  *
  * @author talles
  */
-public class Comp_expr extends AbstractHandler{
+public class Comp_expr extends AbstractHandler {
 
     public Comp_expr(ArrayList<TokenModel> tokens) {
         super(tokens);
     }
-    
+
     @Override
     public boolean handle() {
-        
-        if(nextToken()){
-            if(new Operational_expr(tokens).handle()){
-                if(nextToken()){
-                    return new Relational_expr(tokens).handle();
-                }else{
-                    errorCode = 16;
-                    return false;
-                }
+
+        if (nextToken()) {
+            if (new Operational_expr(tokens).handle()) {
+                return new Relational_expr(tokens).handle();
+            } else {
+                return false;
             }
-        }else{
+        } else {
             errorCode = 15;
             return false;
         }
-        
-        return true;
     }
-    
+
 }

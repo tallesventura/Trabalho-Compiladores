@@ -29,20 +29,18 @@ public class Else_stmt extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
                         removeToken();
-                        if (nextToken()) {
-                            return new Suite(tokens).handle();
-                        }
-                    } else {
-                        errorCode = 49;
-                        return false;
+                        return new Suite(tokens).handle();
                     }
                 } else {
-                    errorCode = 48;
+                    errorCode = 49;
                     return false;
                 }
+            } else {
+                errorCode = 48;
+                return false;
             }
         }
+        
         return true;
-    }
-
+    }  
 }

@@ -12,31 +12,25 @@ import java.util.ArrayList;
  *
  * @author talles
  */
-public class Operational_expr extends AbstractHandler{
+public class Operational_expr extends AbstractHandler {
 
     public Operational_expr(ArrayList<TokenModel> tokens) {
         super(tokens);
     }
-    
 
     @Override
     public boolean handle() {
-        
-        if(nextToken()){
-            if(new Term(tokens).handle()){
-                if(nextToken()){
-                    return new Arith_expr(tokens).handle();
-                }else{
-                    errorCode = 17;
-                    return false;
-                }
+
+        if (nextToken()) {
+            if (new Term(tokens).handle()) {
+                return new Arith_expr(tokens).handle();
+            } else {
+                return false;
             }
-        }else{
+        } else {
             errorCode = 8;
             return false;
         }
-        
-        return true;
     }
-    
+
 }

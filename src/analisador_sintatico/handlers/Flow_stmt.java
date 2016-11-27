@@ -22,10 +22,10 @@ public class Flow_stmt extends AbstractHandler {
         if (nextToken()) {
             if (terminais.contains(currentToken)) {
                 removeToken();
-            } else if (new Return_stmt(tokens).handle()) {
-                return true;
-            } else if(new Yield_stmt(tokens).handle()){
-                return true;
+            } else if (currentToken == Token.RETURN) {
+                return new Return_stmt(tokens).handle();
+            } else if(currentToken == Token.YIELD){
+                return new Yield_stmt(tokens).handle();
             }else{
                 errorCode = 41;
                 return false;

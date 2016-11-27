@@ -6,6 +6,7 @@
 package analisador_sintatico.handlers;
 
 import Model.TokenModel;
+import analisador_lexico.Token;
 import java.util.ArrayList;
 
 /**
@@ -21,13 +22,15 @@ public class Definitions extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (new Funcdef(tokens).handle()) {
-                return true;
-            } else if (!new Async_stmt(tokens).handle()) {
-                return new Classdef(tokens).handle(); 
+            if (currentToken == Token.DEF) {
+                return new Funcdef(tokens).handle();
+            } else if (currentToken == Token.ASYNC) {
+                return new Async_stmt(tokens).handle();
+            } else if (currentToken == Token.CLASS) {
+                return new Classdef(tokens).handle();
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 70;
             return false;
         }
         return true;

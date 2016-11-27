@@ -40,22 +40,26 @@ public class For_stmt extends AbstractHandler {
                                             removeToken();
                                             if(new Suite(tokens).handle()){
                                                 return new Else_stmt(tokens).handle();
+                                            }else{
+                                                return false;
                                             }
                                         }else{
                                             errorCode = 49;
                                             return false;
                                         }
                                     } else {
-                                        errorCode = 56;
+                                        errorCode = 48;
                                         return false;
                                     }
+                                }else{
+                                    return false;
                                 }
                             } else {
-                                errorCode = 58;
+                                errorCode = 22;
                                 return false;
                             }
                         } else {
-                            errorCode = 56;
+                            errorCode = 21;
                             return false;
                         }
                     } else {
@@ -63,7 +67,7 @@ public class For_stmt extends AbstractHandler {
                         return false;
                     }
                 } else {
-                    errorCode = 56;
+                    errorCode = 10;
                     return false;
                 }
             } else {
@@ -72,10 +76,9 @@ public class For_stmt extends AbstractHandler {
             }
 
         } else {
-            errorCode = 56;
+            errorCode = 76;
             return false;
         }
-        return true;
     }
 
 }

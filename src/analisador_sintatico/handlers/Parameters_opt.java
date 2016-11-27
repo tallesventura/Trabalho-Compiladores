@@ -26,25 +26,20 @@ public class Parameters_opt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.ABRE_PARENTESES) {
                 removeToken();
-                if (nextToken()) {
-                    if (new Arglist(tokens).handle()) {
-                        if (nextToken()) {
-                            if(currentToken == Token.FECHA_PARENTESES){
-                                removeToken();                             
-                            }else{
-                                errorCode = 31;
-                                return false;
-                            }
+                if (new Arglist(tokens).handle()) {
+                    if (nextToken()) {
+                        if (currentToken == Token.FECHA_PARENTESES) {
+                            removeToken();
                         } else {
-                            errorCode = 32;
+                            errorCode = 31;
                             return false;
                         }
                     } else {
-                        errorCode = 33;
+                        errorCode = 32;
                         return false;
                     }
                 } else {
-                    errorCode = 34;
+                    errorCode = 33;
                     return false;
                 }
             }

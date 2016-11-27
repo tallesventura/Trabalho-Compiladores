@@ -84,10 +84,10 @@ public class RetornaErro {
                 return "Esperado operador multiplicativo, mas foi encontrado <" + error.getLexema() + ">.";
             case 30:
                 return "Esperado operador relacional, mas foi encontrado <" + error.getLexema() + ">.";
-            case 31: 
-                return "Esperado o token <)>, mas foi encontrado <" + error.getLexema() + ">.";
-            case 32: 
-                return "Esperado o token <)>, mas nenhum token foi encontrado";
+            case 31:
+                return "Esperado o token <(>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 32:
+                return "Esperado o token <(>, mas nenhum token foi encontrado";
             case 33: 
                 return "Houve algum erro na lista de argumentos";
             case 34: 
@@ -99,7 +99,7 @@ public class RetornaErro {
             case 37: 
                 return "Esperado operador de atribuição , mas nenhum token foi encontrado";
             case 38: 
-                return "terminal <del> esperado, mas nenhum token foi encontrado" ;
+                return "terminal <del> esperado, mas nenhum token foi encontrado";
             case 39: 
                 return "terminal <pass> esperado, mas foi encontrado <" + error.getLexema() + ">." ;
             case 40: 
@@ -109,7 +109,7 @@ public class RetornaErro {
             case 42: 
                 return "Esperado expressão de controle de fluxo, mas nenhum token foi encontrado" ;
             case 43: 
-                return "Terminal "return" esperado, mas nenhum token foi encontrado" ;
+                return "Terminal <return> esperado, mas nenhum token foi encontrado" ;
             case 44: 
                 return "Esperado parâmetros, mas foi encontrado <" + error.getLexema() + ">."  ;
             case 45: 
@@ -154,14 +154,36 @@ public class RetornaErro {
                 return "Terminal <import> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
             case 65: 
                 return "Terminal <nonlocal> esperado, mas nenhum token foi encontrado" ;
-            case 66: 
+            case 66:
                 return "Terminal <nonlocal> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
             case 67: 
-                return "Terminal <)> esperado, mas nenhum token foi encontrado" ;
+                return "Terminal <)> esperado, mas nenhum token foi encontrado";
             case 68: 
-                return "Terminal <)> esperado, mas foi encontrado <" + error.getLexema() + ">."  ;
+                return "Terminal <)> esperado, mas foi encontrado <" + error.getLexema() + ">.";
             case 69: 
                 return "Esperado expressão operacional, mas foi encontrado <" + error.getLexema() + ">.";
+            case 70: 
+                return "Esperado definição de função ou de classe, mas nenhum token foi encontrado";
+            case 71: 
+                return "Esperado o token < = >, mas nenhum token foi encontrado";
+            case 72: 
+                return "Esperado o token <global>, mas nenhum token foi encontrado";
+            case 73: 
+                return "Esperado o token <global>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 74:
+                return "Esperado o token <while>, mas nenhum token foi encontrado";
+            case 75: 
+                return "Esperado o token <while>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 76: 
+                return "Terminal <for> esperado, mas nenhum token foi encontrado";
+            case 77: 
+                return "Esperado o token <{>, mas nenhum token foi encontrado";
+            case 78: 
+                return "Esperado o token <{>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 79: 
+                return "Esperado o token <}>, mas nenhum token foi encontrado";
+            case 80: 
+                return "Esperado o token <}>, mas foi encontrado <" + error.getLexema() + ">.";
             default:
                 return "";
         }

@@ -38,6 +38,8 @@ public class Parameters extends AbstractHandler {
                         errorCode = 67;
                         return false;
                     }
+                }else{
+                    return false;
                 }
             } else {
                 errorCode = 31;

@@ -30,34 +30,23 @@ public class Global_stmt extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {
                         removeToken();
-                        if (nextToken()) {
-                            if (!(new Arglist(tokens).handle())) {
-                                //ouve algun erro no handler do arglist
-                                return false;
-                                //return new Arglist(tokens).handle()
-                            }
-                        } else {
-                            //lista de tokens vazia
-                            return false;
-                        }
+                        return new Arglist(tokens).handle();
                     } else {
-                        //token "NAME" não foi encontrado
+                        errorCode = 6;
                         return false;
                     }
                 } else {
-                    //lista de tokens vazia
+                    errorCode = 10;
                     return false;
                 }
             } else {
-                //token "global" não foi encontrado
+                errorCode = 73;
                 return false;
             }
         } else {
-            //lista de tokens vazia
+            errorCode = 72;
             return false;
         }
-
-        return true;
     }
 
 }

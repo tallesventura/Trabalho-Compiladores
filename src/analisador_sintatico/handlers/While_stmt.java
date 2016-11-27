@@ -27,41 +27,33 @@ public class While_stmt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.WHILE) {//WHILE
                 removeToken();
-                if (nextToken()) {
-                    if (new Expr(tokens).handle()) {
-                        if (nextToken()) {
-                            if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
-                                removeToken();
-                                if (new Suite(tokens).handle()) {
-                                    if (nextToken()) {
-                                        return new Else_stmt(tokens).handle();
-                                    } else {
-                                        //lista de Tokens vazia
-                                        return false;
-                                    }
-                                }
+                if (new Expr(tokens).handle()) {
+                    if (nextToken()) {
+                        if (currentToken == Token.DOIS_PONTOS) {//DOIS_PONTOS
+                            removeToken();
+                            if (new Suite(tokens).handle()) {
+                                return new Else_stmt(tokens).handle();
                             } else {
-                                //Token ":" não foi encontrado
                                 return false;
                             }
                         } else {
-                            //lista de Tokens vazia
+                            errorCode = 49;
                             return false;
-
                         }
+                    } else {
+                        errorCode = 48;
+                        return false;
                     }
                 } else {
-                    //lista de Tokens vazia
                     return false;
                 }
             } else {
-                //token "while" não foi encontrado
+                errorCode = 75;
                 return false;
             }
         } else {
-            //lista de Tokens vazia
+            errorCode = 74;
             return false;
         }
-        return true;
     }
 }

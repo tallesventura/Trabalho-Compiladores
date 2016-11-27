@@ -26,23 +26,18 @@ public class Async_funcdef extends AbstractHandler{
             if(currentToken == Token.ASYNC){
                 removeToken();
                 if(nextToken()){
-                    if(!(new Funcdef(tokens).handle())){
-                        //ouve algum erro no handler do Funcdef
-                        return false;
-                    }
+                    return new Funcdef(tokens).handle();
                 }else{
-                    //lista de tokens vazia
+                    errorCode = 59;
                     return false;
                 }
             }else{
-                //token "async" não foi encontrado
+                errorCode = 47;
                 return false;
             }
         }else{
-            //lista de token vazia
+            errorCode = 46;
             return false;
         }
-        return true;
-    }
-    
+    }  
 }

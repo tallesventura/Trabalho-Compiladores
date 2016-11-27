@@ -39,6 +39,9 @@ public class Decorator extends AbstractHandler {
                         errorCode = 5;
                         return false;
                     }
+                }else{
+                    errorCode = 6;
+                    return false;
                 }
             } else {
                 errorCode = 53;
@@ -48,7 +51,5 @@ public class Decorator extends AbstractHandler {
             errorCode = 52;
             return false;
         }
-        return true;
     }
-
 }

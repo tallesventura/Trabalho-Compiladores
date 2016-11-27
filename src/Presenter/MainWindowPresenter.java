@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -176,6 +178,40 @@ public class MainWindowPresenter {
                 viewMainWindow.dispose();
             }
         });
+        
+        viewMainWindow.getMenuItemAnaliseLex().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    errorList.addAll(runLexicalAnalysis());
+                    updateErrorTable(errorList);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainWindowPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        viewMainWindow.getMenuItemAnaliseSinta().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                errorList.addAll(runSyntaxAnalysis(tokenList));
+                updateErrorTable(errorList);  
+            }
+        });
+        
+        viewMainWindow.getBtnCompilar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {                  
+                    errorList.addAll(runLexicalAnalysis());
+                    errorList.addAll(runSyntaxAnalysis(tokenList));
+                    updateTokenTable(tokenList);
+                    updateErrorTable(errorList);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainWindowPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
         editor.addKeyListener(new KeyAdapter() {
 
@@ -242,12 +278,10 @@ public class MainWindowPresenter {
 
         AnalisadorLexico al = AnalisadorLexico.getInstance(codeFile);
         this.tokenList.clear();
+        this.errorList.clear();
         this.tokenList = al.runAnalysis();
-        for (TokenModel t : tokenList) {
-            System.out.println(t.getNome());
-        }
+        
         updateTokenTable(tokenList);
-        updateErrorTable(errorList);
 
         return al.getErrorList();
     }
@@ -334,10 +368,11 @@ public class MainWindowPresenter {
         codeFile = new File(rootPath);
         saveCode(codeFile);
         errorList.clear();
+        tokenList.clear();
         ArrayList<ErrorModel> lexicalErrors = runLexicalAnalysis();
         errorList.addAll(lexicalErrors);
-        ArrayList<ErrorModel> syntaticErrors = runSyntaxAnalysis(tokenList);
-        errorList.addAll(syntaticErrors);
+        //ArrayList<ErrorModel> syntaticErrors = runSyntaxAnalysis(tokenList);
+        //errorList.addAll(syntaticErrors);
         updateErrorTable(errorList);
 
     }
@@ -345,9 +380,15 @@ public class MainWindowPresenter {
     public void updateErrorTable(List<ErrorModel> errors) {
 
         tblErros.setNumRows(0);
-        for (ErrorModel e : errors) {
-            String msg = RetornaErro.getError(e);
-            Object o[] = {e.getLinha(), msg};
+
+        if(errors.size() > 0){
+            for (ErrorModel e : errors) {
+                String msg = RetornaErro.getError(e);
+                Object o[] = {e.getLinha(), msg};
+                tblErros.addRow(o);
+            }
+        }else{
+            Object o[] = {"-", "Nenhum erro encontrado"};
             tblErros.addRow(o);
         }
     }

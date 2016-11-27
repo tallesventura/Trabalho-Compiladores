@@ -33,19 +33,23 @@ public class If_stmt extends AbstractHandler {
                             if (new Suite(tokens).handle()) {
                                 if (new Elif_stmt(tokens).handle()) {
                                     return new Else_stmt(tokens).handle();
+                                }else{
+                                    return false;
                                 }
+                            }else{
+                                return false;
                             }
+                        } else{
+                            errorCode = 49;
+                            return false;
                         }
                     } else {
                         errorCode = 49;
                         return false;
                     }
                 } else {
-                    errorCode = 48;
                     return false;
-
                 }
-
             } else {
                 errorCode = 62;
                 return false;
@@ -54,7 +58,6 @@ public class If_stmt extends AbstractHandler {
             errorCode = 61;
             return false;
         }
-        return true;
     }
 
 }

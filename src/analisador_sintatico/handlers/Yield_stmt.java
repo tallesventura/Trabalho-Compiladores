@@ -27,20 +27,12 @@ public class Yield_stmt extends AbstractHandler {
             if (currentToken == Token.YIELD) {
                 removeToken();
                 if (nextToken()) {
-                    if((new Parameters_opt(tokens).handle())){
-                        errorCode = 44 ;
-                        return false;
-                    }
+                    return new Parameters_opt(tokens).handle();
                 } else {
-                    errorCode = 45 ;
+                    errorCode = 25;
+                    return false;
                 }
-            } else {
-                errorCode = 9;
-                return false;
             }
-        } else {
-            //lista de tokens vazia
-            return false;
         }
         return true;
     }

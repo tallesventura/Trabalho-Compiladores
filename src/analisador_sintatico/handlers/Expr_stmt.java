@@ -18,8 +18,6 @@ public class Expr_stmt extends AbstractHandler {
     public Expr_stmt(ArrayList<TokenModel> tokens) {
         super(tokens);
     }
-    
-    
 
     @Override
     public boolean handle() {
@@ -27,17 +25,9 @@ public class Expr_stmt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.IDENTIFICADOR) {
                 removeToken();
-                if (nextToken()) {
-                    if (new Augassign(tokens).handle()) {
-                        if (nextToken()) {
-                            return new Expr(tokens).handle();
-                        }else{
-                            errorCode = 13;
-                            return false;
-                        }
-                    }
-                }else{
-                    errorCode = 8;
+                if (new Augassign(tokens).handle()) {
+                    return new Expr(tokens).handle();
+                } else {
                     return false;
                 }
             } else {
@@ -48,7 +38,6 @@ public class Expr_stmt extends AbstractHandler {
             errorCode = 10;
             return false;
         }
-        return true;
     }
 
 }

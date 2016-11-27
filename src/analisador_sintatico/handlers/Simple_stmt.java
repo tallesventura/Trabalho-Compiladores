@@ -24,25 +24,23 @@ public class Simple_stmt extends AbstractHandler {
 
         if (nextToken()) {
             if (new Small_stmt(tokens).handle()) {
-                if (nextToken()) {
-                    if (new Small_stmt2(tokens).handle()) {
-                        if (nextToken()) {
-                            if (currentToken == Token.NOVA_LINHA) {
-                                removeToken();
-                            } else {
-                                errorCode = 4;
-                                return false;
-                            }
+                if (new Small_stmt2(tokens).handle()) {
+                    if (nextToken()) {
+                        if (currentToken == Token.NOVA_LINHA) {
+                            removeToken();
                         } else {
-                            errorCode = 5;
+                            errorCode = 4;
                             return false;
                         }
+                    } else {
+                        errorCode = 5;
+                        return false;
                     }
-                } else {
-                    errorCode = 8;
-                    return false;
                 }
             }
+        } else {
+            errorCode = 25;
+            return false;
         }
         return true;
     }

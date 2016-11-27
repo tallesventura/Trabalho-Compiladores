@@ -36,7 +36,5 @@ public class Arith_op extends AbstractHandler{
             return false;             
         }
         return true;
-    }
-    
-    
+    } 
 }

@@ -39,13 +39,8 @@ public class Dotted_name2 extends AbstractHandler {
                     errorCode = 10;
                     return false;
                 }
-            } else {
-                errorCode = 55;
-                return false;
             }
-        } else {
-            errorCode = 54;
-            return false;
         }
+        return true;
     }
 }

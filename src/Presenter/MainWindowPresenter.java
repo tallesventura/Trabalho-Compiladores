@@ -161,7 +161,9 @@ public class MainWindowPresenter {
                     JOptionPane.showMessageDialog(viewMainWindow, "Salve o arquivo primeiro!");
                 } else {
                     try {
-                        runLexicalAnalysis();
+                         updateSourceCode();
+                         errorList.addAll(runLexicalAnalysis());
+                         updateErrorTable(errorList);
                     } catch (FileNotFoundException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);
                     } catch (IOException ex) {
@@ -179,30 +181,24 @@ public class MainWindowPresenter {
             }
         });
         
-        viewMainWindow.getMenuItemAnaliseLex().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    errorList.addAll(runLexicalAnalysis());
-                    updateErrorTable(errorList);
-                } catch (IOException ex) {
-                    Logger.getLogger(MainWindowPresenter.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        
         viewMainWindow.getMenuItemAnaliseSinta().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                errorList.addAll(runSyntaxAnalysis(tokenList));
-                updateErrorTable(errorList);  
+                try {
+                    updateSourceCode();
+                    errorList.addAll(runSyntaxAnalysis(tokenList));
+                    updateErrorTable(errorList);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainWindowPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                } 
             }
         });
         
         viewMainWindow.getBtnCompilar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {                  
+                try {
+                    updateSourceCode();
                     errorList.addAll(runLexicalAnalysis());
                     errorList.addAll(runSyntaxAnalysis(tokenList));
                     updateTokenTable(tokenList);
@@ -222,6 +218,9 @@ public class MainWindowPresenter {
                         || keyCode == KeyEvent.VK_TAB) {
                     try {
                         updateSourceCode();
+                        runLexicalAnalysis();
+                        runSyntaxAnalysis(tokenList);
+                        updateErrorTable(errorList);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);
                     }
@@ -369,11 +368,11 @@ public class MainWindowPresenter {
         saveCode(codeFile);
         errorList.clear();
         tokenList.clear();
-        ArrayList<ErrorModel> lexicalErrors = runLexicalAnalysis();
-        errorList.addAll(lexicalErrors);
+        //ArrayList<ErrorModel> lexicalErrors = runLexicalAnalysis();
+        //errorList.addAll(lexicalErrors);
         //ArrayList<ErrorModel> syntaticErrors = runSyntaxAnalysis(tokenList);
         //errorList.addAll(syntaticErrors);
-        updateErrorTable(errorList);
+        //updateErrorTable(errorList);
 
     }
 

@@ -219,7 +219,6 @@ public class MainWindowPresenter {
                     try {
                         updateSourceCode();
                         runLexicalAnalysis();
-                        runSyntaxAnalysis(tokenList);
                         updateErrorTable(errorList);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);

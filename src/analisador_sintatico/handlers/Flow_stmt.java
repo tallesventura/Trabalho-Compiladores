@@ -20,6 +20,7 @@ public class Flow_stmt extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
+            /*
             if (terminais.contains(currentToken)) {
                 removeToken();
             } else if (currentToken == Token.RETURN) {
@@ -34,6 +35,28 @@ public class Flow_stmt extends AbstractHandler {
             errorCode = 42;
             return false;
         }
-        return true;
+        */
+            switch(currentToken){
+                case BREAK:
+                    removeToken();
+                    return true;
+                case CONTINUE:
+                    removeToken();
+                    return true;
+                case RETURN:
+                    return new Return_stmt(tokens).handle();
+                case YIELD:
+                    return new Yield_stmt(tokens).handle();
+                default:
+                    errorCode = 42;
+                    return false;
+
+            }
+        }else{
+            errorCode = 25;
+            return false;
+        }
+        
+        //return true;
     }
 }

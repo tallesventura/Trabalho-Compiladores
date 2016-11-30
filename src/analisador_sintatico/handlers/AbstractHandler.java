@@ -18,7 +18,7 @@ public abstract class AbstractHandler implements IHandler{
     protected static ArrayList<TokenModel> tokens;
     protected ArrayList<Token> terminais;
     protected static Token currentToken;
-    protected int errorCode = 0;
+    protected static int errorCode = 0;
 
     public AbstractHandler(ArrayList<TokenModel> tokens) {
         this.terminais = new ArrayList();

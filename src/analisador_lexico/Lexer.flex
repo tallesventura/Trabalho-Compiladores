@@ -49,7 +49,7 @@ WhiteSpace = {LineTerminator} | [ \f]
 "@" { id+=1; return Token.OP_ARROBA; }
 
 /* Operadores de atribuição */
-"=" { id+=1; return Token.ATRIBUICAO; }
+"=" { id+=1; return Token.OP_ATRIBUICAO; }
 "**=" { id+=1; return Token.OP_EXPONENCIACAO_IGUAL; }
 "//=" { id+=1; return Token.OP_DIVISAO_INTEIRA_IGUAL; }
 "+=" { id+=1; return Token.OP_MAIS_IGUAL; }

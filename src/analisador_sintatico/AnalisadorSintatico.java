@@ -53,14 +53,13 @@ public class AnalisadorSintatico{
         Iterator<TokenModel> it = tokens.iterator();
         while(it.hasNext()){
             if(!handler.handle()){
-                break;
-                /*
                 int errorCode = handler.getErrorCode();
                 String lexema = handler.getCurrentLexema();
                 int linha = handler.getCurrentLine();
                 ErrorModel error = new ErrorModel(errorCode, lexema, linha);
                 errorList.add(error);
-                
+                break;
+                /*
                 recuperaErro();
                 this.handler = new Single_input(tokens);
                 */

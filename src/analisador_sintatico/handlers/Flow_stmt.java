@@ -48,12 +48,12 @@ public class Flow_stmt extends AbstractHandler {
                 case YIELD:
                     return new Yield_stmt(tokens).handle();
                 default:
-                    errorCode = 42;
+                    AbstractHandler.errorCode = 42;
                     return false;
 
             }
         }else{
-            errorCode = 25;
+            AbstractHandler.errorCode = 25;
             return false;
         }
         

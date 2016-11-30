@@ -70,7 +70,7 @@ public class Small_stmt extends AbstractHandler{
                 case NONLOCAL:
                     return new Nonlocal_stmt(tokens).handle();
                 default:
-                    errorCode = 3;
+                    AbstractHandler.errorCode = 3;
                     return false;
             }
     }

@@ -22,19 +22,19 @@ public class Argument_list extends AbstractHandler {
                     if (currentToken == Token.IDENTIFICADOR) {//NAME
                         if (nextToken()) {
                             if(!(new Argument_list(tokens).handle())){
-                                errorCode = 33;
+                                AbstractHandler.errorCode = 33;
                                 return false;
                             }
                         } else {
-                            errorCode = 34;
+                            AbstractHandler.errorCode = 34;
                             return false;
                         }
                     } else {
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 } else {
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             }

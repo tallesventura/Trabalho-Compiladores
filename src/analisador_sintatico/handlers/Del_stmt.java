@@ -22,19 +22,19 @@ public class Del_stmt extends AbstractHandler{
                     if(currentToken == Token.IDENTIFICADOR){
                         removeToken();
                     }else{
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 }else{
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             }else{
-                errorCode = 7;
+                AbstractHandler.errorCode = 7;
                 return false;
             }
         }else{
-            errorCode = 38;
+            AbstractHandler.errorCode = 38;
             return false;
         }
         return true;

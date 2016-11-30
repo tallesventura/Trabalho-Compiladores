@@ -33,17 +33,17 @@ public class Unary_expr extends AbstractHandler{
                         AbstractHandler.errorCode = 6;
                     }
                 }else{
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             }else if(currentToken == Token.IDENTIFICADOR){
                 removeToken();
             }else{
-                errorCode = 27;
+                AbstractHandler.errorCode = 27;
                 return false;
             }
         }else{
-            errorCode = 26;
+            AbstractHandler.errorCode = 26;
             return false;
         }
         

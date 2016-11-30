@@ -29,7 +29,7 @@ public class Term extends AbstractHandler{
                 return false;
             }
         }else{
-            errorCode = 26;
+            AbstractHandler.errorCode = 26;
             return false;
         }
     }  

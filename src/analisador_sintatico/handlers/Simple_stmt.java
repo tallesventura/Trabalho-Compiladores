@@ -29,11 +29,11 @@ public class Simple_stmt extends AbstractHandler {
                         if (currentToken == Token.NOVA_LINHA) {
                             removeToken();
                         } else {
-                            errorCode = 4;
+                            AbstractHandler.errorCode = 4;
                             return false;
                         }
                     } else {
-                        errorCode = 5;
+                        AbstractHandler.errorCode = 5;
                         return false;
                     }
                 }else{
@@ -43,7 +43,7 @@ public class Simple_stmt extends AbstractHandler {
                 return false;
             }
         } else {
-            errorCode = 25;
+            AbstractHandler.errorCode = 25;
             return false;
         }
         return true;

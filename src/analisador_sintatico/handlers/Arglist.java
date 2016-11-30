@@ -30,15 +30,15 @@ public class Arglist extends AbstractHandler {
                 if (nextToken()) {
                     return new Argument_list(tokens).handle();
                 } else {
-                    errorCode = 33;
+                    AbstractHandler.errorCode = 33;
                     return false;
                 }
             } else {
-                errorCode = 6;
+                AbstractHandler.errorCode = 6;
                 return false;
             }
         } else {
-            errorCode = 10;
+            AbstractHandler.errorCode = 10;
             return false;
         }
     }

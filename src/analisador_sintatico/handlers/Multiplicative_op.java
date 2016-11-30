@@ -32,11 +32,11 @@ public class Multiplicative_op extends AbstractHandler{
             if(terminais.contains(currentToken)){
                 removeToken();
             }else{
-                errorCode = 29;
+                AbstractHandler.errorCode = 29;
                 return false;
             }
         }else{
-            errorCode = 28;
+            AbstractHandler.errorCode = 28;
             return false;
         }
         

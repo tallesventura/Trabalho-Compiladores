@@ -20,6 +20,7 @@ public class Argument_list extends AbstractHandler {
                 removeToken();
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {//NAME
+                        removeToken();
                         if (nextToken()) {
                             if(!(new Argument_list(tokens).handle())){
                                 AbstractHandler.errorCode = 33;

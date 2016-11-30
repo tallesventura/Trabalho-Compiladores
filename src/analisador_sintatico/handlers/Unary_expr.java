@@ -30,7 +30,7 @@ public class Unary_expr extends AbstractHandler{
                     if(currentToken == Token.IDENTIFICADOR){
                         removeToken();
                     }else{
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                     }
                 }else{
                     errorCode = 10;

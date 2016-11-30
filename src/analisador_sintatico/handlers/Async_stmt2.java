@@ -22,10 +22,14 @@ public class Async_stmt2 extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (currentToken == Token.DEF) {
-                return new Funcdef(tokens).handle();
-            } else if(currentToken == Token.FOR){
-                return new For_stmt(tokens).handle();
+            switch (currentToken) {
+                case DEF:
+                    return new Funcdef(tokens).handle();
+                case FOR:
+                    return new For_stmt(tokens).handle();
+                default:
+                    errorCode = 25;
+                    return false;
             }
         }
         return true;

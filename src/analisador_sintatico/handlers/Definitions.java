@@ -22,16 +22,17 @@ public class Definitions extends AbstractHandler {
     @Override
     public boolean handle() {
         if (nextToken()) {
-            if (currentToken == Token.DEF) {
-                return new Funcdef(tokens).handle();
-            } else if (currentToken == Token.ASYNC) {
-                return new Async_stmt(tokens).handle();
-            } else if (currentToken == Token.CLASS) {
-                return new Classdef(tokens).handle();
+            switch (currentToken) {
+                case DEF:
+                    return new Funcdef(tokens).handle();
+                case ASYNC:
+                    return new Async_stmt(tokens).handle();
+                case CLASS:
+                    return new Classdef(tokens).handle();
+                default:
+                    errorCode = 70;
+                    return false;
             }
-        } else {
-            errorCode = 70;
-            return false;
         }
         return true;
     }

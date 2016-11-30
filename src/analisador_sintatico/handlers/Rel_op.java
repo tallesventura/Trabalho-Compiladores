@@ -28,11 +28,11 @@ public class Rel_op extends AbstractHandler{
             if(terminais.contains(currentToken)){
                 removeToken();
             }else{
-                errorCode = 24;
+                AbstractHandler.errorCode = 24;
                 return false;
             }
         }else{
-            errorCode = 23;
+            AbstractHandler.errorCode = 23;
             return false;
         }
         

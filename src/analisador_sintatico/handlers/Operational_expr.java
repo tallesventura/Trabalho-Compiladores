@@ -28,7 +28,7 @@ public class Operational_expr extends AbstractHandler {
                 return false;
             }
         } else {
-            errorCode = 8;
+            AbstractHandler.errorCode = 8;
             return false;
         }
     }

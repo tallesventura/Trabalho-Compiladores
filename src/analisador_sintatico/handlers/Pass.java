@@ -16,11 +16,11 @@ public class Pass extends AbstractHandler{
             if(terminais.contains(currentToken)){
                 removeToken();
             }else{
-                errorCode = 39;
+                AbstractHandler.errorCode = 39;
                 return false;
             }        
         }else{
-            errorCode = 40;
+            AbstractHandler.errorCode = 40;
             return false;
         }    
         return true;

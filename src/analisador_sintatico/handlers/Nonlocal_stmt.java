@@ -32,19 +32,19 @@ public class Nonlocal_stmt extends AbstractHandler{
                         removeToken();
                         return new Arglist(tokens).handle();
                     } else {
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 } else {
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             } else {
-                errorCode = 66;
+                AbstractHandler.errorCode = 66;
                 return false;
             }
         } else {
-            errorCode = 65;
+            AbstractHandler.errorCode = 65;
             return false;
         }
     }

@@ -27,7 +27,7 @@ Num3 =  {N}+
 Letra = [a-zA-Z]
 Comment = "#".*
 LineTerminator = \r | \r\n
-WhiteSpace = {LineTerminator} | [ \f]
+WhiteSpace = {LineTerminator} | [ \f \t]
 
 %%
 

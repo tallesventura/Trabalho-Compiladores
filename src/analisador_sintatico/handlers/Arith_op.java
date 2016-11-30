@@ -28,11 +28,11 @@ public class Arith_op extends AbstractHandler{
             if(terminais.contains(currentToken)){
                 removeToken();
             }else{
-                errorCode = 19;
+                AbstractHandler.errorCode = 19;
                 return false;
             }
         }else{
-            errorCode = 18;
+            AbstractHandler.errorCode = 18;
             return false;             
         }
         return true;

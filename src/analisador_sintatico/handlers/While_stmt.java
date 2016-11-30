@@ -37,22 +37,22 @@ public class While_stmt extends AbstractHandler {
                                 return false;
                             }
                         } else {
-                            errorCode = 49;
+                            AbstractHandler.errorCode = 49;
                             return false;
                         }
                     } else {
-                        errorCode = 48;
+                        AbstractHandler.errorCode = 48;
                         return false;
                     }
                 } else {
                     return false;
                 }
             } else {
-                errorCode = 75;
+                AbstractHandler.errorCode = 75;
                 return false;
             }
         } else {
-            errorCode = 74;
+            AbstractHandler.errorCode = 74;
             return false;
         }
     }

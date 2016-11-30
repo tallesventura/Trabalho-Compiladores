@@ -27,11 +27,11 @@ public class Async_stmt extends AbstractHandler {
                 removeToken();
                 return new Async_stmt2(tokens).handle();
             } else {
-                errorCode = 47;
+                AbstractHandler.errorCode = 47;
                 return false;
             }
         } else {
-            errorCode = 46;
+            AbstractHandler.errorCode = 46;
             return false;
         }
     }

@@ -32,11 +32,11 @@ public class Else_stmt extends AbstractHandler {
                         return new Suite(tokens).handle();
                     }
                 } else {
-                    errorCode = 49;
+                    AbstractHandler.errorCode = 49;
                     return false;
                 }
             } else {
-                errorCode = 48;
+                AbstractHandler.errorCode = 48;
                 return false;
             }
         }

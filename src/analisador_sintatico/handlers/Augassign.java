@@ -40,13 +40,13 @@ public class Augassign extends AbstractHandler{
         
         if(nextToken()){
             if(!terminais.contains(currentToken)){
-                errorCode = 12;
+                AbstractHandler.errorCode = 12;
                 return false;
             }else{
                 removeToken();
             }
         }else{
-            errorCode = 11;
+            AbstractHandler.errorCode = 11;
             return false;
         }
         return true;

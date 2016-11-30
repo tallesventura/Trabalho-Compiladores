@@ -38,22 +38,22 @@ public class Comp_op extends AbstractHandler{
                     if(currentToken == Token.IN){
                         removeToken();
                     }else{
-                        errorCode = 22;
+                        AbstractHandler.errorCode = 22;
                         return false;
                     }
                 }else{
-                    errorCode = 21;
+                    AbstractHandler.errorCode = 21;
                     return false;
                 }
             }else if(currentToken == Token.IS){
                 removeToken();
                 return new Is_not(tokens).handle();
             }else{
-                errorCode = 30;
+                AbstractHandler.errorCode = 30;
                 return false;
             }
         }else{
-            errorCode = 20;
+            AbstractHandler.errorCode = 20;
             return false;
         }
                 

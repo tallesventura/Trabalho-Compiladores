@@ -31,11 +31,11 @@ public class Expr_stmt extends AbstractHandler {
                     return false;
                 }
             } else {
-                errorCode = 6;
+                AbstractHandler.errorCode = 6;
                 return false;
             }
         } else {
-            errorCode = 10;
+            AbstractHandler.errorCode = 10;
             return false;
         }
     }

@@ -44,39 +44,39 @@ public class For_stmt extends AbstractHandler {
                                                 return false;
                                             }
                                         }else{
-                                            errorCode = 49;
+                                            AbstractHandler.errorCode = 49;
                                             return false;
                                         }
                                     } else {
-                                        errorCode = 48;
+                                        AbstractHandler.errorCode = 48;
                                         return false;
                                     }
                                 }else{
                                     return false;
                                 }
                             } else {
-                                errorCode = 22;
+                                AbstractHandler.errorCode = 22;
                                 return false;
                             }
                         } else {
-                            errorCode = 21;
+                            AbstractHandler.errorCode = 21;
                             return false;
                         }
                     } else {
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 } else {
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             } else {
-                errorCode = 57;
+                AbstractHandler.errorCode = 57;
                 return false;
             }
 
         } else {
-            errorCode = 76;
+            AbstractHandler.errorCode = 76;
             return false;
         }
     }

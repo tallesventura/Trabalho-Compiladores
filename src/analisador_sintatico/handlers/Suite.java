@@ -38,11 +38,11 @@ public class Suite extends AbstractHandler {
                                     if (currentToken == Token.FECHA_CHAVES) {
                                         removeToken();
                                     } else {
-                                        errorCode = 80;
+                                        AbstractHandler.errorCode = 80;
                                         return false;
                                     }
                                 } else {
-                                    errorCode = 79;
+                                    AbstractHandler.errorCode = 79;
                                     return false;
                                 }
                             }else{
@@ -52,19 +52,19 @@ public class Suite extends AbstractHandler {
                             return false;
                         }
                     } else {
-                        errorCode = 78;
+                        AbstractHandler.errorCode = 78;
                         return false;
                     }
                 } else {
-                    errorCode = 77;
+                    AbstractHandler.errorCode = 77;
                     return false;
                 }
             } else {
-                errorCode = 3;
+                AbstractHandler.errorCode = 3;
                 return false;
             }
         } else {
-            errorCode = 25;
+            AbstractHandler.errorCode = 25;
             return false;
         }
         return true;

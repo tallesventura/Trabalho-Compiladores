@@ -28,7 +28,7 @@ public class Async_stmt2 extends AbstractHandler {
                 case FOR:
                     return new For_stmt(tokens).handle();
                 default:
-                    errorCode = 25;
+                    AbstractHandler.errorCode = 25;
                     return false;
             }
         }

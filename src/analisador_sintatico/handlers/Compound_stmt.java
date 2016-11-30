@@ -36,7 +36,7 @@ public class Compound_stmt extends AbstractHandler {
                 case ASYNC:
                     return new Async_stmt(tokens).handle();
                 default:
-                    errorCode = 3;
+                    AbstractHandler.errorCode = 3;
                     return false;
             }
         }

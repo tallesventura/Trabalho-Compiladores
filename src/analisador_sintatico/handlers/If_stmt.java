@@ -40,22 +40,22 @@ public class If_stmt extends AbstractHandler {
                                 return false;
                             }
                         } else{
-                            errorCode = 49;
+                            AbstractHandler.errorCode = 49;
                             return false;
                         }
                     } else {
-                        errorCode = 49;
+                        AbstractHandler.errorCode = 49;
                         return false;
                     }
                 } else {
                     return false;
                 }
             } else {
-                errorCode = 62;
+                AbstractHandler.errorCode = 62;
                 return false;
             }
         } else {
-            errorCode = 61;
+            AbstractHandler.errorCode = 61;
             return false;
         }
     }

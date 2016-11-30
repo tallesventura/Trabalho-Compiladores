@@ -28,7 +28,7 @@ public class Expr extends AbstractHandler {
                 return false;
             }
         } else {
-            errorCode = 14;
+            AbstractHandler.errorCode = 14;
             return false;
         }
     }

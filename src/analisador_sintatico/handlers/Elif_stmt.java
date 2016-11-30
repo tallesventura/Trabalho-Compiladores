@@ -38,22 +38,22 @@ public class Elif_stmt extends AbstractHandler {
                                         return false;
                                     }
                                 } else {
-                                    errorCode = 25;
+                                    AbstractHandler.errorCode = 25;
                                     return false;
                                 }
                             } else {
-                                errorCode = 49;
+                                AbstractHandler.errorCode = 49;
                                 return false;
                             }
                         } else {
-                            errorCode = 48;
+                            AbstractHandler.errorCode = 48;
                             return false;
                         }
                     }else{
                         return false;
                     }
                 } else {
-                    errorCode = 13;
+                    AbstractHandler.errorCode = 13;
                     return false;
                 }
             }

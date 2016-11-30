@@ -48,11 +48,11 @@ public class Stmt extends AbstractHandler {
                 case 2:
                     return new Compound_stmt(tokens).handle();
                 default:
-                    errorCode = 3;
+                    AbstractHandler.errorCode = 3;
                     return false;
             }
         } else {
-            errorCode = 25;
+            AbstractHandler.errorCode = 25;
             return false;
         }
     }

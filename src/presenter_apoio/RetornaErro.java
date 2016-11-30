@@ -23,6 +23,9 @@ public class RetornaErro {
     
     
     public static String getError(ErrorModel error){
+        
+        error = substituiNewLine(error);
+        
         switch(error.getCodigo()){
             case 1:
                 return "Operador inválido < " + error.getLexema() + " >.";
@@ -187,5 +190,17 @@ public class RetornaErro {
             default:
                 return "";
         }
+    }
+    
+    private static ErrorModel substituiNewLine(ErrorModel em){
+        
+        if(em.getLexema().equals("\n") || em.getLexema().equals("\r") ||
+                em.getLexema().equals("\r\n") || em.getLexema().equals("\f")){
+            em.setLexema("NOVA_LINHA");
+        }else if(em.getLexema().equals("\t")){
+            em.setLexema("TAB");
+        }
+        
+        return em;
     }
 }

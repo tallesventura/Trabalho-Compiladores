@@ -35,9 +35,6 @@ public class Else_stmt extends AbstractHandler {
                     AbstractHandler.errorCode = 49;
                     return false;
                 }
-            } else {
-                AbstractHandler.errorCode = 48;
-                return false;
             }
         }
         

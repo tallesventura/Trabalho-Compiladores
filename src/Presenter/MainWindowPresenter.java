@@ -366,7 +366,6 @@ public class MainWindowPresenter {
         codeFile = new File(rootPath);
         saveCode(codeFile);
         errorList.clear();
-        tokenList.clear();
         //ArrayList<ErrorModel> lexicalErrors = runLexicalAnalysis();
         //errorList.addAll(lexicalErrors);
         //ArrayList<ErrorModel> syntaticErrors = runSyntaxAnalysis(tokenList);
@@ -386,7 +385,7 @@ public class MainWindowPresenter {
                 tblErros.addRow(o);
             }
         }else{
-            Object o[] = {"-", "Nenhum erro encontrado"};
+            Object o[] = {"", "Nenhum erro encontrado"};
             tblErros.addRow(o);
         }
     }

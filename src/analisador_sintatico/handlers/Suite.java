@@ -30,23 +30,34 @@ public class Suite extends AbstractHandler {
             } else if (nextToken()) {
                 if (currentToken == Token.ABRE_CHAVES) {//ABRE_CHAVES
                     removeToken();
-                    if (new Stmt(tokens).handle()) {
-                        if (new Stmt2(tokens).handle()) {
-                            if (nextToken()) {
-                                if (currentToken == Token.FECHA_CHAVES) {
-                                    removeToken();
+                    if (nextToken()) {
+                        if (currentToken == Token.NOVA_LINHA) {
+                            removeToken();
+                            if (new Stmt(tokens).handle()) {
+                                if (new Stmt2(tokens).handle()) {
+                                    if (nextToken()) {
+                                        if (currentToken == Token.FECHA_CHAVES) {
+                                            removeToken();
+                                        } else {
+                                            AbstractHandler.errorCode = 80;
+                                            return false;
+                                        }
+                                    } else {
+                                        AbstractHandler.errorCode = 79;
+                                        return false;
+                                    }
                                 } else {
-                                    AbstractHandler.errorCode = 80;
                                     return false;
                                 }
                             } else {
-                                AbstractHandler.errorCode = 79;
                                 return false;
                             }
-                        } else {
-                            return false;
+                        }else{
+                            errorCode = 4;
+                            return false;   
                         }
                     } else {
+                        errorCode = 5;
                         return false;
                     }
                 } else {

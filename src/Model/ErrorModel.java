@@ -31,5 +31,17 @@ public class ErrorModel {
     public int getLinha() {
         return linha;
     }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setLexema(String lexema) {
+        this.lexema = lexema;
+    }
+
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
     
 }

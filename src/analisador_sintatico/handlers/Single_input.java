@@ -43,7 +43,7 @@ public class Single_input extends AbstractHandler {
                     || currentToken == Token.OP_ARROBA || currentToken == Token.ASYNC) {
                 if (new Compound_stmt(tokens).handle()) {
                     if (currentToken == Token.NOVA_LINHA) {
-                        tokens.remove(0);
+                        removeToken();
                         new Single_input(tokens).handle();
                     } else {
                         AbstractHandler.errorCode = 4;

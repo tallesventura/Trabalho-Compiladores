@@ -27,36 +27,30 @@ public class Suite extends AbstractHandler {
         if (nextToken()) {
             if (new Simple_stmt(tokens).handle()) {
                 return true;
-            } else if (currentToken == Token.NOVA_LINHA) {//NEWLINE
-                removeToken();
-                if (nextToken()) {
-                    if (currentToken == Token.ABRE_CHAVES) {//ABRE_CHAVES
-                        removeToken();
-                        if (new Stmt(tokens).handle()) {
-                            if (new Stmt2(tokens).handle()) {
-                                if (nextToken()) {
-                                    if (currentToken == Token.FECHA_CHAVES) {
-                                        removeToken();
-                                    } else {
-                                        AbstractHandler.errorCode = 80;
-                                        return false;
-                                    }
+            } else if (nextToken()) {
+                if (currentToken == Token.ABRE_CHAVES) {//ABRE_CHAVES
+                    removeToken();
+                    if (new Stmt(tokens).handle()) {
+                        if (new Stmt2(tokens).handle()) {
+                            if (nextToken()) {
+                                if (currentToken == Token.FECHA_CHAVES) {
+                                    removeToken();
                                 } else {
-                                    AbstractHandler.errorCode = 79;
+                                    AbstractHandler.errorCode = 80;
                                     return false;
                                 }
-                            }else{
+                            } else {
+                                AbstractHandler.errorCode = 79;
                                 return false;
                             }
                         } else {
                             return false;
                         }
                     } else {
-                        AbstractHandler.errorCode = 78;
                         return false;
                     }
                 } else {
-                    AbstractHandler.errorCode = 77;
+                    AbstractHandler.errorCode = 78;
                     return false;
                 }
             } else {

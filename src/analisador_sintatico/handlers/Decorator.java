@@ -32,23 +32,23 @@ public class Decorator extends AbstractHandler {
                             removeToken();
                             return new Decorator(tokens).handle();
                         } else {
-                            errorCode = 4;
+                            AbstractHandler.errorCode = 4;
                             return false;
                         }
                     } else {
-                        errorCode = 5;
+                        AbstractHandler.errorCode = 5;
                         return false;
                     }
                 }else{
-                    errorCode = 6;
+                    AbstractHandler.errorCode = 6;
                     return false;
                 }
             } else {
-                errorCode = 53;
+                AbstractHandler.errorCode = 53;
                 return false;
             }
         } else {
-            errorCode = 52;
+            AbstractHandler.errorCode = 52;
             return false;
         }
     }

@@ -31,22 +31,22 @@ public class Parameters extends AbstractHandler {
                         if (currentToken == Token.FECHA_PARENTESES) {//FECHA_PARENTESES
                             removeToken();
                         } else {
-                            errorCode = 68;
+                            AbstractHandler.errorCode = 68;
                             return false;
                         }
                     } else {
-                        errorCode = 67;
+                        AbstractHandler.errorCode = 67;
                         return false;
                     }
                 }else{
                     return false;
                 }
             } else {
-                errorCode = 31;
+                AbstractHandler.errorCode = 31;
                 return false;
             }
         } else {
-            errorCode = 32;
+            AbstractHandler.errorCode = 32;
             return false;
         }
         return true;

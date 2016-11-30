@@ -39,11 +39,11 @@ public class Classdef extends AbstractHandler {
                                         return new Suite(tokens).handle();
                                     }
                                 } else {
-                                    errorCode = 49;
+                                    AbstractHandler.errorCode = 49;
                                     return false;
                                 }
                             } else {
-                                errorCode = 48;
+                                AbstractHandler.errorCode = 48;
                                 return false;
                             }
                         }else{
@@ -51,19 +51,19 @@ public class Classdef extends AbstractHandler {
                         }
 
                     } else {
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 } else {
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             } else {
-                errorCode = 51;
+                AbstractHandler.errorCode = 51;
                 return false;
             }
         } else {
-            errorCode = 50;
+            AbstractHandler.errorCode = 50;
             return false;
         }
         return true;

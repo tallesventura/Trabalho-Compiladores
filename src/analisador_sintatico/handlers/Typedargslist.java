@@ -32,15 +32,15 @@ public class Typedargslist extends AbstractHandler {
                         return false;
                     }
                 }else{
-                    errorCode = 71;
+                    AbstractHandler.errorCode = 71;
                     return false;
                 }
             } else {
-                errorCode = 6;
+                AbstractHandler.errorCode = 6;
                 return false;
             }
         } else {
-            errorCode = 10;
+            AbstractHandler.errorCode = 10;
             return false;
         }
     }

@@ -33,11 +33,11 @@ public class More_arg extends AbstractHandler {
                             return new More_arg(tokens).handle();
                         }
                     } else {
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 } else {
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             }

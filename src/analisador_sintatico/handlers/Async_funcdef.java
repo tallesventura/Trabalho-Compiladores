@@ -28,15 +28,15 @@ public class Async_funcdef extends AbstractHandler{
                 if(nextToken()){
                     return new Funcdef(tokens).handle();
                 }else{
-                    errorCode = 59;
+                    AbstractHandler.errorCode = 59;
                     return false;
                 }
             }else{
-                errorCode = 47;
+                AbstractHandler.errorCode = 47;
                 return false;
             }
         }else{
-            errorCode = 46;
+            AbstractHandler.errorCode = 46;
             return false;
         }
     }  

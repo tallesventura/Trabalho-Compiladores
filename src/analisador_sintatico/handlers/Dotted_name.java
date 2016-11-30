@@ -28,11 +28,11 @@ public class Dotted_name extends AbstractHandler {
                 removeToken();
                 return new Dotted_name2(tokens).handle();
             } else {
-                errorCode = 6;
+                AbstractHandler.errorCode = 6;
                 return false;
             }
         } else {
-            errorCode = 10;
+            AbstractHandler.errorCode = 10;
             return false;
         }
     }

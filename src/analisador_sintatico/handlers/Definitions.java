@@ -30,7 +30,7 @@ public class Definitions extends AbstractHandler {
                 case CLASS:
                     return new Classdef(tokens).handle();
                 default:
-                    errorCode = 70;
+                    AbstractHandler.errorCode = 70;
                     return false;
             }
         }

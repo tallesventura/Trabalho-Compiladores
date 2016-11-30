@@ -46,14 +46,14 @@ public class Single_input extends AbstractHandler {
                         tokens.remove(0);
                         new Single_input(tokens).handle();
                     } else {
-                        errorCode = 4;
+                        AbstractHandler.errorCode = 4;
                         return false;
                     }
                 }else{
                     return false;
                 }
             } else {
-                errorCode = 3;
+                AbstractHandler.errorCode = 3;
                 return false;
             }
         }

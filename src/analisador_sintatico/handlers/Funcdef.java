@@ -36,28 +36,28 @@ public class Funcdef extends AbstractHandler {
                                     removeToken();
                                     return new Suite(tokens).handle(); 
                                 } else {
-                                    errorCode = 49;
+                                    AbstractHandler.errorCode = 49;
                                     return false;
                                 }
                             } else {
-                                errorCode = 48;
+                                AbstractHandler.errorCode = 48;
                                 return false;
                             }
                         }
                     } else {
-                        errorCode = 6;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 } else {
-                    errorCode = 10;
+                    AbstractHandler.errorCode = 10;
                     return false;
                 }
             } else {
-                errorCode = 60;
+                AbstractHandler.errorCode = 60;
                 return false;
             }
         } else {
-            errorCode = 59;
+            AbstractHandler.errorCode = 59;
             return false;
         }
         return true;

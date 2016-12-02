@@ -36,7 +36,7 @@ public class Compound_stmt extends AbstractHandler {
                 case ASYNC:
                     return new Async_stmt(tokens).handle();
                 case FOR:
-                    return new Async_stmt(tokens).handle();
+                    return new For_stmt(tokens).handle();
                 default:
                     AbstractHandler.errorCode = 3;
                     return false;

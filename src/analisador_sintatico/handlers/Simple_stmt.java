@@ -33,7 +33,7 @@ public class Simple_stmt extends AbstractHandler {
                             return false;
                         }
                     } else {
-                        AbstractHandler.errorCode = 5;
+                        AbstractHandler.errorCode = 6;
                         return false;
                     }
                 }else{

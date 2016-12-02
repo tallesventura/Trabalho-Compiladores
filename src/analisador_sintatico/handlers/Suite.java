@@ -57,7 +57,7 @@ public class Suite extends AbstractHandler {
                             return false;   
                         }
                     } else {
-                        errorCode = 5;
+                        errorCode = 6;
                         return false;
                     }
                 } else {

@@ -5,7 +5,6 @@ import analisador_lexico.Token;
 
 %class Lexer
 %line
-%column
 %type Token
 
 %{
@@ -16,7 +15,7 @@ public int getId(){
 }
 
 public int getLine(){
-    return yyline;
+    return yyline + 1;
 }
 %}
 

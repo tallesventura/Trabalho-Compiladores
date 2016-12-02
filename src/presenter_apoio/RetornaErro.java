@@ -35,8 +35,6 @@ public class RetornaErro {
                 return "Token <" + error.getLexema() +  "> não esperado.";
             case 4:
                 return "Token <NOVA_LINHA> esperado, mas foi encontrado <" + error.getLexema() + ">.";
-            case 5:
-                return "Token <" + error.getLexema() + "> esperado, mas nenhum token foi encontrado.";
             case 6:
                 return "Token <NOVA_LINHA> esperado, mas nenhum token foi encontrado.";
             case 7: 

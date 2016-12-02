@@ -200,7 +200,7 @@ public class MainWindowPresenter {
                 try {
                     updateSourceCode();
                     errorList.addAll(runLexicalAnalysis());
-                    errorList.addAll(runSyntaxAnalysis(tokenList));
+                    errorList.addAll(runSyntaxAnalysis(new ArrayList(tokenList)));
                     updateTokenTable(tokenList);
                     updateErrorTable(errorList);
                 } catch (IOException ex) {
@@ -292,7 +292,7 @@ public class MainWindowPresenter {
         return errors;
     }
 
-    public void updateTokenTable(List<TokenModel> tokens) {
+    public void updateTokenTable(ArrayList<TokenModel> tokens) {
         tblModelTokens.setNumRows(0);
         for (TokenModel t : tokens) {
             if (t.getNome() != Token.ERROR) {

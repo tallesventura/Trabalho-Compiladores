@@ -39,8 +39,9 @@ public class Single_input extends AbstractHandler {
                     return false;
                 }
             } else if (currentToken == Token.IF || currentToken == Token.WHILE
-                    || currentToken == Token.DEF || currentToken == Token.CLASS
-                    || currentToken == Token.OP_ARROBA || currentToken == Token.ASYNC) {
+                    || currentToken == Token.FOR || currentToken == Token.DEF 
+                    || currentToken == Token.CLASS || currentToken == Token.OP_ARROBA 
+                    || currentToken == Token.ASYNC) {
                 if (new Compound_stmt(tokens).handle()) {
                     if (currentToken == Token.NOVA_LINHA) {
                         removeToken();

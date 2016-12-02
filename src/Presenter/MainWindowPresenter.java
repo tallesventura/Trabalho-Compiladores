@@ -218,7 +218,8 @@ public class MainWindowPresenter {
                         || keyCode == KeyEvent.VK_TAB) {
                     try {
                         updateSourceCode();
-                        runLexicalAnalysis();
+                        errorList.addAll(runLexicalAnalysis());
+                        updateTokenTable(tokenList);
                         updateErrorTable(errorList);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(viewMainWindow, ex);

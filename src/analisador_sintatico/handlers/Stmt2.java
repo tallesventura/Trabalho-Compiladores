@@ -27,7 +27,11 @@ public class Stmt2 extends AbstractHandler {
                     || currentToken == Token.PASS || currentToken == Token.BREAK
                     || currentToken == Token.CONTINUE || currentToken == Token.RETURN
                     || currentToken == Token.YIELD || currentToken == Token.IMPORT
-                    || currentToken == Token.GLOBAL || currentToken == Token.NONLOCAL) {
+                    || currentToken == Token.GLOBAL || currentToken == Token.NONLOCAL
+                    || currentToken == Token.IF || currentToken == Token.WHILE
+                    || currentToken == Token.DEF || currentToken == Token.CLASS
+                    || currentToken == Token.OP_ARROBA || currentToken == Token.ASYNC
+                    || currentToken == Token.FOR) {
                 return new Stmt(tokens).handle();
             }
         }

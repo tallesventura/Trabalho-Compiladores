@@ -39,18 +39,23 @@ public class Single_input extends AbstractHandler {
                     return false;
                 }
             } else if (currentToken == Token.IF || currentToken == Token.WHILE
-                    || currentToken == Token.FOR || currentToken == Token.DEF 
-                    || currentToken == Token.CLASS || currentToken == Token.OP_ARROBA 
+                    || currentToken == Token.FOR || currentToken == Token.DEF
+                    || currentToken == Token.CLASS || currentToken == Token.OP_ARROBA
                     || currentToken == Token.ASYNC) {
                 if (new Compound_stmt(tokens).handle()) {
-                    if (currentToken == Token.NOVA_LINHA) {
-                        removeToken();
-                        new Single_input(tokens).handle();
-                    } else {
-                        AbstractHandler.errorCode = 4;
+                    if (nextToken()) {
+                        if (currentToken == Token.NOVA_LINHA) {
+                            removeToken();
+                            new Single_input(tokens).handle();
+                        } else {
+                            AbstractHandler.errorCode = 4;
+                            return false;
+                        }
+                    }else{
+                        errorCode = 6;
                         return false;
                     }
-                }else{
+                } else {
                     return false;
                 }
             } else {

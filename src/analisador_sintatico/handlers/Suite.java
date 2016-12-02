@@ -38,6 +38,12 @@ public class Suite extends AbstractHandler {
                                     if (nextToken()) {
                                         if (currentToken == Token.FECHA_CHAVES) {
                                             removeToken();
+                                            if(nextToken()){
+                                                if(currentToken == Token.NOVA_LINHA){
+                                                    removeToken();
+                                                    return true;
+                                                }
+                                            }
                                         } else {
                                             AbstractHandler.errorCode = 80;
                                             return false;

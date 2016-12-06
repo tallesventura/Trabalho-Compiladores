@@ -30,7 +30,7 @@ public class Global_stmt extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {
                         removeToken();
-                        return new Arglist(tokens).handle();
+                        return new Argument_list(tokens).handle();
                     } else {
                         errorCode = 6;
                         return false;

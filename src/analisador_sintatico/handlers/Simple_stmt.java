@@ -24,21 +24,7 @@ public class Simple_stmt extends AbstractHandler {
 
         if (nextToken()) {
             if (new Small_stmt(tokens).handle()) {
-                if (new Small_stmt2(tokens).handle()) {
-                    if (nextToken()) {
-                        if (currentToken == Token.NOVA_LINHA) {
-                            removeToken();
-                        } else {
-                            AbstractHandler.errorCode = 4;
-                            return false;
-                        }
-                    } else {
-                        AbstractHandler.errorCode = 6;
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
+                return new Small_stmt2(tokens).handle();
             }else{
                 return false;
             }
@@ -46,7 +32,6 @@ public class Simple_stmt extends AbstractHandler {
             AbstractHandler.errorCode = 25;
             return false;
         }
-        return true;
     }
 
 }

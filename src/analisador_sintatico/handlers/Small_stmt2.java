@@ -25,7 +25,12 @@ public class Small_stmt2 extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.PONTO_VIRGULA) {
                 removeToken();
-                return new Simple_stmt3(tokens).handle();        
+                return new Simple_stmt3(tokens).handle();
+            } else if (currentToken == Token.NOVA_LINHA) {
+                removeToken();
+            } else {
+                AbstractHandler.errorCode = 4;
+                return false;
             }
         }
         return true;

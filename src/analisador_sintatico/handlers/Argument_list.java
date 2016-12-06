@@ -21,15 +21,7 @@ public class Argument_list extends AbstractHandler {
                 if (nextToken()) {
                     if (currentToken == Token.IDENTIFICADOR) {//NAME
                         removeToken();
-                        if (nextToken()) {
-                            if(!(new Argument_list(tokens).handle())){
-                                AbstractHandler.errorCode = 33;
-                                return false;
-                            }
-                        } else {
-                            AbstractHandler.errorCode = 34;
-                            return false;
-                        }
+                        return new Argument_list(tokens).handle();
                     } else {
                         AbstractHandler.errorCode = 6;
                         return false;

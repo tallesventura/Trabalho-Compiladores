@@ -185,6 +185,10 @@ public class RetornaErro {
                 return "Esperado o token <}>, mas nenhum token foi encontrado";
             case 80: 
                 return "Esperado o token <}>, mas foi encontrado <" + error.getLexema() + ">.";
+            case 81: 
+                return "Erro na instrução de retorno";
+            case 82: 
+                return "Terminal <return> esperado, mas foi encontrado <" + error.getLexema() + ">.";
             default:
                 return "";
         }

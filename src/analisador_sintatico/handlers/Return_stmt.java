@@ -26,9 +26,14 @@ public class Return_stmt extends AbstractHandler {
         if (nextToken()) {
             if (currentToken == Token.RETURN) {
                 removeToken();
-                return new Parameters_opt(tokens).handle();
+                return new Return2(tokens).handle();
+            }else{
+                errorCode = 82;
+                return false;
             }
+        }else{
+            errorCode = 43;
+            return false;
         }
-        return true;
     }
 }

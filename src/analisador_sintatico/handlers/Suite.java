@@ -32,6 +32,7 @@ public class Suite extends AbstractHandler {
                     removeToken();
                     if (nextToken()) {
                         if (currentToken == Token.NOVA_LINHA) {
+                            linha++;
                             removeToken();
                             if (new Stmt(tokens).handle()) {
                                 if (new Stmt2(tokens).handle()) {
@@ -40,6 +41,7 @@ public class Suite extends AbstractHandler {
                                             removeToken();
                                             if(nextToken()){
                                                 if(currentToken == Token.NOVA_LINHA){
+                                                    linha++;
                                                     removeToken();
                                                     return true;
                                                 }

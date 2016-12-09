@@ -19,6 +19,7 @@ public abstract class AbstractHandler implements IHandler{
     protected ArrayList<Token> terminais;
     protected static Token currentToken;
     protected static int errorCode = 0;
+    protected static int linha = 1;
 
     public AbstractHandler(ArrayList<TokenModel> tokens) {
         this.terminais = new ArrayList();
@@ -44,15 +45,16 @@ public abstract class AbstractHandler implements IHandler{
     }
     
     public int getCurrentLine(){
-        int line = -1;
         if(tokens.size() > 0){
-            line = tokens.get(0).getLinha();
+            return tokens.get(0).getLinha();
+        }else{
+            return linha;
         }
-        return line;
     }
     
     public boolean removeToken(){
         if(tokens.size() > 0 ){
+            linha = tokens.get(0).getLinha();
             tokens.remove(0);
             return true;
         }else{

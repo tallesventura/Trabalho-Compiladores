@@ -29,6 +29,7 @@ public class Decorator extends AbstractHandler {
                 if (new Dotted_name(tokens).handle()) {
                     if (nextToken()) {
                         if (currentToken == Token.NOVA_LINHA) {//NOVA_LINHA
+                            linha++;
                             removeToken();
                             return new Decorator(tokens).handle();
                         } else {

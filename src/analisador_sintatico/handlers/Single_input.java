@@ -25,6 +25,7 @@ public class Single_input extends AbstractHandler {
 
         if (nextToken()) {
             if (currentToken == Token.NOVA_LINHA) {
+                linha++;
                 removeToken();
                 new Single_input(tokens).handle();
             } else if (currentToken == Token.IDENTIFICADOR || currentToken == Token.DELETE
@@ -45,6 +46,7 @@ public class Single_input extends AbstractHandler {
                 if (new Compound_stmt(tokens).handle()) {
                     if (nextToken()) {
                         if (currentToken == Token.NOVA_LINHA) {
+                            linha++;
                             removeToken();
                             new Single_input(tokens).handle();
                         } else {
